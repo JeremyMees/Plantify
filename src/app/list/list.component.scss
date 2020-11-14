@@ -1,0 +1,15 @@
+.parent {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.child {
+  margin: 25px;
+  display: inline-block;
+  background-color: #d291bc;
+  padding: 10px;
+}
+
+.price {
+  text-align: right;
+}
