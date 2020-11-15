@@ -1,1 +1,12 @@
-<p>plant-container works!</p>
+<div class="parent">
+  <app-list
+    class="left"
+    [plants]="plants"
+    (plantClick)="onPlantChange($event)"
+  ></app-list>
+  <app-details
+    class="right"
+    *ngIf="choosenPlant"
+    [plant]="choosenPlant"
+  ></app-details>
+</div>

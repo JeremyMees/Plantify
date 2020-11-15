@@ -1,15 +1,31 @@
 import { Component, OnInit } from '@angular/core';
+import { PlantService } from '../plant.service';
+import { Plants } from '../plants';
 
 @Component({
   selector: 'app-plant-container',
   templateUrl: './plant-container.component.html',
   styleUrls: ['./plant-container.component.scss']
 })
-export class PlantContainerComponent implements OnInit {
+export class PlantContainerComponent implements OnInit{
+  plants: Array<Plants>;
+  choosenPlant: Plants;
+  
+  constructor(
+    private plantService: PlantService
+  ) {}
 
-  constructor() { }
+  ngOnInit():void{
+    this.plantService.getPlants().subscribe((plants)=>{
+      this.plants = plants;
+    })
+    this.plantService.getSelectedPlant().subscribe((plant)=>{
+      this.choosenPlant = plant
+    })
+  }
 
-  ngOnInit(): void {
+  onPlantChange(plant:Plants): void {
+    this.plantService.setSelectedPlant(plant);
   }
 
 }

@@ -1,6 +1,5 @@
 import { Component, Input,Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
-import { PLANTS} from '../mock-plants';
 import { Plants } from '../plants';
 
 @Component({
@@ -10,13 +9,11 @@ import { Plants } from '../plants';
 })
 
 export class ListComponent {
-  plants = PLANTS;
-  
+  @Input() plants: Array<Plants>;
   @Output() plantClick = new EventEmitter<Plants>();
 
-
-  onSelect(plant: Plants): void {
-    alert(`latin name : ${plant.latinName} name : ${plant.name} price : ${plant.price}`);
+  onSelect(plant): void {
+    this.plantClick.emit(plant)
   }
 }
 
