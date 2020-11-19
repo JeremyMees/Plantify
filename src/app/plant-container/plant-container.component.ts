@@ -19,13 +19,16 @@ export class PlantContainerComponent implements OnInit{
     this.plantService.getPlants().subscribe((plants)=>{
       this.plants = plants;
     })
-    this.plantService.getSelectedPlant().subscribe((plant)=>{
-      this.choosenPlant = plant
-    })
   }
 
   onPlantChange(plant:Plants): void {
     this.plantService.setSelectedPlant(plant);
+    this.getSelectedPlant()
   }
 
+  getSelectedPlant(): void {
+    this.plantService.getSelectedPlant().subscribe((plant)=>{
+      this.choosenPlant = plant
+    })
+  }
 }

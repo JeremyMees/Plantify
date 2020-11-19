@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "eind-proef"
+    }
+  },
+  "defaultProject": "eind-proef",
+  "cli": {
+    "analytics": "5c274573-3ff5-4b67-9008-f39cb4512eb0"
+  }
 }
