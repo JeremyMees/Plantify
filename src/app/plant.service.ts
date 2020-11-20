@@ -9,8 +9,8 @@ import { PLANTS} from './mock-plants';
 export class PlantService {
   choosenPlant: Plants;
 
-  getPlants(): Observable<Array<Plants>> {
-    return of(PLANTS);
+  getPlants(): Array<Plants> {
+    return PLANTS;
   }
 
   setSelectedPlant(plant: Plants):void{

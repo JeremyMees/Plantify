@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ListComponent } from './list.component';
 
 describe('ListComponent', () => {
@@ -8,7 +8,8 @@ describe('ListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListComponent ]
+      declarations: [ ListComponent ],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
     .compileComponents();
   });
@@ -22,4 +23,11 @@ describe('ListComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+    it('should click on the list', () => {
+      spyOn(component.plantClick,'emit');
+      const mockPlant = { id:1,latinName: "Monstera Deliciosa", name: 'Alfredo', price: 28.69 };
+      component.onSelect(mockPlant);
+    expect(component.plantClick.emit).toHaveBeenCalledWith(mockPlant);
+    })
 });

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppRoutingModule } from '../app-routing.module';
 import { PlantService } from '../plant.service';
 import { Plants } from '../plants';
 
@@ -15,10 +16,8 @@ export class PlantContainerComponent implements OnInit{
     private plantService: PlantService
   ) {}
 
-  ngOnInit():void{
-    this.plantService.getPlants().subscribe((plants)=>{
-      this.plants = plants;
-    })
+  ngOnInit(){ 
+    this.plants = this.plantService.getPlants();
   }
 
   onPlantChange(plant:Plants): void {

@@ -12,7 +12,7 @@ export class ListComponent {
   @Input() plants: Array<Plants>;
   @Output() plantClick = new EventEmitter<Plants>();
 
-  onSelect(plant): void {
+  onSelect(plant:Plants): void {
     this.plantClick.emit(plant)
   }
 }
