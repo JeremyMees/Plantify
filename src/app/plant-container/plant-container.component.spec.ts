@@ -10,6 +10,7 @@ describe('PlantContainerComponent', () => {
   let component: PlantContainerComponent;
   let fixture: ComponentFixture<PlantContainerComponent>;
   let fakeService: jasmine.SpyObj<PlantService>;
+  let spy:any
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -18,8 +19,10 @@ describe('PlantContainerComponent', () => {
         {
           provide: PlantService,
           useValue: jasmine.createSpyObj('PlantService', [
-            'onPlantChange',
+            'setSelectedPlant',
             'getSelectedPlant',
+            'getPlants',
+            'onPlantChange'
           ]),
         },
       ],
@@ -32,12 +35,17 @@ describe('PlantContainerComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PlantContainerComponent);
     component = fixture.componentInstance;
-    fakeService.getSelectedPlant.and.returnValue(of(PLANTS[1]))
+    fakeService.getPlants.and.returnValue(PLANTS);
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it(`should bind PLANTS`, () => {
+    fixture.detectChanges();
+    expect(component.plants).toEqual(PLANTS);
   });
 
   describe('given no plant is selected', () => {
@@ -49,7 +57,7 @@ describe('PlantContainerComponent', () => {
 
     it('should not show details', () => {
       fixture.detectChanges();
-      const plantDetail = fixture.debugElement.query(By.css('app-detail'));
+      const plantDetail = fixture.debugElement.query(By.css('app-details'));
       expect(plantDetail).toBeNull();
     });
 
@@ -59,16 +67,10 @@ describe('PlantContainerComponent', () => {
     });
   });
 
-  describe('when a plant is selected', () => {
-    beforeEach(() => {
+    it('should call the function onPlantChange', () => {
+      component.onPlantChange(PLANTS[1]);
       fixture.detectChanges();
-      fakeService.getSelectedPlant.and.returnValue(of(PLANTS[1]));
-      fixture.detectChanges();
+      expect(fakeService.setSelectedPlant).toHaveBeenCalled()
+      expect(component.getSelectedPlant).toHaveBeenCalled()
     });
-
-    it('should show the details of the selected plant', () => {
-      const plantDetail = fixture.debugElement.query(By.css('app-detail'));
-      expect(plantDetail.properties.plant).toEqual(component.choosenPlant);
-    });
-  });
 });
