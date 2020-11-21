@@ -10,11 +10,11 @@ describe('PlantContainerComponent', () => {
   let component: PlantContainerComponent;
   let fixture: ComponentFixture<PlantContainerComponent>;
   let fakeService: jasmine.SpyObj<PlantService>;
-  let spy:any
+  let spy: any;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PlantContainerComponent ],
+      declarations: [PlantContainerComponent],
       providers: [
         {
           provide: PlantService,
@@ -22,13 +22,12 @@ describe('PlantContainerComponent', () => {
             'setSelectedPlant',
             'getSelectedPlant',
             'getPlants',
-            'onPlantChange'
+            'onPlantChange',
           ]),
         },
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-    })
-    .compileComponents();
+    }).compileComponents();
     fakeService = TestBed.inject(PlantService) as jasmine.SpyObj<PlantService>;
   });
 
@@ -36,6 +35,7 @@ describe('PlantContainerComponent', () => {
     fixture = TestBed.createComponent(PlantContainerComponent);
     component = fixture.componentInstance;
     fakeService.getPlants.and.returnValue(PLANTS);
+    fakeService.getSelectedPlant.and.returnValue(of(PLANTS[1]));
     fixture.detectChanges();
   });
 
@@ -44,19 +44,11 @@ describe('PlantContainerComponent', () => {
   });
 
   it(`should bind PLANTS`, () => {
-    fixture.detectChanges();
     expect(component.plants).toEqual(PLANTS);
   });
 
   describe('given no plant is selected', () => {
-    beforeEach(() => {
-      fixture.detectChanges();
-      fakeService.getSelectedPlant.and.returnValue(of(PLANTS[1]));
-      fixture.detectChanges();
-    });
-
     it('should not show details', () => {
-      fixture.detectChanges();
       const plantDetail = fixture.debugElement.query(By.css('app-details'));
       expect(plantDetail).toBeNull();
     });
@@ -67,10 +59,9 @@ describe('PlantContainerComponent', () => {
     });
   });
 
-    it('should call the function onPlantChange', () => {
-      component.onPlantChange(PLANTS[1]);
-      fixture.detectChanges();
-      expect(fakeService.setSelectedPlant).toHaveBeenCalled()
-      expect(component.getSelectedPlant).toHaveBeenCalled()
-    });
+  it('should call the function onPlantChange', () => {
+    component.onPlantChange(PLANTS[1]);
+    expect(fakeService.setSelectedPlant).toHaveBeenCalledWith(PLANTS[1]);
+    expect(component.choosenPlant).toEqual(PLANTS[1]);
+  });
 });
