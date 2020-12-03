@@ -8,10 +8,9 @@ describe('ListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListComponent ],
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
-    })
-    .compileComponents();
+      declarations: [ListComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -24,10 +23,16 @@ describe('ListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-    it('should click on the list', () => {
-      spyOn(component.plantClick,'emit');
-      const mockPlant = { id:1,latinName: "Monstera Deliciosa", name: 'Alfredo', price: 28.69 };
-      component.onSelect(mockPlant);
+  it('should click on the list', () => {
+    spyOn(component.plantClick, 'emit');
+    const mockPlant = {
+      id: 1,
+      latinName: 'Monstera Deliciosa',
+      name: 'Alfredo',
+      price: 28.69,
+      quantity: 1,
+    };
+    component.onSelect(mockPlant);
     expect(component.plantClick.emit).toHaveBeenCalledWith(mockPlant);
-    })
+  });
 });

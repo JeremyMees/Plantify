@@ -6,13 +6,19 @@ import { AppComponent } from './app.component';
 import { ListComponent } from './list/list.component';
 import { DetailsComponent } from './details/details.component';
 import { PlantContainerComponent } from './plant-container/plant-container.component';
+import { ShoppingcartComponent } from './shoppingcart/shoppingcart.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { CartContainerComponent } from './cart-container/cart-container.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListComponent,
     DetailsComponent,
-    PlantContainerComponent
+    PlantContainerComponent,
+    ShoppingcartComponent,
+    PageNotFoundComponent,
+    CartContainerComponent
   ],
   imports: [
     BrowserModule,

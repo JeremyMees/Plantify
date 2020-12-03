@@ -1,0 +1,17 @@
+<ul>
+  <li *ngFor="let product of products">
+    <div>name : {{ product.name }}</div>
+    <div>price : {{ product.price * product.quantity }}</div>
+    <div>quantity : {{ product.quantity }}</div>
+    <button (click)="inc(product)">+</button>
+    <button (click)="dec(product)">-</button>
+    <button (click)="deleteFromCart(product)">delete</button>
+  </li>
+  <br />
+  <li>
+    <div *ngIf="!totalPrice">total : 0</div>
+    <div *ngIf="totalPrice">
+      total : {{ totalPrice }}<button (click)="pay()">pay</button>
+    </div>
+  </li>
+</ul>

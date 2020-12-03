@@ -1,5 +1,10 @@
-<h1>details</h1>
-<p>{{ plant.id }}</p>
-<p>{{ plant.latinName }}</p>
-<p>{{ plant.name }}</p>
-<p>{{ plant.price }}</p>
+<div class="details">
+  <h1>details</h1>
+  <p>{{ plant.latinName }}</p>
+  <p>{{ plant.name }}</p>
+  <p>{{ plant.price }}</p>
+  <p>{{ plant.quantity }}</p>
+  <button (click)="quantityUp(plant)">+</button>
+  <button (click)="quantityDown(plant)">-</button>
+  <button (click)="addProductToCart(plant)">add to cart</button>
+</div>

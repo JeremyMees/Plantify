@@ -1,23 +1,23 @@
 import { Injectable } from '@angular/core';
-import { Plants } from './plants';
+import { Cart } from './cart';
 import { Observable, of } from 'rxjs';
-import { PLANTS} from './mock-plants';
+import { PLANTS } from './mock-plants';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PlantService {
-  choosenPlant: Plants;
+  chosenPlant: Cart;
 
-  getPlants(): Array<Plants> {
+  getPlants(): Array<Cart> {
     return PLANTS;
   }
 
-  setSelectedPlant(plant: Plants):void{
-    this.choosenPlant = plant;
+  setSelectedPlant(plant: Cart): void {
+    this.chosenPlant = plant;
   }
 
-  getSelectedPlant(): Observable<Plants>{
-      return of (this.choosenPlant)
+  getSelectedPlant(): Observable<Cart> {
+    return of(this.chosenPlant);
   }
 }

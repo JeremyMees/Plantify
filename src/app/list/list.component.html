@@ -1,10 +1,6 @@
 <h1>list</h1>
 <ul class="parent">
   <li class="child" *ngFor="let plant of plants" (click)="onSelect(plant)">
-    <img
-      class="thumbnail"
-      src="https://via.placeholder.com/350x500.png?text=imagine+a+beautifull+plant+here"
-    />
     <div class="latinName">{{ plant.latinName }}</div>
     <div class="name">{{ plant.name }}</div>
     <div class="price">{{ plant.price }}</div>

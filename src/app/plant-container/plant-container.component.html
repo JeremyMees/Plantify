@@ -6,7 +6,9 @@
   ></app-list>
   <app-details
     class="right"
-    [plant]="choosenPlant"
-    *ngIf="choosenPlant"
+    [plant]="chosenPlant"
+    *ngIf="chosenPlant"
+    (quantityChanged)="onQuantityChange($event)"
+    (productToCart)="productToCart($event)"
   ></app-details>
 </div>

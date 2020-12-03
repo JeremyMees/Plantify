@@ -62,6 +62,6 @@ describe('PlantContainerComponent', () => {
   it('should call the function onPlantChange', () => {
     component.onPlantChange(PLANTS[1]);
     expect(fakeService.setSelectedPlant).toHaveBeenCalledWith(PLANTS[1]);
-    expect(component.choosenPlant).toEqual(PLANTS[1]);
+    expect(component.chosenPlant).toEqual(PLANTS[1]);
   });
 });
