@@ -9,6 +9,7 @@ import { PlantContainerComponent } from './plant-container/plant-container.compo
 import { ShoppingcartComponent } from './shoppingcart/shoppingcart.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { CartContainerComponent } from './cart-container/cart-container.component';
+import { AccountComponent } from './account/account.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CartContainerComponent } from './cart-container/cart-container.componen
     PlantContainerComponent,
     ShoppingcartComponent,
     PageNotFoundComponent,
-    CartContainerComponent
+    CartContainerComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,
