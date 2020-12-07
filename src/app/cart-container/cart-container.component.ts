@@ -26,6 +26,7 @@ export class CartContainerComponent implements OnInit {
       this.products[objIndex].quantity = this.products[objIndex].quantity + 1;
       this.totalPriceOfProducts();
     } else {
+      /* istanbul ignore if  */
       if (this.products[objIndex].quantity <= 1) {
         alert('kan niet minder dan 1');
       } else {

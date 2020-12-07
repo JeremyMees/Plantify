@@ -5,6 +5,13 @@ import { ListComponent } from './list.component';
 describe('ListComponent', () => {
   let component: ListComponent;
   let fixture: ComponentFixture<ListComponent>;
+  const mockPlant = {
+    id: 1,
+    latinName: 'Monstera Deliciosa',
+    name: 'Alfredo',
+    price: 28.69,
+    quantity: 1,
+  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -25,13 +32,6 @@ describe('ListComponent', () => {
 
   it('should click on the list', () => {
     spyOn(component.plantClick, 'emit');
-    const mockPlant = {
-      id: 1,
-      latinName: 'Monstera Deliciosa',
-      name: 'Alfredo',
-      price: 28.69,
-      quantity: 1,
-    };
     component.onSelect(mockPlant);
     expect(component.plantClick.emit).toHaveBeenCalledWith(mockPlant);
   });

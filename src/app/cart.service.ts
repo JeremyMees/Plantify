@@ -23,6 +23,7 @@ export class CartService {
 
   deleteItemFromCart(product: Cart): void {
     const index = this.cartInventory.indexOf(product);
+    /* istanbul ignore else  */
     if (index > -1) {
       this.cartInventory.splice(index, 1);
     }

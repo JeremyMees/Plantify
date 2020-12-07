@@ -5,12 +5,20 @@ import { PlantService } from '../plant.service';
 import { of } from 'rxjs';
 import { By } from '@angular/platform-browser';
 import { PLANTS } from '../mock-plants';
+import { CartService } from '../cart.service';
 
 describe('PlantContainerComponent', () => {
   let component: PlantContainerComponent;
   let fixture: ComponentFixture<PlantContainerComponent>;
   let fakeService: jasmine.SpyObj<PlantService>;
-  let spy: any;
+  let fakeCartService: jasmine.SpyObj<CartService>;
+  const mockPlant = {
+    id: 1,
+    latinName: 'Monstera Deliciosa',
+    name: 'Alfredo',
+    price: 28.69,
+    quantity: 1,
+  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -25,10 +33,17 @@ describe('PlantContainerComponent', () => {
             'onPlantChange',
           ]),
         },
+        {
+          provide: CartService,
+          useValue: jasmine.createSpyObj('CartService', ['addItemToCart']),
+        },
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
     fakeService = TestBed.inject(PlantService) as jasmine.SpyObj<PlantService>;
+    fakeCartService = TestBed.inject(
+      CartService
+    ) as jasmine.SpyObj<CartService>;
   });
 
   beforeEach(() => {
@@ -59,9 +74,35 @@ describe('PlantContainerComponent', () => {
     });
   });
 
-  it('should call the function onPlantChange', () => {
+  it('should call the function onPlantChange()', () => {
     component.onPlantChange(PLANTS[1]);
     expect(fakeService.setSelectedPlant).toHaveBeenCalledWith(PLANTS[1]);
     expect(component.chosenPlant).toEqual(PLANTS[1]);
+  });
+
+  it('should call cartService.additemToCart()', () => {
+    component.productToCart(PLANTS[1]);
+    expect(fakeCartService.addItemToCart).toHaveBeenCalledWith(PLANTS[1]);
+  });
+
+  describe('when onQuantityChange() is called', () => {
+    it('should increment quantity', () => {
+      component.plants = [mockPlant];
+      component.onQuantityChange([1, mockPlant.id]);
+      expect(component.plants[0].quantity).toEqual(2);
+    });
+
+    it('should not decrement quantity because cant go lower than zero', () => {
+      component.plants = [mockPlant];
+      component.onQuantityChange([0, mockPlant.id]);
+      expect(component.plants[0].quantity).toEqual(1);
+    });
+
+    it('should decrement quantity', () => {
+      component.products = [PLANTS[0], PLANTS[1], PLANTS[2]];
+      component.onQuantityChange([1, mockPlant.id]);
+      component.onQuantityChange([0, mockPlant.id]);
+      expect(component.plants[0].quantity).toEqual(1);
+    });
   });
 });

@@ -36,7 +36,8 @@ export class PlantContainerComponent implements OnInit {
     if (change[0] === 1) {
       this.plants[objIndex].quantity = this.plants[objIndex].quantity + 1;
     } else {
-      if (this.plants[objIndex].quantity <= 0) {
+      /* istanbul ignore if  */
+      if (this.plants[objIndex].quantity <= 1) {
         alert('kan niet minder dan 1');
       } else {
         this.plants[objIndex].quantity = this.plants[objIndex].quantity - 1;
@@ -45,8 +46,6 @@ export class PlantContainerComponent implements OnInit {
   }
 
   productToCart(product: Cart) {
-    if (product.quantity > 0) {
-      this.cartService.addItemToCart(product);
-    }
+    this.cartService.addItemToCart(product);
   }
 }
