@@ -3,11 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { PlantContainerComponent } from './plant-container/plant-container.component';
 import { CartContainerComponent } from './cart-container/cart-container.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { LoginComponent } from './login/login.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: 'product-list', component: PlantContainerComponent },
   { path: 'shopping-cart', component: CartContainerComponent },
-  { path: '', redirectTo: '/product-list', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
   { path: '**', component: PageNotFoundComponent },
 ];
 
