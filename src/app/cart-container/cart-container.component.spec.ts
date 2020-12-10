@@ -79,8 +79,9 @@ describe('CartContainerComponent', () => {
     });
 
     it('should decrement quantity', () => {
+      mockPlant.quantity = 2;
       component.products = [mockPlant];
-      component.onQuantityChange([1, mockPlant]);
+      console.log(mockPlant.quantity);
       component.onQuantityChange([0, mockPlant]);
       expect(component.products[0].quantity).toEqual(1);
     });
