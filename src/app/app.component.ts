@@ -7,8 +7,6 @@ import { AuthService } from './auth.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  //cookieExists: boolean = this.authService.chekCookie('email');
-
   constructor(private authService: AuthService) {}
 
   logout(): void {
