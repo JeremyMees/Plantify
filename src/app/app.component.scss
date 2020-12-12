@@ -9,7 +9,9 @@ li {
   float: left;
 }
 
-li a {
+a {
+  cursor: pointer;
+  text-decoration: none;
   padding-left: 15px;
   display: block;
   color: white;

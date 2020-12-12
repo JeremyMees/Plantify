@@ -9,6 +9,7 @@ export const routes: Routes = [
   { path: 'product-list', component: PlantContainerComponent },
   { path: 'shopping-cart', component: CartContainerComponent },
   { path: 'login', component: LoginComponent },
+  { path: '', redirectTo: 'product-list', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
 ];
 
