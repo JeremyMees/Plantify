@@ -35,7 +35,7 @@ export class AuthService {
     this.cookieService.set(name, value);
   }
 
-  chekCookie(name: string): boolean {
+  checkCookie(name: string): boolean {
     return this.cookieService.check(name);
   }
 }

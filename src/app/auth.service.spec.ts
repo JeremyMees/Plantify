@@ -3,17 +3,33 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { routes } from './app-routing.module';
 import { AuthService } from './auth.service';
+import { CookieService } from 'ngx-cookie-service';
 
 describe('AuthService', () => {
   let service: AuthService;
   let activatedRouteSpy: jasmine.SpyObj<ActivatedRoute>;
   let router: Router;
+  let fakeService: jasmine.SpyObj<CookieService>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule.withRoutes(routes)],
+      providers: [
+        {
+          provide: CookieService,
+          useValue: jasmine.createSpyObj('CookieService', [
+            'get',
+            'delete',
+            'set',
+            'check',
+          ]),
+        },
+      ],
     });
     service = TestBed.inject(AuthService);
+    fakeService = TestBed.inject(
+      CookieService
+    ) as jasmine.SpyObj<CookieService>;
     activatedRouteSpy = TestBed.inject(
       ActivatedRoute
     ) as jasmine.SpyObj<ActivatedRoute>;
@@ -43,29 +59,29 @@ describe('AuthService', () => {
     expect(service.deleteCookie).toHaveBeenCalledWith('email');
   });
 
-  it('should get the cookie', () => {
-    spyOn(service, 'getCookie');
-    document.cookie = 'email=stub';
-    service.getCookie('email');
-    expect(service.getCookie).toHaveBeenCalledWith('email');
-  });
+  describe('set, get, delete & check cookies', () => {
+    it('should get the cookie', () => {
+      document.cookie = 'email=stub';
+      service.getCookie('email');
+      expect(fakeService.get).toHaveBeenCalledWith('email');
+    });
 
-  it('should chek if the cookie exists', () => {
-    document.cookie = 'email=stub';
-    let boolean = service.chekCookie('email');
-    expect(boolean).toBeTruthy();
-  });
+    it('should chek if the cookie exists', () => {
+      document.cookie = 'email=stub';
+      service.checkCookie('email');
+      expect(fakeService.check).toHaveBeenCalledWith('email');
+    });
 
-  it('should delete cookie', () => {
-    document.cookie = 'email=stub';
-    service.deleteCookie('email');
-    let boolean = service.chekCookie('email');
-    expect(boolean).toBeFalse();
-  });
+    it('should delete cookie', () => {
+      document.cookie = 'email=stub';
+      service.deleteCookie('email');
+      expect(fakeService.delete).toHaveBeenCalledWith('email');
+    });
 
-  it('should get the cookie', () => {
-    document.cookie = 'email=stub';
-    let cookie = service.getCookie('email');
-    expect(cookie).toEqual('stub');
+    it('should get cookie', () => {
+      document.cookie = 'email=stub';
+      service.getCookie('email');
+      expect(fakeService.get).toHaveBeenCalledWith('email');
+    });
   });
 });
