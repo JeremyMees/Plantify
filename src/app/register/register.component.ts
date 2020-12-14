@@ -46,9 +46,9 @@ export class RegisterComponent {
     if (email.includes('@') === false || email.includes('.') === false) {
       alert('Please enter a valid email address.');
     } else if (password !== passwordc) {
-      console.log('Passwords are not the same');
+      alert('Passwords are not the same');
     } else if (name.length < 6) {
-      console.log('Username is to short');
+      alert('Username is to short');
     } else {
       this.authService.register(name, email, password);
     }

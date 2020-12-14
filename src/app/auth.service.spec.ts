@@ -84,4 +84,14 @@ describe('AuthService', () => {
       expect(fakeService.get).toHaveBeenCalledWith('email');
     });
   });
+
+  it(`should register user`, () => {
+    spyOn(service, 'setCookie');
+    document.cookie = 'name=stub';
+    document.cookie = 'email=stub';
+    service.register('stub', 'stub', 'stub');
+    expect(service.setCookie).toHaveBeenCalledTimes(2);
+    expect(service.setCookie).toHaveBeenCalledWith('name', 'stub');
+    expect(service.setCookie).toHaveBeenCalledWith('email', 'stub');
+  });
 });

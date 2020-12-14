@@ -2,6 +2,7 @@
   name:
   <input
     type="text"
+    id="name"
     #name
     [ngClass]="colorLengthName"
     (focusout)="checkName($event, name.value)"
@@ -14,6 +15,7 @@
   email address:
   <input
     type="text"
+    id="email"
     #email
     [ngClass]="colorEmail"
     (focusout)="checkEmail($event, email.value)"
@@ -25,6 +27,7 @@
   <input
     (focusout)="lengthPassword($event)"
     type="password"
+    id="password"
     #password
     [ngClass]="colorLengthPassword"
   />
@@ -37,6 +40,7 @@
   <input
     (focusout)="checkPassword($event, password.value)"
     type="password"
+    id="passwordc"
     #passwordc
     [ngClass]="colorCheck"
   />
