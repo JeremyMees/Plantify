@@ -11,6 +11,7 @@ import { ShoppingcartComponent } from './shoppingcart/shoppingcart.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { CartContainerComponent } from './cart-container/cart-container.component';
 import { LoginComponent } from './login/login.component';
+import { AccountComponent } from './account/account.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { LoginComponent } from './login/login.component';
     PageNotFoundComponent,
     CartContainerComponent,
     LoginComponent,
+    AccountComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [CookieService],

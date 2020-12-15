@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { Cart } from './cart';
+import { PLANTS } from './mock-plants';
 
 @Injectable({
   providedIn: 'root',
@@ -37,5 +39,13 @@ export class AuthService {
 
   checkCookie(name: string): boolean {
     return this.cookieService.check(name);
+  }
+
+  getBoughtProducts(): Array<Cart> {
+    return PLANTS;
+  }
+
+  getUserCredentials(): Array<string> {
+    return ['testname', 'test@email.com', 'testpassword'];
   }
 }
