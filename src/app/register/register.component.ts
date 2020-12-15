@@ -48,7 +48,7 @@ export class RegisterComponent {
     } else if (password !== passwordc) {
       alert('Passwords are not the same');
     } else if (name.length < 6) {
-      alert('Username is to short');
+      alert('Username is too short');
     } else {
       this.authService.register(name, email, password);
     }

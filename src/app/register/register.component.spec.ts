@@ -50,7 +50,7 @@ describe('RegisterComponent', () => {
       expect(component.colorCheck).toEqual('green');
     });
 
-    it('should set the input to green', () => {
+    it('should set the input to red', () => {
       const event = { target: { value: 'foo' } };
       component.checkPassword(event, 'stub');
       expect(component.colorCheck).toEqual('red');
@@ -63,7 +63,7 @@ describe('RegisterComponent', () => {
       expect(component.colorEmail).toEqual('green');
     });
 
-    it('should set the input to green', () => {
+    it('should set the input to red', () => {
       component.checkEmail('stub', 'foo');
       expect(component.colorEmail).toEqual('red');
     });
@@ -109,7 +109,7 @@ describe('RegisterComponent', () => {
     it('should alert that username is to short', () => {
       spyOn(window, 'alert');
       component.register('test', 'foo@foo.com', 'testen', 'testen');
-      expect(window.alert).toHaveBeenCalledWith('Username is to short');
+      expect(window.alert).toHaveBeenCalledWith('Username is too short');
     });
 
     it('should register user', () => {
