@@ -92,4 +92,13 @@ describe('AuthService', () => {
     expect(service.setCookie).toHaveBeenCalledWith('name', 'stub');
     expect(service.setCookie).toHaveBeenCalledWith('email', 'stub');
   });
+
+  it('should get the user credentials', () => {
+    const credentials = service.getUserCredentials();
+    expect(credentials).toEqual({
+      username: 'testname',
+      email: 'test@email.com',
+      password: 'testpassword',
+    });
+  });
 });

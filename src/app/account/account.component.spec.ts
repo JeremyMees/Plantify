@@ -4,7 +4,7 @@ import { FirebaseService } from '../firebase.service';
 import { AccountComponent } from './account.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
-fdescribe('AccountComponent', () => {
+describe('AccountComponent', () => {
   let component: AccountComponent;
   let fixture: ComponentFixture<AccountComponent>;
   let fakeAuthService: jasmine.SpyObj<AuthService>;
@@ -38,16 +38,12 @@ fdescribe('AccountComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AccountComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
     fakeAuthService.getUserCredentials.and.returnValue({
       username: 'testname',
       email: 'test@email.com',
       password: 'testpassword',
     });
-  });
-
-  it('should have called ngOnInit', () => {
-    expect(component.ngOnInit).toHaveBeenCalled();
+    fixture.detectChanges();
   });
 
   it('should replace text with inputs', () => {
@@ -55,7 +51,7 @@ fdescribe('AccountComponent', () => {
     expect(component.input).toEqual(true);
   });
 
-  /*it('should update the credentials from user', () => {
+  it('should update the credentials from user', () => {
     component.updateInputsNewValue('foofoo', 'foo@foo.com', 'foofoofoo');
     expect(component.name).toEqual('foofoo');
     expect(component.email).toEqual('foo@foo.com');
@@ -115,5 +111,5 @@ fdescribe('AccountComponent', () => {
       component.checkName(event, 'foo');
       expect(component.colorLengthName).toEqual('red');
     });
-  });*/
+  });
 });
