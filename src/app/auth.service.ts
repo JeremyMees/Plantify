@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Cart } from './cart';
+import { User } from './user';
 import { PLANTS } from './mock-plants';
 
 @Injectable({
@@ -45,7 +46,16 @@ export class AuthService {
     return PLANTS;
   }
 
-  getUserCredentials(): Array<string> {
-    return ['testname', 'test@email.com', 'testpassword'];
+  getUserCredentials(): User {
+    return {
+      username: 'testname',
+      email: 'test@email.com',
+      password: 'testpassword',
+    };
+  }
+
+  register(name: string, email: string, password: string): void {
+    this.setCookie('name', name);
+    this.setCookie('email', email);
   }
 }

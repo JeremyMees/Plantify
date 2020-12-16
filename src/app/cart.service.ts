@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { FirebaseService } from './firebase.service';
 import { Cart } from './cart';
 
 @Injectable({
@@ -8,6 +9,7 @@ export class CartService {
   cartInventory: Array<Cart> = [];
   totalPriceArray: Array<number> = [];
   totalPrice: number;
+  constructor(private firebaseService: FirebaseService) {}
 
   addItemToCart(plant: Cart): void {
     let orderderdPlant: Cart = {
@@ -49,6 +51,7 @@ export class CartService {
   }
 
   payProducts(productsArray: Array<Cart>): void {
+    this.firebaseService.boughtProductsToDb(productsArray);
     this.cartInventory = [];
     alert('shoppingcart is getting emptied now');
   }

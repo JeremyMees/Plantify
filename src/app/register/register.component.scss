@@ -1,0 +1,17 @@
+.green {
+  border: 1px solid #5cff61;
+}
+
+.red {
+  border: 1px solid #db4242;
+}
+
+input {
+  background-color: transparent;
+  border: #ffffff solid 1px;
+  border-radius: 5px;
+}
+
+input:focus {
+  outline: none;
+}

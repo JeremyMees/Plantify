@@ -5,12 +5,14 @@ import { CartContainerComponent } from './cart-container/cart-container.componen
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoginComponent } from './login/login.component';
 import { AccountComponent } from './account/account.component';
+import { RegisterComponent } from './register/register.component';
 
 export const routes: Routes = [
   { path: 'product-list', component: PlantContainerComponent },
   { path: 'shopping-cart', component: CartContainerComponent },
   { path: 'login', component: LoginComponent },
   { path: 'account', component: AccountComponent },
+  { path: 'register', component: RegisterComponent },
   { path: '', redirectTo: 'product-list', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
 ];

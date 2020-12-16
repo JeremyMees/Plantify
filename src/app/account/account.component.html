@@ -1,0 +1,73 @@
+<div *ngIf="input === false">
+  <p>username : {{ name }}</p>
+  <p>email : {{ email }}</p>
+  <button (click)="updateToInputs()">update</button>
+</div>
+<div *ngIf="input === true">
+  <label>username </label>
+  <input
+    [value]="[name]"
+    type="string"
+    id="name"
+    #nameInput
+    [ngClass]="colorLengthName"
+    (focusout)="checkName($event, nameInput.value)"
+  />
+  <label *ngIf="colorLengthName == 'red'">
+    Name needs to contain 6 characters</label
+  >
+  <br />
+  <label>email </label>
+  <input
+    [value]="[email]"
+    type="string"
+    id="email"
+    #emailInput
+    [ngClass]="colorEmail"
+    (focusout)="checkEmail($event, emailInput.value)"
+  />
+  <label *ngIf="colorEmail == 'red'"> Email needs to contain '@' and '.'</label>
+  <br />
+  <label>password </label>
+  <input
+    [value]="[password]"
+    type="password"
+    id="password"
+    #passwordInput
+    (focusout)="lengthPassword($event)"
+    [ngClass]="colorLengthPassword"
+  />
+  <label *ngIf="colorLengthPassword == 'red'">
+    Password needs to contain 6 characters</label
+  >
+  <br />
+  <label>password check </label>
+  <input
+    [value]="[password]"
+    type="password"
+    id="passwordc"
+    #passwordcInput
+    [ngClass]="colorCheck"
+    (focusout)="checkPassword($event, passwordInput.value)"
+  />
+  <label *ngIf="colorCheck == 'red'"> Passwords aren't the same</label>
+  <br />
+  <button
+    (click)="
+      updateInputsNewValue(
+        nameInput.value,
+        emailInput.value,
+        passwordInput.value
+      )
+    "
+  >
+    update
+  </button>
+</div>
+<ul>
+  <li *ngFor="let boughtProduct of boughtProducts">
+    <div class="latinName">{{ boughtProduct.latinName }}</div>
+    <div class="quantity">{{ boughtProduct.quantity }}</div>
+    <div class="price">{{ boughtProduct.price }}</div>
+  </li>
+</ul>
