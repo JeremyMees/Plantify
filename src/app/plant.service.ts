@@ -9,8 +9,8 @@ import { PLANTS } from './mock-plants';
 export class PlantService {
   chosenPlant: Cart;
 
-  getPlants(): Array<Cart> {
-    return PLANTS;
+  getPlants(): Observable<Array<Cart>> {
+    return of(PLANTS);
   }
 
   setSelectedPlant(plant: Cart): void {
@@ -19,5 +19,10 @@ export class PlantService {
 
   getSelectedPlant(): Observable<Cart> {
     return of(this.chosenPlant);
+  }
+
+  getPlantById(id: number): Observable<Cart> {
+    const plant = PLANTS.find((p) => p.id === id);
+    return of(plant);
   }
 }

@@ -8,6 +8,7 @@ import { RegisterComponent } from './register/register.component';
 
 export const routes: Routes = [
   { path: 'product-list', component: PlantContainerComponent },
+  { path: 'product-list/:id', component: PlantContainerComponent },
   { path: 'shopping-cart', component: CartContainerComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },

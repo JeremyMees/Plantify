@@ -15,7 +15,9 @@ describe('PlantService', () => {
   });
 
   it('should get plants', () => {
-    expect(service.getPlants()).toEqual(PLANTS);
+    service.getPlants().subscribe((value) => {
+      expect(value).toEqual(PLANTS);
+    });
   });
 
   it('should get the slected plant', () => {
@@ -29,6 +31,12 @@ describe('PlantService', () => {
     service.setSelectedPlant(mockPlant);
     service.getSelectedPlant().subscribe((result) => {
       expect(result).toEqual(mockPlant);
+    });
+  });
+
+  it('should get the plant by id', () => {
+    service.getPlantById(PLANTS[1].id).subscribe((plant) => {
+      expect(plant).toEqual(PLANTS[1]);
     });
   });
 });
