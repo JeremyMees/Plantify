@@ -38,4 +38,9 @@ export class AuthService {
   checkCookie(name: string): boolean {
     return this.cookieService.check(name);
   }
+
+  register(name: string, email: string, password: string): void {
+    this.setCookie('name', name);
+    this.setCookie('email', email);
+  }
 }
