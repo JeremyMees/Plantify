@@ -20,4 +20,13 @@ export class PlantService {
   getSelectedPlant(): Observable<Cart> {
     return of(this.chosenPlant);
   }
+
+  switchProductSorting(how: string) {
+    const products: Array<Cart> = this.getPlants();
+    if (how === 'high') {
+      alert('high');
+    } else if (how === 'low') {
+      alert('low');
+    } else alert('new');
+  }
 }

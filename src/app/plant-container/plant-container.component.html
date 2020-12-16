@@ -2,6 +2,7 @@
   <app-list
     class="left"
     [plants]="plants"
+    (sortProducts)="onSortChange($event)"
     (plantClick)="onPlantChange($event)"
   ></app-list>
   <app-details

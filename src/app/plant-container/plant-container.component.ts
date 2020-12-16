@@ -48,4 +48,8 @@ export class PlantContainerComponent implements OnInit {
   productToCart(product: Cart) {
     this.cartService.addItemToCart(product);
   }
+
+  onSortChange(how: string): void {
+    this.plantService.switchProductSorting(how);
+  }
 }
