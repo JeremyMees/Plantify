@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { PlantService } from '../plant.service';
 import { CartService } from '../cart.service';
 import { Cart } from '../cart';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subject } from 'rxjs';
+import { take, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-plant-container',
@@ -12,21 +15,38 @@ export class PlantContainerComponent implements OnInit {
   plants: Array<Cart>;
   chosenPlant: Cart;
   products: Array<Cart>;
+  id: number;
+  destroy$ = new Subject();
 
   constructor(
+    public router: Router,
+    private route: ActivatedRoute,
     private plantService: PlantService,
     private cartService: CartService
   ) {}
 
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+  }
+
   ngOnInit() {
-    this.plants = this.plantService.getPlants();
+    this.route.params.pipe(takeUntil(this.destroy$)).subscribe((params) => {
+      if (+params.id >= 0) {
+        this.plantService.getPlantById(+params.id).subscribe((plant) => {
+          this.chosenPlant = plant;
+        });
+      }
+    });
+    this.plantService
+      .getPlants()
+      .pipe(take(1))
+      .subscribe((value: Array<Cart>) => {
+        this.plants = value;
+      });
   }
 
   onPlantChange(plant: Cart): void {
-    this.plantService.setSelectedPlant(plant);
-    this.plantService.getSelectedPlant().subscribe((plant) => {
-      this.chosenPlant = plant;
-    });
+    this.router.navigateByUrl(`/product-list/${plant.id}`);
   }
 
   onQuantityChange(change: Array<number>) {
@@ -47,5 +67,9 @@ export class PlantContainerComponent implements OnInit {
 
   productToCart(product: Cart) {
     this.cartService.addItemToCart(product);
+  }
+
+  onSortChange(how: string): void {
+    this.plantService.switchProductSorting(how);
   }
 }

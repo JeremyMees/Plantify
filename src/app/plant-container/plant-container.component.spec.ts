@@ -2,7 +2,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { PlantContainerComponent } from './plant-container.component';
 import { PlantService } from '../plant.service';
-import { of } from 'rxjs';
+import { of, Subject } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { routes } from '../app-routing.module';
 import { By } from '@angular/platform-browser';
 import { PLANTS } from '../mock-plants';
 import { CartService } from '../cart.service';
@@ -12,6 +15,9 @@ describe('PlantContainerComponent', () => {
   let fixture: ComponentFixture<PlantContainerComponent>;
   let fakeService: jasmine.SpyObj<PlantService>;
   let fakeCartService: jasmine.SpyObj<CartService>;
+  let activatedRouteSpy: jasmine.SpyObj<ActivatedRoute>;
+  let router: Router;
+  const params$ = new Subject<{ id?: string }>();
   const mockPlant = {
     id: 1,
     latinName: 'Monstera Deliciosa',
@@ -22,6 +28,7 @@ describe('PlantContainerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [RouterTestingModule.withRoutes(routes)],
       declarations: [PlantContainerComponent],
       providers: [
         {
@@ -30,12 +37,17 @@ describe('PlantContainerComponent', () => {
             'setSelectedPlant',
             'getSelectedPlant',
             'getPlants',
-            'onPlantChange',
+            'getPlantById',
+            'switchProductSorting',
           ]),
         },
         {
           provide: CartService,
           useValue: jasmine.createSpyObj('CartService', ['addItemToCart']),
+        },
+        {
+          provide: ActivatedRoute,
+          useValue: { params: params$ },
         },
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -44,13 +56,18 @@ describe('PlantContainerComponent', () => {
     fakeCartService = TestBed.inject(
       CartService
     ) as jasmine.SpyObj<CartService>;
+    activatedRouteSpy = TestBed.inject(
+      ActivatedRoute
+    ) as jasmine.SpyObj<ActivatedRoute>;
+    router = TestBed.inject(Router);
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PlantContainerComponent);
     component = fixture.componentInstance;
-    fakeService.getPlants.and.returnValue(PLANTS);
+    fakeService.getPlants.and.returnValue(of(PLANTS));
     fakeService.getSelectedPlant.and.returnValue(of(PLANTS[1]));
+    params$.next({});
     fixture.detectChanges();
   });
 
@@ -63,6 +80,13 @@ describe('PlantContainerComponent', () => {
   });
 
   describe('given no plant is selected', () => {
+    beforeEach(() => {
+      fixture.detectChanges();
+      fakeService.getPlantById.and.returnValue(of(PLANTS[1]));
+      params$.next({});
+      fixture.detectChanges();
+    });
+
     it('should not show details', () => {
       const plantDetail = fixture.debugElement.query(By.css('app-details'));
       expect(plantDetail).toBeNull();
@@ -74,10 +98,32 @@ describe('PlantContainerComponent', () => {
     });
   });
 
-  it('should call the function onPlantChange()', () => {
-    component.onPlantChange(PLANTS[1]);
-    expect(fakeService.setSelectedPlant).toHaveBeenCalledWith(PLANTS[1]);
-    expect(component.chosenPlant).toEqual(PLANTS[1]);
+  describe('given a plant is clicked in the list', () => {
+    it('should navigate to that plant', () => {
+      spyOn(router, 'navigateByUrl');
+      const stubPlant = PLANTS[1];
+      fixture.detectChanges();
+      const plantList = fixture.debugElement.query(By.css('app-list'));
+      plantList.triggerEventHandler('plantClick', stubPlant);
+
+      expect(router.navigateByUrl).toHaveBeenCalledWith(
+        `/product-list/${stubPlant.id}`
+      );
+    });
+  });
+
+  describe('when a plant is selected', () => {
+    beforeEach(() => {
+      fixture.detectChanges();
+      fakeService.getPlantById.and.returnValue(of(PLANTS[1]));
+      params$.next({ id: '1' });
+      fixture.detectChanges();
+    });
+
+    it('should show the details of the selected gym', () => {
+      const plantDetail = fixture.debugElement.query(By.css('app-details'));
+      expect(plantDetail.properties.plant).toEqual(component.chosenPlant);
+    });
   });
 
   it('should call cartService.additemToCart()', () => {
@@ -104,5 +150,10 @@ describe('PlantContainerComponent', () => {
       component.onQuantityChange([0, mockPlant.id]);
       expect(component.plants[0].quantity).toEqual(1);
     });
+  });
+
+  it('should call the service to sort the products different', () => {
+    component.onSortChange('high');
+    expect(fakeService.switchProductSorting).toHaveBeenCalledWith('high');
   });
 });

@@ -15,7 +15,9 @@ describe('PlantService', () => {
   });
 
   it('should get plants', () => {
-    expect(service.getPlants()).toEqual(PLANTS);
+    service.getPlants().subscribe((value) => {
+      expect(value).toEqual(PLANTS);
+    });
   });
 
   it('should get the slected plant', () => {
@@ -29,6 +31,32 @@ describe('PlantService', () => {
     service.setSelectedPlant(mockPlant);
     service.getSelectedPlant().subscribe((result) => {
       expect(result).toEqual(mockPlant);
+    });
+  });
+
+  it('should get the plant by id', () => {
+    service.getPlantById(PLANTS[1].id).subscribe((plant) => {
+      expect(plant).toEqual(PLANTS[1]);
+    });
+  });
+
+  describe('switchProductSorting', () => {
+    it('should alert high', () => {
+      spyOn(window, 'alert');
+      service.switchProductSorting('high');
+      expect(window.alert).toHaveBeenCalledWith('high');
+    });
+
+    it('should alert low', () => {
+      spyOn(window, 'alert');
+      service.switchProductSorting('low');
+      expect(window.alert).toHaveBeenCalledWith('low');
+    });
+
+    it('should alert new', () => {
+      spyOn(window, 'alert');
+      service.switchProductSorting('new');
+      expect(window.alert).toHaveBeenCalledWith('new');
     });
   });
 });
