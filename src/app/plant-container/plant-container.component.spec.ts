@@ -38,7 +38,7 @@ describe('PlantContainerComponent', () => {
             'getSelectedPlant',
             'getPlants',
             'getPlantById',
-            'onPlantChange',
+            'switchProductSorting',
           ]),
         },
         {
@@ -150,5 +150,10 @@ describe('PlantContainerComponent', () => {
       component.onQuantityChange([0, mockPlant.id]);
       expect(component.plants[0].quantity).toEqual(1);
     });
+  });
+
+  it('should call the service to sort the products different', () => {
+    component.onSortChange('high');
+    expect(fakeService.switchProductSorting).toHaveBeenCalledWith('high');
   });
 });

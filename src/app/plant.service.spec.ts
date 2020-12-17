@@ -39,4 +39,24 @@ describe('PlantService', () => {
       expect(plant).toEqual(PLANTS[1]);
     });
   });
+
+  describe('switchProductSorting', () => {
+    it('should alert high', () => {
+      spyOn(window, 'alert');
+      service.switchProductSorting('high');
+      expect(window.alert).toHaveBeenCalledWith('high');
+    });
+
+    it('should alert low', () => {
+      spyOn(window, 'alert');
+      service.switchProductSorting('low');
+      expect(window.alert).toHaveBeenCalledWith('low');
+    });
+
+    it('should alert new', () => {
+      spyOn(window, 'alert');
+      service.switchProductSorting('new');
+      expect(window.alert).toHaveBeenCalledWith('new');
+    });
+  });
 });

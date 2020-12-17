@@ -10,8 +10,13 @@ import { Cart } from '../cart';
 export class ListComponent {
   @Input() plants: Array<Cart>;
   @Output() plantClick = new EventEmitter<Cart>();
+  @Output() sortProducts = new EventEmitter<string>();
 
   onSelect(plant: Cart): void {
     this.plantClick.emit(plant);
+  }
+
+  sort(how: string): void {
+    this.sortProducts.emit(how);
   }
 }

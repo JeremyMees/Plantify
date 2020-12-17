@@ -25,4 +25,15 @@ export class PlantService {
     const plant = PLANTS.find((p) => p.id === id);
     return of(plant);
   }
+
+  switchProductSorting(how: string) {
+    this.getPlants().subscribe((value) => {
+      const products: Array<Cart> = value;
+    });
+    if (how === 'high') {
+      alert('high');
+    } else if (how === 'low') {
+      alert('low');
+    } else alert('new');
+  }
 }

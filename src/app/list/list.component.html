@@ -1,4 +1,7 @@
 <h1>list</h1>
+<button (click)="sort('high')">high - low</button>
+<button (click)="sort('low')">low - high</button>
+<button (click)="sort('new')">new - old</button>
 <ul class="parent">
   <li class="child" *ngFor="let plant of plants" (click)="onSelect(plant)">
     <div class="latinName">{{ plant.latinName }}</div>

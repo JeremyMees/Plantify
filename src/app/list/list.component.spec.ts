@@ -30,9 +30,15 @@ describe('ListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should click on the list', () => {
+  it('should emit value when clicked on the list', () => {
     spyOn(component.plantClick, 'emit');
     component.onSelect(mockPlant);
     expect(component.plantClick.emit).toHaveBeenCalledWith(mockPlant);
+  });
+
+  it('should emit value too sort by', () => {
+    spyOn(component.sortProducts, 'emit');
+    component.sort('high');
+    expect(component.sortProducts.emit).toHaveBeenCalledWith('high');
   });
 });
