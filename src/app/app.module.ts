@@ -13,6 +13,9 @@ import { CartContainerComponent } from './cart-container/cart-container.componen
 import { LoginComponent } from './login/login.component';
 import { AccountComponent } from './account/account.component';
 import { RegisterComponent } from './register/register.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModalContentComponent } from './modal-content/modal-content.component';
+import { ModalContainerComponent } from './modal-container/modal-container.component';
 
 @NgModule({
   declarations: [
@@ -26,9 +29,12 @@ import { RegisterComponent } from './register/register.component';
     LoginComponent,
     AccountComponent,
     RegisterComponent,
+    ModalContentComponent,
+    ModalContainerComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, NgbModule],
   providers: [CookieService],
   bootstrap: [AppComponent],
+  entryComponents: [ModalContentComponent],
 })
 export class AppModule {}

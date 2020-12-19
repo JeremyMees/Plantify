@@ -67,6 +67,7 @@ export class PlantContainerComponent implements OnInit {
 
   productToCart(product: Cart) {
     this.cartService.addItemToCart(product);
+    this.plantService.openModal();
   }
 
   onSortChange(how: string): void {

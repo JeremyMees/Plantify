@@ -2,12 +2,16 @@ import { Injectable } from '@angular/core';
 import { Cart } from './cart';
 import { Observable, of } from 'rxjs';
 import { PLANTS } from './mock-plants';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { ModalContentComponent } from './modal-content/modal-content.component';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PlantService {
   chosenPlant: Cart;
+  modalRef: NgbModalRef;
+  constructor(private modalService: NgbModal) {}
 
   getPlants(): Observable<Array<Cart>> {
     return of(PLANTS);
@@ -35,5 +39,16 @@ export class PlantService {
     } else if (how === 'low') {
       alert('low');
     } else alert('new');
+  }
+
+  openModal(): void {
+    this.modalRef = this.modalService.open(ModalContentComponent, {
+      centered: true,
+    });
+  }
+
+  closeModal(): void {
+    console.log('test service');
+    this.modalRef.close();
   }
 }
