@@ -39,6 +39,8 @@ describe('PlantContainerComponent', () => {
             'getPlants',
             'getPlantById',
             'switchProductSorting',
+            'openModal',
+            'closeModal',
           ]),
         },
         {

@@ -1,13 +1,24 @@
 import { TestBed } from '@angular/core/testing';
 import { PlantService } from './plant.service';
 import { PLANTS } from './mock-plants';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { ModalContainerComponent } from './modal-container/modal-container.component';
 
 describe('PlantService', () => {
   let service: PlantService;
+  let fakeService: jasmine.SpyObj<NgbModal>;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [
+        {
+          provide: NgbModal,
+          useValue: jasmine.createSpyObj('NgbModal', ['open', 'close']),
+        },
+      ],
+    });
     service = TestBed.inject(PlantService);
+    fakeService = TestBed.inject(NgbModal) as jasmine.SpyObj<NgbModal>;
   });
 
   it('should be created', () => {
@@ -59,4 +70,17 @@ describe('PlantService', () => {
       expect(window.alert).toHaveBeenCalledWith('new');
     });
   });
+
+  it('should trigger the service too open the modal', () => {
+    service.openModal();
+    expect(fakeService.open).toHaveBeenCalledWith(ModalContainerComponent, {
+      centered: true,
+    });
+  });
+
+  /*it('should trigger the service too close the modal', () => {
+    spyOn(service.modalRef, 'close');
+    service.closeModal();
+    expect(service.modalRef.close).toHaveBeenCalled();
+  });*/
 });

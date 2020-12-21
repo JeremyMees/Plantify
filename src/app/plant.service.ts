@@ -3,7 +3,7 @@ import { Cart } from './cart';
 import { Observable, of } from 'rxjs';
 import { PLANTS } from './mock-plants';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { ModalContentComponent } from './modal-content/modal-content.component';
+import { ModalContainerComponent } from './modal-container/modal-container.component';
 
 @Injectable({
   providedIn: 'root',
@@ -42,13 +42,12 @@ export class PlantService {
   }
 
   openModal(): void {
-    this.modalRef = this.modalService.open(ModalContentComponent, {
+    this.modalRef = this.modalService.open(ModalContainerComponent, {
       centered: true,
     });
   }
 
   closeModal(): void {
-    console.log('test service');
     this.modalRef.close();
   }
 }

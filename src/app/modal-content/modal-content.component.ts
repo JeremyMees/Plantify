@@ -1,5 +1,5 @@
-import { Component, Output } from '@angular/core';
-import { EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { PlantService } from '../plant.service';
 
 @Component({
   selector: 'app-modal-content',
@@ -7,10 +7,15 @@ import { EventEmitter } from '@angular/core';
   styleUrls: ['./modal-content.component.scss'],
 })
 export class ModalContentComponent {
-  @Output() modalClose = new EventEmitter<void>();
+  @Output() redirect = new EventEmitter<void>();
+  constructor(private plantService: PlantService) {}
 
   closeActiveModal(): void {
-    console.log('test component');
-    this.modalClose.emit();
+    this.plantService.closeModal();
+  }
+
+  redirectTooShoppingcart(): void {
+    this.redirect.emit();
+    this.plantService.closeModal();
   }
 }

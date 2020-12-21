@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PlantService } from '../plant.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-modal-container',
@@ -7,10 +7,9 @@ import { PlantService } from '../plant.service';
   styleUrls: ['./modal-container.component.scss'],
 })
 export class ModalContainerComponent {
-  constructor(private plantService: PlantService) {}
+  constructor(public router: Router) {}
 
-  closeModal(): void {
-    console.log('test container');
-    this.plantService.closeModal();
+  redirectTooShoppingcart(): void {
+    this.router.navigateByUrl(`/shopping-cart`);
   }
 }
