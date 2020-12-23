@@ -1,11 +1,23 @@
-<h1>list</h1>
-<button (click)="sort('high')">high - low</button>
-<button (click)="sort('low')">low - high</button>
-<button (click)="sort('new')">new - old</button>
-<ul class="parent">
-  <li class="child" *ngFor="let plant of plants" (click)="onSelect(plant)">
-    <div class="latinName">{{ plant.latinName }}</div>
-    <div class="name">{{ plant.name }}</div>
-    <div class="price">{{ plant.price }}</div>
+<div class="center">
+  <button class="btn" (click)="sort('high')">high - low</button>
+  <button class="btn" (click)="sort('low')">low - high</button>
+  <button class="btn" (click)="sort('new')">new - old</button>
+</div>
+<ul>
+  <li *ngFor="let plant of plants" (click)="onSelect(plant)">
+    <div class="card" [ngStyle]="{ backgroundColor: color }">
+      <img
+        class="card-img-top"
+        src="..."
+        alt="image from {{ plant.latinName }}"
+      />
+      <div class="card-body">
+        <div class="card-text latinName">{{ plant.latinName }}</div>
+        <div class="card-text name">
+          {{ plant.name }}
+          <div class="card-text price">{{ plant.price }}</div>
+        </div>
+      </div>
+    </div>
   </li>
 </ul>

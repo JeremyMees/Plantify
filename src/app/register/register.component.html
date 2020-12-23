@@ -1,8 +1,8 @@
-<p>
-  name:
+<div class="centered">
   <input
     type="text"
     id="name"
+    placeholder="Name"
     #name
     [ngClass]="colorLengthName"
     (focusout)="checkName($event, name.value)"
@@ -10,44 +10,43 @@
   <label *ngIf="colorLengthName == 'red'">
     Name needs to contain 6 characters</label
   >
-</p>
-<p>
-  email address:
+  <br />
   <input
     type="text"
     id="email"
+    placeholder="Email address"
     #email
     [ngClass]="colorEmail"
     (focusout)="checkEmail($event, email.value)"
   />
   <label *ngIf="colorEmail == 'red'"> Email needs to contain '@' and '.'</label>
-</p>
-<p>
-  password:
+  <br />
   <input
     (focusout)="lengthPassword($event)"
     type="password"
     id="password"
+    placeholder="Password"
     #password
     [ngClass]="colorLengthPassword"
   />
   <label *ngIf="colorLengthPassword == 'red'">
     Password needs to contain 6 characters</label
   >
-</p>
-<p>
-  password check:
+  <br />
   <input
     (focusout)="checkPassword($event, password.value)"
+    placeholder="Password check"
     type="password"
     id="passwordc"
     #passwordc
     [ngClass]="colorCheck"
   />
   <label *ngIf="colorCheck == 'red'"> Passwords aren't the same</label>
-</p>
-<button
-  (click)="register(name.value, email.value, password.value, passwordc.value)"
->
-  log in
-</button>
+  <br />
+  <button
+    class="btn"
+    (click)="register(name.value, email.value, password.value, passwordc.value)"
+  >
+    Register
+  </button>
+</div>

@@ -1,10 +1,23 @@
-<div class="details">
-  <h1>details</h1>
-  <p>{{ plant?.latinName }}</p>
-  <p>{{ plant?.name }}</p>
-  <p>{{ plant?.price }}</p>
-  <p>{{ plant?.quantity }}</p>
-  <button class="plus" (click)="quantityUp(plant)">+</button>
-  <button class="minus" (click)="quantityDown(plant)">-</button>
-  <button class="add" (click)="addProductToCart(plant)">add to cart</button>
+<div class="box" [ngStyle]="{ backgroundColor: color }">
+  <div class="image">
+    <div class="imagePlaceholder">Placeholder image</div>
+  </div>
+  <div class="card">
+    <div class="card-titel">
+      <h1>details</h1>
+    </div>
+    <div class="card-body">
+      <p class="card-text">{{ plant?.latinName }}</p>
+      <p class="card-text">{{ plant?.name }}</p>
+      <p class="card-text">{{ plant?.price }}</p>
+      <p class="card-text">{{ plant?.quantity }}</p>
+      <button class="plus btn" (click)="quantityUp(plant)">+</button>
+      <button class="minus btn" (click)="quantityDown(plant)">-</button>
+      <button class="add btn" (click)="addProductToCart(plant)">
+        Add to cart
+      </button>
+      <br />
+      <button class="btn" (click)="backTooProductList()">Go back</button>
+    </div>
+  </div>
 </div>

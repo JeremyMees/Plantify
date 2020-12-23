@@ -9,6 +9,7 @@ import { Cart } from '../cart';
 })
 export class ListComponent {
   @Input() plants: Array<Cart>;
+  @Input() color: string;
   @Output() plantClick = new EventEmitter<Cart>();
   @Output() sortProducts = new EventEmitter<string>();
 

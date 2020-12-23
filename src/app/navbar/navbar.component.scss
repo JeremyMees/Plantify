@@ -1,0 +1,40 @@
+li {
+  list-style: none;
+}
+
+a {
+  line-height: 30 px;
+  vertical-align: middle;
+  color: #ffffff;
+  padding: 5px;
+}
+
+a:hover {
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.titel {
+  font-size: 30px;
+  top: -5px;
+  position: absolute;
+  left: 0%;
+}
+
+.dropdown-item:hover {
+  background-color: #6c757d;
+}
+
+.dropdown-item:active {
+  background-color: #6c757d;
+}
+
+.dropdown-item:visited {
+  background-color: #6c757d;
+}
+
+nav {
+  width: 100%;
+  background-color: #e7e7e7;
+}

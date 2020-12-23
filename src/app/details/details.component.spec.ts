@@ -50,4 +50,10 @@ describe('DetailsComponent', () => {
       mockPlant.id,
     ]);
   });
+
+  it('should emit when the user wants too go back', () => {
+    spyOn(component.redirectTooProductList, 'emit');
+    component.backTooProductList();
+    expect(component.redirectTooProductList.emit).toHaveBeenCalled();
+  });
 });

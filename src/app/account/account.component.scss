@@ -21,3 +21,28 @@ input {
 input:focus {
   outline: none;
 }
+
+.btn {
+  background-color: #6c757d;
+}
+
+label {
+  margin-right: 10px;
+}
+
+.line {
+  margin: auto;
+  margin-top: 20px;
+  width: 90%;
+  border-bottom: 1px solid rgb(34, 34, 34);
+}
+
+.inputs {
+  width: 100%;
+  text-align: center;
+}
+
+h4 {
+  text-align: center;
+  margin-top: 20px;
+}

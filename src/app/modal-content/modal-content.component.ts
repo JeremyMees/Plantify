@@ -7,15 +7,17 @@ import { PlantService } from '../plant.service';
   styleUrls: ['./modal-content.component.scss'],
 })
 export class ModalContentComponent {
-  @Output() redirect = new EventEmitter<void>();
+  @Output() redirectShoppingCart = new EventEmitter<void>();
+  @Output() redirectProductlist = new EventEmitter<void>();
   constructor(private plantService: PlantService) {}
 
   closeActiveModal(): void {
+    this.redirectProductlist.emit();
     this.plantService.closeModal();
   }
 
   redirectTooShoppingcart(): void {
-    this.redirect.emit();
+    this.redirectShoppingCart.emit();
     this.plantService.closeModal();
   }
 }

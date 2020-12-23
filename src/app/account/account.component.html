@@ -1,9 +1,11 @@
-<div *ngIf="input === false">
+<div class="inputs" *ngIf="input === false">
   <p>username : {{ name }}</p>
   <p>email : {{ email }}</p>
-  <button (click)="updateToInputs()">update</button>
+  <button class="btn" (click)="updateToInputs()">update</button>
+  <div class="line"></div>
 </div>
-<div *ngIf="input === true">
+
+<div class="inputs" *ngIf="input === true">
   <label>username </label>
   <input
     [value]="[name]"
@@ -53,6 +55,7 @@
   <label *ngIf="colorCheck == 'red'"> Passwords aren't the same</label>
   <br />
   <button
+    class="btn"
     (click)="
       updateInputsNewValue(
         nameInput.value,
@@ -63,7 +66,9 @@
   >
     update
   </button>
+  <div class="line"></div>
 </div>
+<h4>Recently bought products</h4>
 <ul>
   <li *ngFor="let boughtProduct of boughtProducts">
     <div class="latinName">{{ boughtProduct.latinName }}</div>

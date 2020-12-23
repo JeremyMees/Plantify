@@ -1,5 +1,9 @@
-<p>email address</p>
-<input type="text" #email />
-<p>password</p>
-<input type="password" #password />
-<button (click)="login(email.value, password.value)">log in</button>
+<div class="centered">
+  <input class="input" placeholder="Email address" type="text" #email />
+  <br />
+  <input class="input" type="password" placeholder="Password" #password />
+  <br />
+  <button class="btn" (click)="login(email.value, password.value)">
+    log in
+  </button>
+</div>

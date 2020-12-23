@@ -1,9 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap");
 
 html {
-  background-color: #9bbddd;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background-color: #e7e7e7;
   font-family: "Nunito Sans";
 }
 
-/* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
+body {
+  @import "~bootstrap/scss/bootstrap";
+}

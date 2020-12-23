@@ -12,4 +12,8 @@ export class ModalContainerComponent {
   redirectTooShoppingcart(): void {
     this.router.navigateByUrl(`/shopping-cart`);
   }
+
+  redirectTooProductList(): void {
+    this.router.navigateByUrl(`/product-list`);
+  }
 }

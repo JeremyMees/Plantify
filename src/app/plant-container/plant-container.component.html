@@ -1,14 +1,18 @@
 <div class="parent">
   <app-list
     class="left"
+    [color]="randomcolor"
     [plants]="plants"
+    *ngIf="!chosenPlant"
     (sortProducts)="onSortChange($event)"
     (plantClick)="onPlantChange($event)"
   ></app-list>
   <app-details
     class="right"
+    [color]="randomcolor"
     [plant]="chosenPlant"
     *ngIf="chosenPlant"
+    (redirectTooProductList)="redirectTooProductList()"
     (quantityChanged)="onQuantityChange($event)"
     (productToCart)="productToCart($event)"
   ></app-details>

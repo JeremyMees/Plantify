@@ -158,4 +158,10 @@ describe('PlantContainerComponent', () => {
     component.onSortChange('high');
     expect(fakeService.switchProductSorting).toHaveBeenCalledWith('high');
   });
+
+  it('should redirect the user too the productlist', () => {
+    spyOn(router, 'navigateByUrl');
+    component.redirectTooProductList();
+    expect(router.navigateByUrl).toHaveBeenCalledWith('/product-list');
+  });
 });

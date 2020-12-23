@@ -10,8 +10,10 @@ import { AppRoutingModule } from '../app-routing.module';
 })
 export class DetailsComponent {
   @Input() plant: Cart;
+  @Input() color: string;
   @Output() quantityChanged = new EventEmitter<Array<number>>();
   @Output() productToCart = new EventEmitter<Cart>();
+  @Output() redirectTooProductList = new EventEmitter<void>();
 
   quantityUp(plant: Cart): void {
     this.quantityChanged.emit([1, plant.id]);
@@ -23,5 +25,9 @@ export class DetailsComponent {
 
   addProductToCart(plant: Cart): void {
     this.productToCart.emit(plant);
+  }
+
+  backTooProductList(): void {
+    this.redirectTooProductList.emit();
   }
 }

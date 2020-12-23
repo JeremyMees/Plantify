@@ -1,17 +1,28 @@
 <ul>
   <li *ngFor="let product of products">
-    <div>name : {{ product.name }}</div>
-    <div>price : {{ product.price * product.quantity }}</div>
-    <div>quantity : {{ product.quantity }}</div>
-    <button (click)="inc(product)">+</button>
-    <button (click)="dec(product)">-</button>
-    <button (click)="deleteFromCart(product)">delete</button>
+    <div class="card">
+      <img
+        class="card-img-top"
+        src="..."
+        alt="image from {{ product.latinName }}"
+      />
+      <div class="card-body">
+        <div class="card-text">name : {{ product.name }}</div>
+        <div class="card-text">
+          price : {{ product.price * product.quantity }}
+        </div>
+        <div class="card-text">quantity : {{ product.quantity }}</div>
+        <button class="btn" (click)="inc(product)">+</button>
+        <button class="btn" (click)="dec(product)">-</button>
+        <button class="btn" (click)="deleteFromCart(product)">delete</button>
+      </div>
+    </div>
   </li>
   <br />
   <li>
-    <div *ngIf="!totalPrice">total : 0</div>
+    <div *ngIf="!totalPrice">No products in the shoppingcart yet</div>
     <div *ngIf="totalPrice">
-      total : {{ totalPrice }}<button (click)="pay()">pay</button>
+      total : {{ totalPrice }}<button class="btn" (click)="pay()">pay</button>
     </div>
   </li>
 </ul>

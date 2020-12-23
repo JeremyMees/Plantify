@@ -16,6 +16,7 @@ import { RegisterComponent } from './register/register.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalContentComponent } from './modal-content/modal-content.component';
 import { ModalContainerComponent } from './modal-container/modal-container.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ModalContainerComponent } from './modal-container/modal-container.compo
     RegisterComponent,
     ModalContentComponent,
     ModalContainerComponent,
+    NavbarComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, NgbModule],
   providers: [CookieService],
