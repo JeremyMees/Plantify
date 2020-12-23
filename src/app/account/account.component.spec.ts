@@ -51,12 +51,47 @@ describe('AccountComponent', () => {
     expect(component.input).toEqual(true);
   });
 
-  it('should update the credentials from user', () => {
-    component.updateInputsNewValue('foofoo', 'foo@foo.com', 'foofoofoo');
-    expect(component.name).toEqual('foofoo');
-    expect(component.email).toEqual('foo@foo.com');
-    expect(component.password).toEqual('foofoofoo');
-    expect(component.input).toEqual(false);
+  describe('update the credentials', () => {
+    it('should alert for invalid email address for not having .', () => {
+      spyOn(window, 'alert');
+      component.updateInputsNewValue('testen', 'testen@', 'testen', 'testen');
+      expect(window.alert).toHaveBeenCalledWith(
+        'Please enter a valid email address.'
+      );
+    });
+
+    it('should alert for invalid email address for not having @', () => {
+      spyOn(window, 'alert');
+      component.updateInputsNewValue('testen', 'testen.', 'testen', 'testen');
+      expect(window.alert).toHaveBeenCalledWith(
+        'Please enter a valid email address.'
+      );
+    });
+
+    it('should alert for two different passwords', () => {
+      spyOn(window, 'alert');
+      component.updateInputsNewValue('testen', 'foo@foo.com', 'foo', 'stub');
+      expect(window.alert).toHaveBeenCalledWith('Passwords are not the same');
+    });
+
+    it('should alert that username is to short', () => {
+      spyOn(window, 'alert');
+      component.updateInputsNewValue('test', 'foo@foo.com', 'testen', 'testen');
+      expect(window.alert).toHaveBeenCalledWith('Username is too short');
+    });
+
+    it('should update the credentials from user', () => {
+      component.updateInputsNewValue(
+        'foofoo',
+        'foo@foo.com',
+        'foofoofoo',
+        'foofoofoo'
+      );
+      expect(component.name).toEqual('foofoo');
+      expect(component.email).toEqual('foo@foo.com');
+      expect(component.password).toEqual('foofoofoo');
+      expect(component.input).toEqual(false);
+    });
   });
 
   describe('lengthPassword', () => {

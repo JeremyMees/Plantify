@@ -13,6 +13,7 @@ export class AccountComponent implements OnInit {
   @Input() name: string;
   @Input() email: string;
   @Input() password: string;
+  @Input() passwordc: string;
   @Input() colorLengthName: string;
   @Input() colorEmail: string;
   @Input() colorLengthPassword: string;
@@ -32,6 +33,7 @@ export class AccountComponent implements OnInit {
     this.name = this.credentials.username;
     this.email = this.credentials.email;
     this.password = this.credentials.password;
+    this.passwordc = this.credentials.password;
   }
 
   updateToInputs() {
@@ -41,12 +43,21 @@ export class AccountComponent implements OnInit {
   updateInputsNewValue(
     newName: string,
     newEmail: string,
-    newPassword: string
+    newPassword: string,
+    newPasswordc: string
   ): void {
-    this.name = newName;
-    this.email = newEmail;
-    this.password = newPassword;
-    this.input = false;
+    if (newEmail.includes('@') === false || newEmail.includes('.') === false) {
+      alert('Please enter a valid email address.');
+    } else if (newPassword !== newPasswordc) {
+      alert('Passwords are not the same');
+    } else if (newName.length < 6) {
+      alert('Username is too short');
+    } else {
+      this.name = newName;
+      this.email = newEmail;
+      this.password = newPassword;
+      this.input = false;
+    }
   }
 
   lengthPassword(event: any) {
