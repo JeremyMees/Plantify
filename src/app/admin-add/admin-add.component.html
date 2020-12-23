@@ -1,0 +1,17 @@
+<div>
+  <h2>Add new product</h2>
+  <input type="text" placeholder="latin name" #latinName />
+  <br />
+  <input type="text" placeholder="Name" #name />
+  <br />
+  <input type="text" placeholder="Price" #price />
+  <br />
+  <input type="file" placeholder="image" #image class="file" />
+  <br />
+  <button
+    class="btn"
+    (click)="addProduct(latinName.value, name.value, price.value, image.value)"
+  >
+    Add product
+  </button>
+</div>

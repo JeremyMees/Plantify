@@ -15,4 +15,8 @@ export class FirebaseService {
   getBoughtProducts(): Array<Cart> {
     return this.boughtProducts;
   }
+
+  addNewProductTooDB(newProductArray: Array<any>): void {
+    alert(newProductArray);
+  }
 }

@@ -26,4 +26,10 @@ describe('FirebaseService', () => {
     const boughtProducts = service.getBoughtProducts();
     expect(boughtProducts).toEqual([mockPlant]);
   });
+
+  it('should add new product too the database', () => {
+    spyOn(window, 'alert');
+    service.addNewProductTooDB(['test']);
+    expect(window.alert).toHaveBeenCalledWith(['test']);
+  });
 });

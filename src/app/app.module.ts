@@ -17,6 +17,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalContentComponent } from './modal-content/modal-content.component';
 import { ModalContainerComponent } from './modal-container/modal-container.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { AdminContainerComponent } from './admin-container/admin-container.component';
+import { AdminAddComponent } from './admin-add/admin-add.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     ModalContentComponent,
     ModalContainerComponent,
     NavbarComponent,
+    AdminContainerComponent,
+    AdminAddComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, NgbModule],
   providers: [CookieService],
