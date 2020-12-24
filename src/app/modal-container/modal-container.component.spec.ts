@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { routes } from '../app-routing.module';
 import { ModalContainerComponent } from './modal-container.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('ModalContainerComponent', () => {
   let component: ModalContainerComponent;
@@ -13,6 +14,7 @@ describe('ModalContainerComponent', () => {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule.withRoutes(routes)],
       declarations: [ModalContainerComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
     router = TestBed.inject(Router);
   });

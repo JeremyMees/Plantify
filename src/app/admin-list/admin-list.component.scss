@@ -1,0 +1,29 @@
+ul {
+  list-style: none;
+  margin-top: 10px;
+}
+
+li {
+  margin-right: 10px;
+  display: inline-block;
+  margin-bottom: 10px;
+  width: 40%;
+}
+
+.image {
+  position: absolute;
+  top: 15px;
+  left: 350px;
+  width: 75px;
+  height: 100px;
+  background-color: #6c757d;
+}
+
+.btn {
+  background-color: #6c757d;
+  margin-right: 5px;
+}
+
+h2 {
+  margin-left: 35%;
+}

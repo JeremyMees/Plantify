@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { Cart } from './cart';
 import { FirebaseService } from './firebase.service';
+import { PLANTS } from './mock-plants';
 
 describe('FirebaseService', () => {
   let service: FirebaseService;
@@ -31,5 +32,17 @@ describe('FirebaseService', () => {
     spyOn(window, 'alert');
     service.addNewProductTooDB(['test']);
     expect(window.alert).toHaveBeenCalledWith(['test']);
+  });
+
+  it('should get produts from database', () => {
+    service.getProductsFromDB().subscribe((products) => {
+      expect(products).toEqual(PLANTS);
+    });
+  });
+
+  it('should delte product from database', () => {
+    spyOn(window, 'alert');
+    service.deleteProductfromDB(mockPlant);
+    expect(window.alert).toHaveBeenCalledWith(mockPlant);
   });
 });

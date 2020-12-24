@@ -1,4 +1,11 @@
 <div class="parent">
-  <app-admin-add (newProduct)="addNewProduct($event)"></app-admin-add>
-  <div></div>
+  <app-admin-list
+    (deleteClick)="deleteProduct($event)"
+    class="left"
+    [plants]="plants"
+  ></app-admin-list>
+  <app-admin-add
+    class="right"
+    (newProduct)="addNewProduct($event)"
+  ></app-admin-add>
 </div>

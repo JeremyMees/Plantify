@@ -91,6 +91,5 @@ export class PlantContainerComponent implements OnInit {
     ];
     const result: number = Math.floor(Math.random() * Math.floor(5));
     this.randomcolor = color[result];
-    console.log(this.randomcolor);
   }
 }

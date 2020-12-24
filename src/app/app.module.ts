@@ -19,6 +19,7 @@ import { ModalContainerComponent } from './modal-container/modal-container.compo
 import { NavbarComponent } from './navbar/navbar.component';
 import { AdminContainerComponent } from './admin-container/admin-container.component';
 import { AdminAddComponent } from './admin-add/admin-add.component';
+import { AdminListComponent } from './admin-list/admin-list.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { AdminAddComponent } from './admin-add/admin-add.component';
     NavbarComponent,
     AdminContainerComponent,
     AdminAddComponent,
+    AdminListComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, NgbModule],
   providers: [CookieService],

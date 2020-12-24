@@ -3,14 +3,27 @@ import { PlantService } from './plant.service';
 import { PLANTS } from './mock-plants';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ModalContainerComponent } from './modal-container/modal-container.component';
+import { FirebaseService } from './firebase.service';
+import { Observable, of } from 'rxjs';
 
 describe('PlantService', () => {
   let service: PlantService;
   let fakeService: jasmine.SpyObj<NgbModal>;
+  let fakeFirebaseService: jasmine.SpyObj<FirebaseService>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
+        {
+          provide: FirebaseService,
+          useValue: jasmine.createSpyObj('FirebaseService', [
+            'getProductsFromDB',
+            'boughtProductsToDb',
+            'getBoughtProducts',
+            'addNewProductTooDB',
+            'deleteProductfromDB',
+          ]),
+        },
         {
           provide: NgbModal,
           useValue: jasmine.createSpyObj('NgbModal', ['open', 'close']),
@@ -19,6 +32,10 @@ describe('PlantService', () => {
     });
     service = TestBed.inject(PlantService);
     fakeService = TestBed.inject(NgbModal) as jasmine.SpyObj<NgbModal>;
+    fakeFirebaseService = TestBed.inject(
+      FirebaseService
+    ) as jasmine.SpyObj<FirebaseService>;
+    fakeFirebaseService.getProductsFromDB.and.returnValue(of(PLANTS));
   });
 
   it('should be created', () => {

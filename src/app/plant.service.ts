@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Cart } from './cart';
 import { Observable, of } from 'rxjs';
-import { PLANTS } from './mock-plants';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ModalContainerComponent } from './modal-container/modal-container.component';
+import { FirebaseService } from './firebase.service';
 
 @Injectable({
   providedIn: 'root',
@@ -11,10 +11,17 @@ import { ModalContainerComponent } from './modal-container/modal-container.compo
 export class PlantService {
   chosenPlant: Cart;
   modalRef: NgbModalRef;
-  constructor(private modalService: NgbModal) {}
+  plants: Array<Cart>;
+  constructor(
+    private modalService: NgbModal,
+    private firebaseService: FirebaseService
+  ) {}
 
   getPlants(): Observable<Array<Cart>> {
-    return of(PLANTS);
+    this.firebaseService.getProductsFromDB().subscribe((data) => {
+      this.plants = data;
+    });
+    return of(this.plants);
   }
 
   setSelectedPlant(plant: Cart): void {
@@ -26,7 +33,8 @@ export class PlantService {
   }
 
   getPlantById(id: number): Observable<Cart> {
-    const plant = PLANTS.find((p) => p.id === id);
+    this.getPlants();
+    const plant = this.plants.find((p) => p.id === id);
     return of(plant);
   }
 
