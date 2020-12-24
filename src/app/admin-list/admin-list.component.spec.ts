@@ -35,4 +35,10 @@ describe('AdminListComponent', () => {
     component.selectForDelete(mockPlant);
     expect(component.deleteClick.emit).toHaveBeenCalledWith(mockPlant);
   });
+
+  it('should update delete event', () => {
+    spyOn(component.editClick, 'emit');
+    component.selectForUpdate(mockPlant);
+    expect(component.editClick.emit).toHaveBeenCalledWith(mockPlant);
+  });
 });

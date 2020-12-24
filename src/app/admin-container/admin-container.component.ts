@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FirebaseService } from '../firebase.service';
-import { PlantService } from '../plant.service';
 import { Cart } from '../cart';
 
 @Component({
@@ -9,12 +8,10 @@ import { Cart } from '../cart';
   styleUrls: ['./admin-container.component.scss'],
 })
 export class AdminContainerComponent implements OnInit {
-  @Input() plants: Array<Cart>;
+  plants: Array<Cart>;
+  choosenProduct: Cart;
 
-  constructor(
-    private firebaseService: FirebaseService,
-    private plantService: PlantService
-  ) {}
+  constructor(private firebaseService: FirebaseService) {}
 
   ngOnInit(): void {
     this.firebaseService.getProductsFromDB().subscribe((value: Array<Cart>) => {
@@ -28,5 +25,13 @@ export class AdminContainerComponent implements OnInit {
 
   deleteProduct(plant: any): void {
     this.firebaseService.deleteProductfromDB(plant.name);
+  }
+
+  updateProduct(updateArray: Array<any>): void {
+    this.firebaseService.updateProductfromDB(updateArray);
+  }
+
+  productTooUpdate(product: Cart): void {
+    this.choosenProduct = product;
   }
 }

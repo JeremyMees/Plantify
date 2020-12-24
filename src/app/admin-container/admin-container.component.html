@@ -1,11 +1,16 @@
 <div class="parent">
   <app-admin-list
+    (editClick)="productTooUpdate($event)"
     (deleteClick)="deleteProduct($event)"
     class="left"
     [plants]="plants"
   ></app-admin-list>
-  <app-admin-add
-    class="right"
-    (newProduct)="addNewProduct($event)"
-  ></app-admin-add>
+  <div class="right">
+    <app-admin-add (newProduct)="addNewProduct($event)"></app-admin-add>
+    <app-admin-update
+      *ngIf="choosenProduct"
+      [choosenProduct]="choosenProduct"
+      (updateClick)="updateProduct($event)"
+    ></app-admin-update>
+  </div>
 </div>

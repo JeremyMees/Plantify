@@ -29,6 +29,7 @@ describe('AdminContainerComponent', () => {
             'addNewProductTooDB',
             'getProductsFromDB',
             'deleteProductfromDB',
+            'updateProductfromDB',
           ]),
         },
       ],
@@ -61,5 +62,15 @@ describe('AdminContainerComponent', () => {
     expect(fakeService.deleteProductfromDB).toHaveBeenCalledWith(
       mockPlant.name
     );
+  });
+
+  it('should trigger function too update product', () => {
+    component.updateProduct(mockPlant);
+    expect(fakeService.updateProductfromDB).toHaveBeenCalledWith(mockPlant);
+  });
+
+  it('should set product too update as choosenProduct', () => {
+    component.productTooUpdate(mockPlant);
+    expect(component.choosenProduct).toEqual(mockPlant);
   });
 });

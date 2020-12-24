@@ -1,0 +1,20 @@
+.box {
+  margin-top: 50px;
+}
+
+.btn {
+  background-color: #6c757d;
+  width: 350px;
+}
+
+input {
+  background-color: transparent;
+  border: #ffffff solid 1px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  width: 350px;
+}
+
+input:focus {
+  outline: none;
+}

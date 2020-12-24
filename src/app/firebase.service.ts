@@ -29,4 +29,8 @@ export class FirebaseService {
   deleteProductfromDB(plant: Cart): void {
     alert(plant);
   }
+
+  updateProductfromDB(updateProduct: Array<any>): void {
+    alert(updateProduct);
+  }
 }

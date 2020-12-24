@@ -10,13 +10,17 @@
       <p class="card-text">{{ plant?.latinName }}</p>
       <p class="card-text">{{ plant?.name }}</p>
       <p class="card-text">{{ plant?.price }}</p>
-      <p class="card-text">{{ plant?.quantity }}</p>
-      <button class="plus btn" (click)="quantityUp(plant)">+</button>
-      <button class="minus btn" (click)="quantityDown(plant)">-</button>
+      <div class="inline">
+        <p class="card-text">
+          <button class="minus btn" (click)="quantityDown(plant)">-</button
+          >{{ plant?.quantity
+          }}<button class="plus btn" (click)="quantityUp(plant)">+</button>
+        </p>
+      </div>
+      <br />
       <button class="add btn" (click)="addProductToCart(plant)">
         Add to cart
       </button>
-      <br />
       <button class="btn" (click)="backTooProductList()">Go back</button>
     </div>
   </div>

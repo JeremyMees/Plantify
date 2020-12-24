@@ -10,8 +10,13 @@ import { Cart } from '../cart';
 export class AdminListComponent {
   @Input() plants: Array<Cart>;
   @Output() deleteClick = new EventEmitter<Cart>();
+  @Output() editClick = new EventEmitter<Cart>();
 
   selectForDelete(plant: Cart): void {
     this.deleteClick.emit(plant);
+  }
+
+  selectForUpdate(plant: Cart): void {
+    this.editClick.emit(plant);
   }
 }

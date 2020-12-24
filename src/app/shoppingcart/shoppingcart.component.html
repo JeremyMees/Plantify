@@ -12,8 +12,8 @@
           price : {{ product.price * product.quantity }}
         </div>
         <div class="card-text">quantity : {{ product.quantity }}</div>
-        <button class="btn" (click)="inc(product)">+</button>
         <button class="btn" (click)="dec(product)">-</button>
+        <button class="btn" (click)="inc(product)">+</button>
         <button class="btn" (click)="deleteFromCart(product)">delete</button>
       </div>
     </div>

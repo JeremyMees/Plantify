@@ -20,6 +20,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AdminContainerComponent } from './admin-container/admin-container.component';
 import { AdminAddComponent } from './admin-add/admin-add.component';
 import { AdminListComponent } from './admin-list/admin-list.component';
+import { AdminUpdateComponent } from './admin-update/admin-update.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { AdminListComponent } from './admin-list/admin-list.component';
     AdminContainerComponent,
     AdminAddComponent,
     AdminListComponent,
+    AdminUpdateComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, NgbModule],
   providers: [CookieService],

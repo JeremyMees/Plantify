@@ -1,0 +1,34 @@
+<div class="box">
+  <h2>Update product</h2>
+  <input
+    type="text"
+    placeholder="latin name"
+    value="{{ choosenProduct.latinName }}"
+    #latinName
+  />
+  <br />
+  <input
+    type="text"
+    placeholder="Name"
+    #name
+    value="{{ choosenProduct.name }}"
+  />
+  <br />
+  <input
+    type="text"
+    placeholder="Price"
+    #price
+    value="{{ choosenProduct.price }}"
+  />
+  <br />
+  <input type="file" placeholder="image" #image class="file" />
+  <br />
+  <button
+    class="btn"
+    (click)="
+      updateProduct(latinName.value, name.value, price.value, image.value)
+    "
+  >
+    Update product
+  </button>
+</div>

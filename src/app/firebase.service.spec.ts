@@ -40,9 +40,15 @@ describe('FirebaseService', () => {
     });
   });
 
-  it('should delte product from database', () => {
+  it('should delete product from database', () => {
     spyOn(window, 'alert');
     service.deleteProductfromDB(mockPlant);
     expect(window.alert).toHaveBeenCalledWith(mockPlant);
+  });
+
+  it('should update product', () => {
+    spyOn(window, 'alert');
+    service.updateProductfromDB([mockPlant]);
+    expect(window.alert).toHaveBeenCalledWith([mockPlant]);
   });
 });
