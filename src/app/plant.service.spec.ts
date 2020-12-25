@@ -95,7 +95,8 @@ describe('PlantService', () => {
     });
   });
 
-  /*it('should trigger the service too close the modal', () => {
+  /*it('should trigger the service too close the modal', (done: DoneFn) => {
+    service.openModal();
     spyOn(service.modalRef, 'close');
     service.closeModal();
     expect(service.modalRef.close).toHaveBeenCalled();

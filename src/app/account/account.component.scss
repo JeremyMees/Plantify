@@ -1,7 +1,15 @@
+ul {
+  list-style: none;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
 li {
-  margin: 25px;
-  display: inline;
-  padding: 10px;
+  margin-right: 10px;
+  display: inline-block;
+  margin-bottom: 10px;
+  width: 23%;
 }
 
 .green {
@@ -45,4 +53,13 @@ label {
 h4 {
   text-align: center;
   margin-top: 20px;
+}
+
+.image {
+  position: absolute;
+  top: 15px;
+  left: 300px;
+  width: 75px;
+  height: 100px;
+  background-color: #6c757d;
 }

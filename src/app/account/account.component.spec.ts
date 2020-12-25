@@ -3,15 +3,27 @@ import { AuthService } from '../auth.service';
 import { FirebaseService } from '../firebase.service';
 import { AccountComponent } from './account.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { routes } from '../app-routing.module';
 
 describe('AccountComponent', () => {
   let component: AccountComponent;
   let fixture: ComponentFixture<AccountComponent>;
   let fakeAuthService: jasmine.SpyObj<AuthService>;
   let fakeFirebaseService: jasmine.SpyObj<FirebaseService>;
+  let router: Router;
+  const mockPlant = {
+    id: 1,
+    latinName: 'Monstera Deliciosa',
+    name: 'Alfredo',
+    price: 28.69,
+    quantity: 1,
+  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [RouterTestingModule.withRoutes(routes)],
       declarations: [AccountComponent],
       providers: [
         {
@@ -33,6 +45,7 @@ describe('AccountComponent', () => {
     fakeFirebaseService = TestBed.inject(
       FirebaseService
     ) as jasmine.SpyObj<FirebaseService>;
+    router = TestBed.inject(Router);
   });
 
   beforeEach(() => {
@@ -146,5 +159,13 @@ describe('AccountComponent', () => {
       component.checkName(event, 'foo');
       expect(component.colorLengthName).toEqual('red');
     });
+  });
+
+  it('should redirect user too the details of the product', () => {
+    spyOn(router, 'navigateByUrl');
+    component.redirectTooProductDetails(mockPlant);
+    expect(router.navigateByUrl).toHaveBeenCalledWith(
+      `/product-list/${mockPlant.id}`
+    );
   });
 });

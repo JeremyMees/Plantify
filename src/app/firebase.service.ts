@@ -8,7 +8,6 @@ import { Observable, of } from 'rxjs';
 })
 export class FirebaseService {
   boughtProducts: Array<Cart>;
-  constructor() {}
 
   getProductsFromDB(): Observable<Array<Cart>> {
     return of(PLANTS);

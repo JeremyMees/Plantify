@@ -40,7 +40,6 @@ export class CartService {
   getTotalPrice(): number {
     this.totalPrice = 0;
     this.totalPriceArray = [];
-    console.log(this.cartInventory);
     this.cartInventory.forEach((product: Cart) => {
       this.totalPriceArray.push(product.price * product.quantity);
     });

@@ -72,8 +72,21 @@
 <h4>Recently bought products</h4>
 <ul>
   <li *ngFor="let boughtProduct of boughtProducts">
-    <div class="latinName">{{ boughtProduct.latinName }}</div>
-    <div class="quantity">{{ boughtProduct.quantity }}</div>
-    <div class="price">{{ boughtProduct.price }}</div>
+    <div class="card">
+      <div class="card-body">
+        <div class="card-text latinName">{{ boughtProduct.latinName }}</div>
+        <div class="card-text name">
+          {{ boughtProduct.name }}
+          <div class="card-text price">{{ boughtProduct.price }}</div>
+          <button
+            class="btn"
+            (click)="redirectTooProductDetails(boughtProduct)"
+          >
+            Product details
+          </button>
+        </div>
+        <div class="image"></div>
+      </div>
+    </div>
   </li>
 </ul>

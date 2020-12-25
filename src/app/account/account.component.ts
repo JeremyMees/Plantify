@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Cart } from '../cart';
 import { AuthService } from '../auth.service';
 import { FirebaseService } from '../firebase.service';
 import { User } from '../user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-account',
@@ -10,21 +11,22 @@ import { User } from '../user';
   styleUrls: ['./account.component.scss'],
 })
 export class AccountComponent implements OnInit {
-  @Input() name: string;
-  @Input() email: string;
-  @Input() password: string;
-  @Input() passwordc: string;
-  @Input() colorLengthName: string;
-  @Input() colorEmail: string;
-  @Input() colorLengthPassword: string;
-  @Input() colorCheck: string;
+  name: string;
+  email: string;
+  password: string;
+  passwordc: string;
+  colorLengthName: string;
+  colorEmail: string;
+  colorLengthPassword: string;
+  colorCheck: string;
   boughtProducts: Array<Cart>;
   credentials: User;
   input: boolean = false;
 
   constructor(
     private authService: AuthService,
-    private firebaseService: FirebaseService
+    private firebaseService: FirebaseService,
+    public router: Router
   ) {}
 
   ngOnInit(): void {
@@ -82,5 +84,9 @@ export class AccountComponent implements OnInit {
     event.target.value.length >= 6
       ? (this.colorLengthName = 'green')
       : (this.colorLengthName = 'red');
+  }
+
+  redirectTooProductDetails(product: Cart): void {
+    this.router.navigateByUrl(`/product-list/${product.id}`);
   }
 }
