@@ -46,12 +46,17 @@ export class CartService {
     this.totalPriceArray.forEach((result: number) => {
       this.totalPrice += result;
     });
-    return this.totalPrice;
+    return this.roundToo(this.totalPrice, 2);
   }
 
   payProducts(productsArray: Array<Cart>): void {
     this.firebaseService.boughtProductsToDb(productsArray);
     this.cartInventory = [];
     alert('shoppingcart is getting emptied now');
+  }
+
+  roundToo(num: number, places: number): number {
+    const factor = 10 ** places;
+    return Math.round(num * factor) / factor;
   }
 }
