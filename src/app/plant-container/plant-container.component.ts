@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PlantService } from '../plant.service';
+import { FirebaseService } from '../firebase.service';
 import { CartService } from '../cart.service';
 import { Cart } from '../cart';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -23,7 +24,8 @@ export class PlantContainerComponent implements OnInit {
     public router: Router,
     private route: ActivatedRoute,
     private plantService: PlantService,
-    private cartService: CartService
+    private cartService: CartService,
+    private firebaseService: FirebaseService
   ) {}
 
   ngOnDestroy(): void {
@@ -77,7 +79,7 @@ export class PlantContainerComponent implements OnInit {
     this.plantService.switchProductSorting(how);
   }
 
-  redirectTooProductList(): void {
+  redirectToProductList(): void {
     this.router.navigateByUrl(`/product-list`);
   }
 
@@ -91,5 +93,11 @@ export class PlantContainerComponent implements OnInit {
     ];
     const result: number = Math.floor(Math.random() * Math.floor(5));
     this.randomcolor = color[result];
+  }
+
+  searchProduct(string: string): void {
+    string.length === 0
+      ? alert('Need name to search')
+      : this.firebaseService.searchProductByName(string);
   }
 }

@@ -9,11 +9,11 @@ import { Router } from '@angular/router';
 export class ModalContainerComponent {
   constructor(public router: Router) {}
 
-  redirectTooShoppingcart(): void {
+  redirectToShoppingcart(): void {
     this.router.navigateByUrl(`/shopping-cart`);
   }
 
-  redirectTooProductList(): void {
+  redirectToProductList(): void {
     this.router.navigateByUrl(`/product-list`);
   }
 }

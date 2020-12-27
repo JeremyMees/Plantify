@@ -20,7 +20,7 @@ describe('PlantService', () => {
             'getProductsFromDB',
             'boughtProductsToDb',
             'getBoughtProducts',
-            'addNewProductTooDB',
+            'addNewProductToDB',
             'deleteProductfromDB',
           ]),
         },
@@ -88,14 +88,14 @@ describe('PlantService', () => {
     });
   });
 
-  it('should trigger the service too open the modal', () => {
+  it('should trigger the service to open the modal', () => {
     service.openModal();
     expect(fakeService.open).toHaveBeenCalledWith(ModalContainerComponent, {
       centered: true,
     });
   });
 
-  /*it('should trigger the service too close the modal', (done: DoneFn) => {
+  /*it('should trigger the service to close the modal', (done: DoneFn) => {
     service.openModal();
     spyOn(service.modalRef, 'close');
     service.closeModal();

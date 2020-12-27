@@ -5,6 +5,7 @@
     [plants]="plants"
     *ngIf="!chosenPlant"
     (sortProducts)="onSortChange($event)"
+    (searchProduct)="searchProduct($event)"
     (plantClick)="onPlantChange($event)"
   ></app-list>
   <app-details
@@ -12,7 +13,7 @@
     [color]="randomcolor"
     [plant]="chosenPlant"
     *ngIf="chosenPlant"
-    (redirectTooProductList)="redirectTooProductList()"
+    (redirectToProductList)="redirectToProductList()"
     (quantityChanged)="onQuantityChange($event)"
     (productToCart)="productToCart($event)"
   ></app-details>

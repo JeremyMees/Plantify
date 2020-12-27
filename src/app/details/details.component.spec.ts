@@ -51,9 +51,9 @@ describe('DetailsComponent', () => {
     ]);
   });
 
-  it('should emit when the user wants too go back', () => {
-    spyOn(component.redirectTooProductList, 'emit');
-    component.backTooProductList();
-    expect(component.redirectTooProductList.emit).toHaveBeenCalled();
+  it('should emit when the user wants to go back', () => {
+    spyOn(component.redirectToProductList, 'emit');
+    component.backToProductList();
+    expect(component.redirectToProductList.emit).toHaveBeenCalled();
   });
 });

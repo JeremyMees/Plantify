@@ -26,7 +26,7 @@ describe('AdminContainerComponent', () => {
           useValue: jasmine.createSpyObj('FirebaseService', [
             'boughtProductsToDb',
             'getBoughtProducts',
-            'addNewProductTooDB',
+            'addNewProductToDB',
             'getProductsFromDB',
             'deleteProductfromDB',
             'updateProductfromDB',
@@ -47,9 +47,9 @@ describe('AdminContainerComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should send new product too firebase service', () => {
+  it('should send new product to firebase service', () => {
     component.addNewProduct(['test', 'testen', 12, 'testimage']);
-    expect(fakeService.addNewProductTooDB).toHaveBeenCalledWith([
+    expect(fakeService.addNewProductToDB).toHaveBeenCalledWith([
       'test',
       'testen',
       12,
@@ -57,20 +57,20 @@ describe('AdminContainerComponent', () => {
     ]);
   });
 
-  it('should trigger function too delete product', () => {
+  it('should trigger function to delete product', () => {
     component.deleteProduct(mockPlant);
     expect(fakeService.deleteProductfromDB).toHaveBeenCalledWith(
       mockPlant.name
     );
   });
 
-  it('should trigger function too update product', () => {
+  it('should trigger function to update product', () => {
     component.updateProduct(mockPlant);
     expect(fakeService.updateProductfromDB).toHaveBeenCalledWith(mockPlant);
   });
 
-  it('should set product too update as choosenProduct', () => {
-    component.productTooUpdate(mockPlant);
+  it('should set product to update as choosenProduct', () => {
+    component.productToUpdate(mockPlant);
     expect(component.choosenProduct).toEqual(mockPlant);
   });
 });

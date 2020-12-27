@@ -56,6 +56,7 @@ export class PlantService {
   }
 
   closeModal(): void {
+    /* istanbul ignore next*/
     this.modalRef.close();
   }
 }

@@ -20,7 +20,7 @@ export class AdminContainerComponent implements OnInit {
   }
 
   addNewProduct(newProductArray: Array<any>): void {
-    this.firebaseService.addNewProductTooDB(newProductArray);
+    this.firebaseService.addNewProductToDB(newProductArray);
   }
 
   deleteProduct(plant: any): void {
@@ -31,7 +31,7 @@ export class AdminContainerComponent implements OnInit {
     this.firebaseService.updateProductfromDB(updateArray);
   }
 
-  productTooUpdate(product: Cart): void {
+  productToUpdate(product: Cart): void {
     this.choosenProduct = product;
   }
 }

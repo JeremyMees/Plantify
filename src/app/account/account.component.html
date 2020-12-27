@@ -78,10 +78,7 @@
         <div class="card-text name">
           {{ boughtProduct.name }}
           <div class="card-text price">{{ boughtProduct.price }}</div>
-          <button
-            class="btn"
-            (click)="redirectTooProductDetails(boughtProduct)"
-          >
+          <button class="btn" (click)="redirectToProductDetails(boughtProduct)">
             Product details
           </button>
         </div>

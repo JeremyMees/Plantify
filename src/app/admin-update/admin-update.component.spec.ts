@@ -24,7 +24,7 @@ describe('AdminUpdateComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should emit the product too update', () => {
+  it('should emit the product to update', () => {
     spyOn(component.updateClick, 'emit');
     component.updateProduct('test', 'foo', 69, 'stud');
     expect(component.updateClick.emit).toHaveBeenCalledWith([

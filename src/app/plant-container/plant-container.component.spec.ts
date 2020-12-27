@@ -9,12 +9,14 @@ import { routes } from '../app-routing.module';
 import { By } from '@angular/platform-browser';
 import { PLANTS } from '../mock-plants';
 import { CartService } from '../cart.service';
+import { FirebaseService } from '../firebase.service';
 
 describe('PlantContainerComponent', () => {
   let component: PlantContainerComponent;
   let fixture: ComponentFixture<PlantContainerComponent>;
   let fakeService: jasmine.SpyObj<PlantService>;
   let fakeCartService: jasmine.SpyObj<CartService>;
+  let fakeFirebaseService: jasmine.SpyObj<FirebaseService>;
   let activatedRouteSpy: jasmine.SpyObj<ActivatedRoute>;
   let router: Router;
   const params$ = new Subject<{ id?: string }>();
@@ -44,6 +46,18 @@ describe('PlantContainerComponent', () => {
           ]),
         },
         {
+          provide: FirebaseService,
+          useValue: jasmine.createSpyObj('FirebaseService', [
+            'getProductsFromDB',
+            'boughtProductsToDb',
+            'getBoughtProducts',
+            'addNewProductToDB',
+            'deleteProductFromDB',
+            'updateProductfromDB',
+            'searchProductByName',
+          ]),
+        },
+        {
           provide: CartService,
           useValue: jasmine.createSpyObj('CartService', ['addItemToCart']),
         },
@@ -58,6 +72,9 @@ describe('PlantContainerComponent', () => {
     fakeCartService = TestBed.inject(
       CartService
     ) as jasmine.SpyObj<CartService>;
+    fakeFirebaseService = TestBed.inject(
+      FirebaseService
+    ) as jasmine.SpyObj<FirebaseService>;
     activatedRouteSpy = TestBed.inject(
       ActivatedRoute
     ) as jasmine.SpyObj<ActivatedRoute>;
@@ -159,9 +176,24 @@ describe('PlantContainerComponent', () => {
     expect(fakeService.switchProductSorting).toHaveBeenCalledWith('high');
   });
 
-  it('should redirect the user too the productlist', () => {
+  it('should redirect the user to the productlist', () => {
     spyOn(router, 'navigateByUrl');
-    component.redirectTooProductList();
+    component.redirectToProductList();
     expect(router.navigateByUrl).toHaveBeenCalledWith('/product-list');
+  });
+
+  describe('search function', () => {
+    it('should call firebaseService to search the product in the database', () => {
+      component.searchProduct('foo');
+      expect(fakeFirebaseService.searchProductByName).toHaveBeenCalledWith(
+        'foo'
+      );
+    });
+
+    it('should alert that a name is needed for searching a product', () => {
+      spyOn(window, 'alert');
+      component.searchProduct('');
+      expect(window.alert).toHaveBeenCalledWith('Need name to search');
+    });
   });
 });

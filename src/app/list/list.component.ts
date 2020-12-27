@@ -12,6 +12,7 @@ export class ListComponent {
   @Input() color: string;
   @Output() plantClick = new EventEmitter<Cart>();
   @Output() sortProducts = new EventEmitter<string>();
+  @Output() searchProduct = new EventEmitter<string>();
 
   onSelect(plant: Cart): void {
     this.plantClick.emit(plant);
@@ -19,5 +20,9 @@ export class ListComponent {
 
   sort(how: string): void {
     this.sortProducts.emit(how);
+  }
+
+  searchByString(string: string): void {
+    this.searchProduct.emit(string);
   }
 }

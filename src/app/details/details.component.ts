@@ -13,7 +13,7 @@ export class DetailsComponent {
   @Input() color: string;
   @Output() quantityChanged = new EventEmitter<Array<number>>();
   @Output() productToCart = new EventEmitter<Cart>();
-  @Output() redirectTooProductList = new EventEmitter<void>();
+  @Output() redirectToProductList = new EventEmitter<void>();
 
   quantityUp(plant: Cart): void {
     this.quantityChanged.emit([1, plant.id]);
@@ -27,7 +27,7 @@ export class DetailsComponent {
     this.productToCart.emit(plant);
   }
 
-  backTooProductList(): void {
-    this.redirectTooProductList.emit();
+  backToProductList(): void {
+    this.redirectToProductList.emit();
   }
 }

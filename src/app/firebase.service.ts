@@ -21,7 +21,7 @@ export class FirebaseService {
     return this.boughtProducts;
   }
 
-  addNewProductTooDB(newProductArray: Array<any>): void {
+  addNewProductToDB(newProductArray: Array<any>): void {
     alert(newProductArray);
   }
 
@@ -31,5 +31,9 @@ export class FirebaseService {
 
   updateProductfromDB(updateProduct: Array<any>): void {
     alert(updateProduct);
+  }
+
+  searchProductByName(string: string): void {
+    alert(string);
   }
 }

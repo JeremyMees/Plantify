@@ -1,7 +1,23 @@
-<div class="center">
-  <button class="btn" (click)="sort('high')">high - low</button>
-  <button class="btn" (click)="sort('low')">low - high</button>
-  <button class="btn" (click)="sort('new')">new - old</button>
+<div class="parent">
+  <div class="button-group">
+    <button class="btn margin-r" (click)="sort('high')">high - low</button>
+    <button class="btn margin-r" (click)="sort('low')">low - high</button>
+    <button class="btn" (click)="sort('new')">new - old</button>
+  </div>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <button class="btn" type="button" (click)="searchByString(search.value)">
+        Search
+      </button>
+    </div>
+    <input
+      aria-describedby="inputGroup-sizing-default"
+      type="text"
+      #search
+      class="form-control"
+      placeholder="Product name"
+    />
+  </div>
 </div>
 <ul>
   <li *ngFor="let plant of plants" (click)="onSelect(plant)">

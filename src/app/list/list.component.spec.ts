@@ -36,9 +36,15 @@ describe('ListComponent', () => {
     expect(component.plantClick.emit).toHaveBeenCalledWith(mockPlant);
   });
 
-  it('should emit value too sort by', () => {
+  it('should emit value to sort by', () => {
     spyOn(component.sortProducts, 'emit');
     component.sort('high');
     expect(component.sortProducts.emit).toHaveBeenCalledWith('high');
+  });
+
+  it('should emit value to search by', () => {
+    spyOn(component.searchProduct, 'emit');
+    component.searchByString('foo');
+    expect(component.searchProduct.emit).toHaveBeenCalledWith('foo');
   });
 });

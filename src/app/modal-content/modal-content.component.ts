@@ -16,7 +16,7 @@ export class ModalContentComponent {
     this.plantService.closeModal();
   }
 
-  redirectTooShoppingcart(): void {
+  redirectToShoppingcart(): void {
     this.redirectShoppingCart.emit();
     this.plantService.closeModal();
   }

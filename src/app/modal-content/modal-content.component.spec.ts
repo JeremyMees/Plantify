@@ -40,16 +40,16 @@ describe('ModalContentComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call the plantservice too close the modal', () => {
+  it('should call the plantservice to close the modal', () => {
     spyOn(component.redirectProductlist, 'emit');
     component.closeActiveModal();
     expect(component.redirectProductlist.emit).toHaveBeenCalled();
     expect(fakeService.closeModal).toHaveBeenCalled();
   });
 
-  it('should redirect too shoppingcart and close modal', () => {
+  it('should redirect to shoppingcart and close modal', () => {
     spyOn(component.redirectShoppingCart, 'emit');
-    component.redirectTooShoppingcart();
+    component.redirectToShoppingcart();
     expect(component.redirectShoppingCart.emit).toHaveBeenCalled();
     expect(fakeService.closeModal).toHaveBeenCalled();
   });

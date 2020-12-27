@@ -109,7 +109,7 @@ describe('RegisterComponent', () => {
     it('should alert that username is to short', () => {
       spyOn(window, 'alert');
       component.register('test', 'foo@foo.com', 'testen', 'testen');
-      expect(window.alert).toHaveBeenCalledWith('Username is too short');
+      expect(window.alert).toHaveBeenCalledWith('Username is to short');
     });
 
     it('should register user', () => {

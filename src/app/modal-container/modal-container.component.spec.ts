@@ -25,15 +25,15 @@ describe('ModalContainerComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should redirect too /shopping-cart', () => {
+  it('should redirect to /shopping-cart', () => {
     spyOn(router, 'navigateByUrl');
-    component.redirectTooShoppingcart();
+    component.redirectToShoppingcart();
     expect(router.navigateByUrl).toHaveBeenCalledWith(`/shopping-cart`);
   });
 
-  it('should redirect too /product-list', () => {
+  it('should redirect to /product-list', () => {
     spyOn(router, 'navigateByUrl');
-    component.redirectTooProductList();
+    component.redirectToProductList();
     expect(router.navigateByUrl).toHaveBeenCalledWith(`/product-list`);
   });
 });

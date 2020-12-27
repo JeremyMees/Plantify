@@ -53,7 +53,7 @@ export class AccountComponent implements OnInit {
     } else if (newPassword !== newPasswordc) {
       alert('Passwords are not the same');
     } else if (newName.length < 6) {
-      alert('Username is too short');
+      alert('Username is to short');
     } else {
       this.name = newName;
       this.email = newEmail;
@@ -86,7 +86,7 @@ export class AccountComponent implements OnInit {
       : (this.colorLengthName = 'red');
   }
 
-  redirectTooProductDetails(product: Cart): void {
+  redirectToProductDetails(product: Cart): void {
     this.router.navigateByUrl(`/product-list/${product.id}`);
   }
 }

@@ -46,7 +46,7 @@ export class CartService {
     this.totalPriceArray.forEach((result: number) => {
       this.totalPrice += result;
     });
-    return this.roundToo(this.totalPrice, 2);
+    return this.roundTo(this.totalPrice, 2);
   }
 
   payProducts(productsArray: Array<Cart>): void {
@@ -55,7 +55,7 @@ export class CartService {
     alert('shoppingcart is getting emptied now');
   }
 
-  roundToo(num: number, places: number): number {
+  roundTo(num: number, places: number): number {
     const factor = 10 ** places;
     return Math.round(num * factor) / factor;
   }

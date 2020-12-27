@@ -10,7 +10,10 @@ li {
 
 .btn {
   background-color: #6c757d;
-  margin-left: 5px;
+}
+
+.margin-r {
+  margin-right: 5px;
 }
 
 button {
@@ -41,6 +44,18 @@ img {
   height: 450px;
 }
 
-.center {
-  text-align: center;
+.parent {
+  display: flex;
+  justify-content: center;
+}
+
+.input-group {
+  margin-left: 5px;
+  height: 100%;
+  width: 350px;
+}
+
+input {
+  position: relative;
+  top: 10px;
 }

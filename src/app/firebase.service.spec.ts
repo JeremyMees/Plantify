@@ -28,9 +28,9 @@ describe('FirebaseService', () => {
     expect(boughtProducts).toEqual([mockPlant]);
   });
 
-  it('should add new product too the database', () => {
+  it('should add new product to the database', () => {
     spyOn(window, 'alert');
-    service.addNewProductTooDB(['test']);
+    service.addNewProductToDB(['test']);
     expect(window.alert).toHaveBeenCalledWith(['test']);
   });
 
@@ -50,5 +50,11 @@ describe('FirebaseService', () => {
     spyOn(window, 'alert');
     service.updateProductfromDB([mockPlant]);
     expect(window.alert).toHaveBeenCalledWith([mockPlant]);
+  });
+
+  it('should search for product', () => {
+    spyOn(window, 'alert');
+    service.searchProductByName('foo');
+    expect(window.alert).toHaveBeenCalledWith('foo');
   });
 });

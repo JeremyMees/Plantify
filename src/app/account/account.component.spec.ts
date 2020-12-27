@@ -90,7 +90,7 @@ describe('AccountComponent', () => {
     it('should alert that username is to short', () => {
       spyOn(window, 'alert');
       component.updateInputsNewValue('test', 'foo@foo.com', 'testen', 'testen');
-      expect(window.alert).toHaveBeenCalledWith('Username is too short');
+      expect(window.alert).toHaveBeenCalledWith('Username is to short');
     });
 
     it('should update the credentials from user', () => {
@@ -161,9 +161,9 @@ describe('AccountComponent', () => {
     });
   });
 
-  it('should redirect user too the details of the product', () => {
+  it('should redirect user to the details of the product', () => {
     spyOn(router, 'navigateByUrl');
-    component.redirectTooProductDetails(mockPlant);
+    component.redirectToProductDetails(mockPlant);
     expect(router.navigateByUrl).toHaveBeenCalledWith(
       `/product-list/${mockPlant.id}`
     );
