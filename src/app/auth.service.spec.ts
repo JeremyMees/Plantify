@@ -87,10 +87,12 @@ describe('AuthService', () => {
 
   it(`should register user`, () => {
     spyOn(service, 'setCookie');
+    spyOn(router, 'navigateByUrl');
     service.register('stub', 'stub', 'stub');
     expect(service.setCookie).toHaveBeenCalledTimes(2);
     expect(service.setCookie).toHaveBeenCalledWith('name', 'stub');
     expect(service.setCookie).toHaveBeenCalledWith('email', 'stub');
+    expect(router.navigateByUrl).toHaveBeenCalledWith('/product-list');
   });
 
   it('should get the user credentials', () => {

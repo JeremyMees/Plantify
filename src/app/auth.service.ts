@@ -51,5 +51,6 @@ export class AuthService {
   register(name: string, email: string, password: string): void {
     this.setCookie('name', name);
     this.setCookie('email', email);
+    this.router.navigateByUrl('/product-list');
   }
 }
