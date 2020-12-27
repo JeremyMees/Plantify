@@ -1,7 +1,6 @@
 <div class="parent">
   <app-list
     class="left"
-    [color]="randomcolor"
     [plants]="plants"
     *ngIf="!chosenPlant"
     (sortProducts)="onSortChange($event)"
@@ -10,7 +9,6 @@
   ></app-list>
   <app-details
     class="right"
-    [color]="randomcolor"
     [plant]="chosenPlant"
     *ngIf="chosenPlant"
     (redirectToProductList)="redirectToProductList()"

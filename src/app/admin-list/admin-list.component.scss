@@ -20,10 +20,16 @@ li {
 }
 
 .btn {
-  background-color: #6c757d;
   margin-right: 5px;
 }
 
+.btn:hover {
+  color: black;
+}
 h2 {
   margin-left: 35%;
+}
+
+.card {
+  background-color: #c069ee;
 }

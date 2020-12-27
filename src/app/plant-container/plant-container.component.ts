@@ -18,7 +18,6 @@ export class PlantContainerComponent implements OnInit {
   products: Array<Cart>;
   id: number;
   destroy$ = new Subject();
-  randomcolor: string;
 
   constructor(
     public router: Router,
@@ -33,11 +32,9 @@ export class PlantContainerComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.randomColor();
     this.route.params.pipe(takeUntil(this.destroy$)).subscribe((params) => {
       if (+params.id >= 0) {
         this.plantService.getPlantById(+params.id).subscribe((plant) => {
-          this.randomColor();
           this.chosenPlant = plant;
         });
       }
@@ -81,18 +78,6 @@ export class PlantContainerComponent implements OnInit {
 
   redirectToProductList(): void {
     this.router.navigateByUrl(`/product-list`);
-  }
-
-  randomColor(): void {
-    const color: Array<string> = [
-      '#adf4ae',
-      '#c069ee',
-      '#a0c2f6',
-      '#ebf59f',
-      '#89ef5b',
-    ];
-    const result: number = Math.floor(Math.random() * Math.floor(5));
-    this.randomcolor = color[result];
   }
 
   searchProduct(string: string): void {

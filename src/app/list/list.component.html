@@ -1,7 +1,7 @@
 <div class="parent">
-  <div class="button-group">
-    <button class="btn margin-r" (click)="sort('high')">high - low</button>
-    <button class="btn margin-r" (click)="sort('low')">low - high</button>
+  <div class="btn-group">
+    <button class="btn" (click)="sort('high')">high - low</button>
+    <button class="btn" (click)="sort('low')">low - high</button>
     <button class="btn" (click)="sort('new')">new - old</button>
   </div>
   <div class="input-group mb-3">
@@ -21,7 +21,7 @@
 </div>
 <ul>
   <li *ngFor="let plant of plants" (click)="onSelect(plant)">
-    <div class="card" [ngStyle]="{ backgroundColor: color }">
+    <div class="card">
       <img
         class="card-img-top"
         src="..."
