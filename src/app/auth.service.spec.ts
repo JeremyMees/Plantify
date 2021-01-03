@@ -1,15 +1,17 @@
-import { TestBed } from '@angular/core/testing';
+import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { routes } from './app-routing.module';
-import { AuthService } from './auth.service';
 import { CookieService } from 'ngx-cookie-service';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AuthService } from './auth.service';
 
 describe('AuthService', () => {
   let service: AuthService;
   let activatedRouteSpy: jasmine.SpyObj<ActivatedRoute>;
   let router: Router;
   let fakeService: jasmine.SpyObj<CookieService>;
+  let fakeAuthService: jasmine.SpyObj<AngularFireAuth>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -24,12 +26,21 @@ describe('AuthService', () => {
             'check',
           ]),
         },
+        {
+          provide: AngularFireAuth,
+          useValue: jasmine.createSpyObj('AngularFireAuth', [
+            'createUserWithEmailAndPassword',
+          ]),
+        },
       ],
     });
     service = TestBed.inject(AuthService);
     fakeService = TestBed.inject(
       CookieService
     ) as jasmine.SpyObj<CookieService>;
+    fakeAuthService = TestBed.inject(
+      AngularFireAuth
+    ) as jasmine.SpyObj<AngularFireAuth>;
     activatedRouteSpy = TestBed.inject(
       ActivatedRoute
     ) as jasmine.SpyObj<ActivatedRoute>;
@@ -85,14 +96,42 @@ describe('AuthService', () => {
     });
   });
 
-  it(`should register user`, () => {
-    spyOn(service, 'setCookie');
-    spyOn(router, 'navigateByUrl');
-    service.register('stub', 'stub', 'stub');
-    expect(service.setCookie).toHaveBeenCalledTimes(2);
-    expect(service.setCookie).toHaveBeenCalledWith('name', 'stub');
-    expect(service.setCookie).toHaveBeenCalledWith('email', 'stub');
-    expect(router.navigateByUrl).toHaveBeenCalledWith('/product-list');
+  describe('firebase', () => {
+    const mockValue = {
+      additionalUserInfo: null,
+      credential: null,
+      operationType: null,
+      user: { email: 'stubemail', password: 'stubpassword' },
+    };
+
+    /*it(`should register user`, () => {
+      spyOn(router, 'navigateByUrl');
+      spyOn(console, 'log');
+      service.register('stubname', 'stubemail', 'stubpassword');
+
+      expect(service.setCookie).toHaveBeenCalledWith('name', 'stubname');
+      expect(service.setCookie).toHaveBeenCalledWith('email', 'stubemail');
+      expect(
+        fakeAuthService.createUserWithEmailAndPassword
+      ).toHaveBeenCalledWith('stubemail', 'stubpassword');
+      expect(router.navigateByUrl).toHaveBeenCalledWith('/product-list');
+    });*/
+
+    it('should update the username', () => {
+      let mockuser = {
+        email: 'stubemail',
+        password: 'stubpassword',
+        updateProfile: (foo) => {
+          alert(foo);
+        },
+      };
+      spyOn(mockuser, 'updateProfile');
+
+      service.updateUsername(mockuser, 'stubname');
+      expect(mockuser.updateProfile).toHaveBeenCalledWith({
+        displayName: 'stubname',
+      });
+    });
   });
 
   it('should get the user credentials', () => {

@@ -121,6 +121,10 @@
               "devServerTarget": "eind-proef:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
     }

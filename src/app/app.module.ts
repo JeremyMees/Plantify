@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ListComponent } from './list/list.component';
@@ -21,6 +20,14 @@ import { AdminContainerComponent } from './admin-container/admin-container.compo
 import { AdminAddComponent } from './admin-add/admin-add.component';
 import { AdminListComponent } from './admin-list/admin-list.component';
 import { AdminUpdateComponent } from './admin-update/admin-update.component';
+import { environment } from 'src/environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireMessagingModule } from '@angular/fire/messaging';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { FormsModule } from '@angular/forms';
+import { AuthService } from './auth.service';
 
 @NgModule({
   declarations: [
@@ -42,8 +49,17 @@ import { AdminUpdateComponent } from './admin-update/admin-update.component';
     AdminListComponent,
     AdminUpdateComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, NgbModule],
-  providers: [CookieService],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    NgbModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    AngularFireMessagingModule,
+    AngularFireStorageModule,
+  ],
+  providers: [CookieService, AuthService],
   bootstrap: [AppComponent],
   entryComponents: [ModalContentComponent],
 })

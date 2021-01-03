@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "plantify-eindproef": {
+      "hosting": {
+        "eind-proef": [
+          "plantify-eindproef"
+        ]
+      }
+    }
+  }
+}

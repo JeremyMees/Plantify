@@ -2,12 +2,21 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { User } from './user';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private router: Router, private cookieService: CookieService) {}
+  user: Observable<firebase.default.User>;
+  constructor(
+    private router: Router,
+    private cookieService: CookieService,
+    private firebaseAuth: AngularFireAuth
+  ) {
+    this.user = firebaseAuth.authState;
+  }
 
   login(email: string, password: string): void {
     if (email === 'test' && password === 'test') {
@@ -48,9 +57,23 @@ export class AuthService {
     };
   }
 
-  register(name: string, email: string, password: string): void {
+  register(name: string, email: string, password: string): any {
     this.setCookie('name', name);
     this.setCookie('email', email);
+    this.firebaseAuth
+      .createUserWithEmailAndPassword(email, password)
+      .then((value: any) => {
+        console.log(value);
+        console.log(value.user);
+        this.updateUsername(value.user, name);
+      })
+      .catch((err: any) => {
+        console.log('Something went wrong:', err.message);
+      });
     this.router.navigateByUrl('/product-list');
+  }
+
+  updateUsername(user: any, name: string): void {
+    user.updateProfile({ displayName: name });
   }
 }
