@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { User } from './user';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
 
@@ -19,18 +18,51 @@ export class AuthService {
   }
 
   login(email: string, password: string): void {
-    if (email === 'test' && password === 'test') {
-      this.setCookie('email', email);
-      this.router.navigateByUrl('/product-list');
-    } else {
-      alert('username or password is incorrect');
-    }
+    this.firebaseAuth
+      .signInWithEmailAndPassword(email, password)
+      .then(() => {
+        this.setCookie('logged-in', 'true');
+        this.router.navigateByUrl('/product-list');
+      })
+      .catch((err) => {
+        alert('username or password is incorrect');
+      });
   }
 
-  logout(): void {
-    let email: string = this.getCookie('email');
-    alert(`logged ${email} out`);
-    this.deleteCookie('email');
+  async logout(): Promise<void> {
+    let credentials: any = await this.getUserCredentials();
+    this.firebaseAuth
+      .signOut()
+      .then(() => {
+        alert(`logged ${credentials.email} out`);
+        this.deleteCookie('logged-in');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  register(name: string, email: string, password: string): any {
+    //this.setCookie('name', name);
+    //this.setCookie('email', email);
+    this.firebaseAuth
+      .createUserWithEmailAndPassword(email, password)
+      .then((value: any) => {
+        this.updateUsername(value.user, name);
+      })
+      .catch((err: any) => {
+        console.log('Something went wrong:', err.message);
+      });
+    this.router.navigateByUrl('/product-list');
+  }
+
+  updateUsername(user: any, name: string): void {
+    user.updateProfile({ displayName: name });
+  }
+
+  async getUserCredentials(): Promise<any> {
+    var user = await this.firebaseAuth.currentUser;
+    return user;
   }
 
   getCookie(name: string): string {
@@ -47,33 +79,5 @@ export class AuthService {
 
   checkCookie(name: string): boolean {
     return this.cookieService.check(name);
-  }
-
-  getUserCredentials(): User {
-    return {
-      username: 'testname',
-      email: 'test@email.com',
-      password: 'testpassword',
-    };
-  }
-
-  register(name: string, email: string, password: string): any {
-    this.setCookie('name', name);
-    this.setCookie('email', email);
-    this.firebaseAuth
-      .createUserWithEmailAndPassword(email, password)
-      .then((value: any) => {
-        console.log(value);
-        console.log(value.user);
-        this.updateUsername(value.user, name);
-      })
-      .catch((err: any) => {
-        console.log('Something went wrong:', err.message);
-      });
-    this.router.navigateByUrl('/product-list');
-  }
-
-  updateUsername(user: any, name: string): void {
-    user.updateProfile({ displayName: name });
   }
 }

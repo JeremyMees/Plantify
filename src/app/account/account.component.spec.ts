@@ -28,7 +28,17 @@ describe('AccountComponent', () => {
       providers: [
         {
           provide: AuthService,
-          useValue: jasmine.createSpyObj('AuthService', ['getUserCredentials']),
+          useValue: jasmine.createSpyObj('AuthService', [
+            'getUserCredentials',
+            'register',
+            'login',
+            'logout',
+            'updateUsername',
+            'getCookie',
+            'setCookie',
+            'deleteCookie',
+            'checkCookie',
+          ]),
         },
         {
           provide: FirebaseService,
@@ -51,11 +61,11 @@ describe('AccountComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AccountComponent);
     component = fixture.componentInstance;
-    fakeAuthService.getUserCredentials.and.returnValue({
-      username: 'testname',
-      email: 'test@email.com',
-      password: 'testpassword',
-    });
+    fakeAuthService.getUserCredentials.and.returnValue(
+      Promise.resolve({
+        credentials: { displayName: 'Testname', email: 'Testemail' },
+      })
+    );
     fixture.detectChanges();
   });
 
@@ -114,7 +124,7 @@ describe('AccountComponent', () => {
       expect(component.colorLengthPassword).toEqual('green');
     });
 
-    it('should set the input to green', () => {
+    it('should set the input to red', () => {
       const event = { target: { value: { length: 5 } } };
       component.lengthPassword(event);
       expect(component.colorLengthPassword).toEqual('red');
@@ -154,7 +164,7 @@ describe('AccountComponent', () => {
       expect(component.colorLengthName).toEqual('green');
     });
 
-    it('should set the input to green', () => {
+    it('should set the input to red', () => {
       const event = { target: { value: { length: 5 } } };
       component.checkName(event, 'foo');
       expect(component.colorLengthName).toEqual('red');

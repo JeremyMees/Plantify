@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Cart } from '../cart';
 import { AuthService } from '../auth.service';
 import { FirebaseService } from '../firebase.service';
-import { User } from '../user';
 import { Router } from '@angular/router';
 
 @Component({
@@ -20,7 +19,7 @@ export class AccountComponent implements OnInit {
   colorLengthPassword: string;
   colorCheck: string;
   boughtProducts: Array<Cart>;
-  credentials: User;
+  credentials: any;
   input: boolean = false;
 
   constructor(
@@ -31,11 +30,10 @@ export class AccountComponent implements OnInit {
 
   ngOnInit(): void {
     this.boughtProducts = this.firebaseService.getBoughtProducts();
-    this.credentials = this.authService.getUserCredentials();
-    this.name = this.credentials.username;
-    this.email = this.credentials.email;
-    this.password = this.credentials.password;
-    this.passwordc = this.credentials.password;
+    this.authService.getUserCredentials().then((credentials) => {
+      this.name = credentials.displayName;
+      this.email = credentials.email;
+    });
   }
 
   updateToInputs() {
