@@ -13,18 +13,6 @@ describe('AuthService', () => {
   let fakeService: jasmine.SpyObj<CookieService>;
   let fakeAuthService: jasmine.SpyObj<AngularFireAuth>;
 
-  const mockAngularFireAuth: any = {
-    auth: jasmine.createSpyObj('auth', {
-      createUserWithEmailAndPassword: Promise.resolve({
-        email: 'stubemail',
-        password: 'stubpassword',
-      }),
-      // 'signInWithPopup': Promise.reject(),
-      // 'signOut': Promise.reject()
-    }),
-    //authState: Observable.of(authState),
-  };
-
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule.withRoutes(routes)],
@@ -40,7 +28,7 @@ describe('AuthService', () => {
         },
         {
           provide: AngularFireAuth,
-          useValue: jasmine.createSpyObj('auth', [
+          useValue: jasmine.createSpyObj('AngularFireAuth', [
             'createUserWithEmailAndPassword',
             'signInWithEmailAndPassword',
             'signOut',
