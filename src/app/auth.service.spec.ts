@@ -33,6 +33,7 @@ describe('AuthService', () => {
             'signInWithEmailAndPassword',
             'signOut',
             'currentUser',
+            'onAuthStateChanged',
           ]),
         },
       ],

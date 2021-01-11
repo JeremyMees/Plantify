@@ -1,0 +1,41 @@
+li {
+  list-style: none;
+}
+
+a {
+  line-height: 30 px;
+  vertical-align: middle;
+  color: #ffffff;
+  padding: 5px;
+}
+
+a:hover {
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.titel {
+  font-size: 30px;
+  top: -5px;
+  position: absolute;
+  left: 0%;
+}
+
+.dropdown-item:hover {
+  background-color: #d993ff;
+}
+
+.dropdown-item:active {
+  background-color: #d993ff;
+}
+
+.dropdown-item:visited {
+  background-color: #d993ff;
+}
+
+nav {
+  width: 100%;
+  background-color: inherit;
+}
+/*# sourceMappingURL=navbar.component.css.map */

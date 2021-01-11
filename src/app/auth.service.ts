@@ -15,6 +15,14 @@ export class AuthService {
     private firebaseAuth: AngularFireAuth
   ) {
     this.user = firebaseAuth.authState;
+
+    this.firebaseAuth.onAuthStateChanged((user: any) => {
+      if (user) {
+        if (user.emailVerified === false) {
+          this.sendVerification();
+        }
+      }
+    });
   }
 
   login(email: string, password: string): void {
@@ -43,11 +51,10 @@ export class AuthService {
   }
 
   register(name: string, email: string, password: string): any {
-    //this.setCookie('name', name);
-    //this.setCookie('email', email);
     this.firebaseAuth
       .createUserWithEmailAndPassword(email, password)
       .then((value: any) => {
+        this.setCookie('logged-in', 'true');
         this.updateUsername(value.user, name);
       })
       .catch((err: any) => {
@@ -63,6 +70,18 @@ export class AuthService {
   async getUserCredentials(): Promise<any> {
     var user = await this.firebaseAuth.currentUser;
     return user;
+  }
+
+  async sendVerification(): Promise<any> {
+    const user = await this.firebaseAuth.currentUser;
+    user
+      .sendEmailVerification()
+      .then(() => {
+        alert('verification email is sent');
+      })
+      .catch((err: string) => {
+        console.log(err);
+      });
   }
 
   getCookie(name: string): string {

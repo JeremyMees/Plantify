@@ -1,0 +1,25 @@
+.btn {
+  background-color: #d993ff;
+  width: 250px;
+}
+
+input {
+  background-color: transparent;
+  border: #ffffff solid 1px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  width: 250px;
+}
+
+input:focus {
+  outline: none;
+}
+
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+/*# sourceMappingURL=login.component.css.map */

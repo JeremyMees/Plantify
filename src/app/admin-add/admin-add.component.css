@@ -1,0 +1,21 @@
+.btn {
+  background-color: #d993ff;
+  width: 350px;
+}
+
+input {
+  background-color: transparent;
+  border: #ffffff solid 1px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  width: 350px;
+}
+
+input:focus {
+  outline: none;
+}
+
+div {
+  margin-top: 10px;
+}
+/*# sourceMappingURL=admin-add.component.css.map */

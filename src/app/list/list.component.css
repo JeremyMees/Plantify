@@ -1,0 +1,74 @@
+ul {
+  list-style: none;
+  text-align: center;
+}
+
+li {
+  display: inline-block;
+  text-align: left;
+}
+
+.btn {
+  background-color: #d993ff;
+}
+
+.margin-r {
+  margin-right: 5px;
+}
+
+button {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.card {
+  background-color: #c069ee;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  width: 400px;
+}
+
+.card-body {
+  background-color: inherit;
+  padding: -5px;
+}
+
+.price {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+
+img {
+  text-align: center;
+  width: 400px;
+  height: 450px;
+}
+
+.parent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.input-group {
+  margin-left: 5px;
+  height: 30px;
+  width: 350px;
+}
+
+input {
+  background-color: #d993ff;
+  position: relative;
+  top: 9px;
+  height: 40px;
+}
+
+input:focus {
+  background-color: #e5bcfc;
+  outline: none;
+}
+/*# sourceMappingURL=list.component.css.map */
