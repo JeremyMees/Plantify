@@ -6,4 +6,24 @@
   <button class="btn" (click)="login(email.value, password.value)">
     log in
   </button>
+  <br />
+  <br />
+  <button [hidden]="forgot" class="btn" (click)="forgotPassword()">
+    Forgot your password ?
+  </button>
+  <input
+    [hidden]="!forgot"
+    class="input"
+    placeholder="Email address"
+    type="text"
+    #emailReset
+  />
+  <br />
+  <button
+    [hidden]="!forgot"
+    class="btn"
+    (click)="resetPassword(emailReset.value)"
+  >
+    Send reset email.
+  </button>
 </div>

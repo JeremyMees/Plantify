@@ -14,7 +14,10 @@ describe('LoginComponent', () => {
       providers: [
         {
           provide: AuthService,
-          useValue: jasmine.createSpyObj('AuthService', ['login']),
+          useValue: jasmine.createSpyObj('AuthService', [
+            'login',
+            'resetPasswordWithEmail',
+          ]),
         },
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -31,5 +34,18 @@ describe('LoginComponent', () => {
   it('should call authService.login', () => {
     component.login('test', 'test');
     expect(fakeService.login).toHaveBeenCalledWith('test', 'test');
+  });
+
+  it('should set forgot to true', () => {
+    expect(component.forgot).toEqual(false);
+    component.forgotPassword();
+    expect(component.forgot).toEqual(true);
+  });
+
+  it('should call authservice to send a reset email', () => {
+    component.forgot = true;
+    component.resetPassword('foo');
+    expect(component.forgot).toEqual(false);
+    expect(fakeService.resetPasswordWithEmail).toHaveBeenCalledWith('foo');
   });
 });

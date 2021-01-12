@@ -84,6 +84,17 @@ export class AuthService {
       });
   }
 
+  resetPasswordWithEmail(email: string) {
+    this.firebaseAuth
+      .sendPasswordResetEmail(email)
+      .then(() => {
+        alert('Password reset email is sent');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   getCookie(name: string): string {
     return this.cookieService.get(name);
   }
