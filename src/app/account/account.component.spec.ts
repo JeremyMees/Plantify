@@ -97,6 +97,12 @@ describe('AccountComponent', () => {
       expect(window.alert).toHaveBeenCalledWith('Passwords are not the same');
     });
 
+    it('should alert for two different passwords', () => {
+      spyOn(window, 'alert');
+      component.updateInputsNewValue('testen', 'foo@foo.com', '', '');
+      expect(window.alert).toHaveBeenCalledWith('Enter password please');
+    });
+
     it('should alert that username is to short', () => {
       spyOn(window, 'alert');
       component.updateInputsNewValue('test', 'foo@foo.com', 'testen', 'testen');

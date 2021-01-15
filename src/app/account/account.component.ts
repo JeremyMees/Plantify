@@ -50,6 +50,8 @@ export class AccountComponent implements OnInit {
       alert('Please enter a valid email address.');
     } else if (newPassword !== newPasswordc) {
       alert('Passwords are not the same');
+    } else if (newPassword.length == 0 || newPasswordc.length == 0) {
+      alert('Enter password please');
     } else if (newName.length < 6) {
       alert('Username is to short');
     } else {
