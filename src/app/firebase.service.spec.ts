@@ -1,10 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 import { Cart } from './cart';
 import { FirebaseService } from './firebase.service';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { PLANTS } from './mock-plants';
 
 describe('FirebaseService', () => {
   let service: FirebaseService;
+  let fakeFirestore: jasmine.SpyObj<AngularFirestore>;
   const mockPlant: Cart = {
     id: 1,
     latinName: 'Monstera Deliciosa',
@@ -14,8 +16,18 @@ describe('FirebaseService', () => {
   };
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [
+        {
+          provide: AngularFirestore,
+          useValue: jasmine.createSpyObj('AngularFirestore', ['collection']),
+        },
+      ],
+    });
     service = TestBed.inject(FirebaseService);
+    fakeFirestore = TestBed.inject(
+      AngularFirestore
+    ) as jasmine.SpyObj<AngularFirestore>;
   });
 
   it('should be created', () => {
@@ -28,13 +40,13 @@ describe('FirebaseService', () => {
     expect(boughtProducts).toEqual([mockPlant]);
   });
 
-  it('should add new product to the database', () => {
+  /* it('should add new product to the database', () => {
     spyOn(window, 'alert');
-    service.addNewProductToDB(['test']);
-    expect(window.alert).toHaveBeenCalledWith(['test']);
-  });
+    service.addNewProductToDB(['test', 'test', 9, 'test']);
+    expect(fakeFirestore.collection).toHaveBeenCalledWith('products');
+  });*/
 
-  it('should get produts from database', () => {
+  it('should get products from database', () => {
     service.getProductsFromDB().subscribe((products) => {
       expect(products).toEqual(PLANTS);
     });

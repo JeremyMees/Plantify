@@ -1,8 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { CartService } from './cart.service';
+import { FirebaseService } from './firebase.service';
 
 describe('CartService', () => {
   let service: CartService;
+  let fakeFirebaseService: jasmine.SpyObj<FirebaseService>;
   const mockPlant = {
     id: 1,
     latinName: 'Monstera Deliciosa',
@@ -12,8 +14,24 @@ describe('CartService', () => {
   };
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [
+        {
+          provide: FirebaseService,
+          useValue: jasmine.createSpyObj('FirebaseService', [
+            'getProductsFromDB',
+            'boughtProductsToDb',
+            'getBoughtProducts',
+            'addNewProductToDB',
+            'deleteProductfromDB',
+          ]),
+        },
+      ],
+    });
     service = TestBed.inject(CartService);
+    fakeFirebaseService = TestBed.inject(
+      FirebaseService
+    ) as jasmine.SpyObj<FirebaseService>;
   });
 
   it('should be created', () => {
