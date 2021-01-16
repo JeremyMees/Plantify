@@ -57,6 +57,7 @@ export class AccountComponent implements OnInit {
       this.email = newEmail;
       this.password = newPassword;
       this.input = false;
+      this.authService.updateUserCredentials(newName, newEmail, newPassword);
     }
   }
 

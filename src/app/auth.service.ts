@@ -95,6 +95,21 @@ export class AuthService {
       });
   }
 
+  async updateUserCredentials(
+    name: string,
+    email: string,
+    password: string
+  ): Promise<void> {
+    const user = await this.firebaseAuth.currentUser;
+    if (user.displayName !== name) {
+      user.updateProfile({ displayName: name });
+    }
+    if (user.email !== email) {
+      user.updateEmail(email);
+    }
+    user.updatePassword(password);
+  }
+
   getCookie(name: string): string {
     return this.cookieService.get(name);
   }

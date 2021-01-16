@@ -38,6 +38,7 @@ describe('AccountComponent', () => {
             'setCookie',
             'deleteCookie',
             'checkCookie',
+            'updateUserCredentials',
           ]),
         },
         {
@@ -114,6 +115,11 @@ describe('AccountComponent', () => {
       expect(component.email).toEqual('foo@foo.com');
       expect(component.password).toEqual('foofoofoo');
       expect(component.input).toEqual(false);
+      expect(fakeAuthService.updateUserCredentials).toHaveBeenCalledWith(
+        'foofoo',
+        'foo@foo.com',
+        'foofoofoo'
+      );
     });
   });
 

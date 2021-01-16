@@ -6,7 +6,7 @@
 </div>
 
 <div class="inputs" *ngIf="input === true">
-  <label>username </label>
+  <label>Username </label>
   <input
     [value]="[name]"
     type="string"
@@ -19,7 +19,7 @@
     Name needs to contain 6 characters</label
   >
   <br />
-  <label>email </label>
+  <label>Email </label>
   <input
     [value]="[email]"
     type="string"
@@ -30,7 +30,7 @@
   />
   <label *ngIf="colorEmail == 'red'"> Email needs to contain '@' and '.'</label>
   <br />
-  <label>password </label>
+  <label>New password </label>
   <input
     placeholder="Password"
     type="password"
@@ -43,7 +43,7 @@
     Password needs to contain 6 characters</label
   >
   <br />
-  <label>password check </label>
+  <label>New password check </label>
   <input
     placeholder="Password check"
     type="password"
