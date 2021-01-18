@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Cart } from '../cart';
 import { AuthService } from '../auth.service';
 import { FirebaseService } from '../firebase.service';
 import { Router } from '@angular/router';
+import { Product } from '../product';
 
 @Component({
   selector: 'app-account',
@@ -18,7 +18,7 @@ export class AccountComponent implements OnInit {
   colorEmail: string;
   colorLengthPassword: string;
   colorCheck: string;
-  boughtProducts: Array<Cart>;
+  boughtProducts: Array<Product>;
   credentials: any;
   input: boolean = false;
 
@@ -85,7 +85,7 @@ export class AccountComponent implements OnInit {
       : (this.colorLengthName = 'red');
   }
 
-  redirectToProductDetails(product: Cart): void {
+  redirectToProductDetails(product: Product): void {
     this.router.navigateByUrl(`/product-list/${product.id}`);
   }
 }

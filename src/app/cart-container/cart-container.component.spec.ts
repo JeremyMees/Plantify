@@ -2,18 +2,20 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CartContainerComponent } from './cart-container.component';
 import { CartService } from '../cart.service';
+import { Product } from '../product';
 
 describe('CartContainerComponent', () => {
   let component: CartContainerComponent;
   let fixture: ComponentFixture<CartContainerComponent>;
   let fakeService: jasmine.SpyObj<CartService>;
   let spy: any;
-  const mockPlant = {
+  const mockPlant: Product = {
     id: 1,
     latinName: 'Monstera Deliciosa',
     name: 'Alfredo',
     price: 28.69,
     quantity: 1,
+    image: 'images',
   };
 
   beforeEach(async () => {

@@ -20,6 +20,7 @@ describe('AdminUpdateComponent', () => {
       name: 'foo',
       price: 69,
       quantity: 1,
+      image: 'foo',
     };
     fixture.detectChanges();
   });

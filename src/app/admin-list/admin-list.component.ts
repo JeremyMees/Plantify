@@ -1,6 +1,6 @@
 import { Component, Input, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
-import { Cart } from '../cart';
+import { Product } from '../product';
 
 @Component({
   selector: 'app-admin-list',
@@ -8,15 +8,15 @@ import { Cart } from '../cart';
   styleUrls: ['./admin-list.component.scss'],
 })
 export class AdminListComponent {
-  @Input() plants: Array<Cart>;
-  @Output() deleteClick = new EventEmitter<Cart>();
-  @Output() editClick = new EventEmitter<Cart>();
+  @Input() plants: Array<Product>;
+  @Output() deleteClick = new EventEmitter<Product>();
+  @Output() editClick = new EventEmitter<Product>();
 
-  selectForDelete(plant: Cart): void {
+  selectForDelete(plant: Product): void {
     this.deleteClick.emit(plant);
   }
 
-  selectForUpdate(plant: Cart): void {
+  selectForUpdate(plant: Product): void {
     this.editClick.emit(plant);
   }
 }

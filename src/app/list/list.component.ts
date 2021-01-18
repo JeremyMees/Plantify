@@ -1,6 +1,6 @@
 import { Component, Input, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
-import { Cart } from '../cart';
+import { Product } from '../product';
 
 @Component({
   selector: 'app-list',
@@ -8,12 +8,12 @@ import { Cart } from '../cart';
   styleUrls: ['./list.component.scss'],
 })
 export class ListComponent {
-  @Input() plants: Array<Cart>;
-  @Output() plantClick = new EventEmitter<Cart>();
+  @Input() plants: Array<Product>;
+  @Output() plantClick = new EventEmitter<Product>();
   @Output() sortProducts = new EventEmitter<string>();
   @Output() searchProduct = new EventEmitter<string>();
 
-  onSelect(plant: Cart): void {
+  onSelect(plant: Product): void {
     this.plantClick.emit(plant);
   }
 

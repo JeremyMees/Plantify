@@ -1,6 +1,6 @@
 import { Component, Input, Output } from '@angular/core';
-import { Cart } from '../cart';
 import { EventEmitter } from '@angular/core';
+import { Product } from '../product';
 
 @Component({
   selector: 'app-shoppingcart',
@@ -8,17 +8,17 @@ import { EventEmitter } from '@angular/core';
   styleUrls: ['./shoppingcart.component.scss'],
 })
 export class ShoppingcartComponent {
-  @Input() products: Array<Cart>;
+  @Input() products: Array<Product>;
   @Input() totalPrice: number;
   @Output() quantityChanged = new EventEmitter<Array<any>>();
-  @Output() deleteItemFromCart = new EventEmitter<Cart>();
+  @Output() deleteItemFromCart = new EventEmitter<Product>();
   @Output() productsToPay = new EventEmitter();
 
-  inc(product: Cart): void {
+  inc(product: Product): void {
     this.changeQuantity([1, product]);
   }
 
-  dec(product: Cart): void {
+  dec(product: Product): void {
     this.changeQuantity([0, product]);
   }
 
@@ -26,7 +26,7 @@ export class ShoppingcartComponent {
     this.quantityChanged.emit(change);
   }
 
-  deleteFromCart(plant: Cart): void {
+  deleteFromCart(plant: Product): void {
     this.deleteItemFromCart.emit(plant);
   }
 

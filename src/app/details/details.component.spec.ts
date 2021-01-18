@@ -1,17 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { DetailsComponent } from './details.component';
-import { By } from '@angular/platform-browser';
+import { Product } from '../product';
 
 describe('DetailsComponent', () => {
   let component: DetailsComponent;
   let fixture: ComponentFixture<DetailsComponent>;
-  let mockPlant = {
+  let mockPlant: Product = {
     id: 1,
     latinName: 'Monstera Deliciosa',
     name: 'Alfredo',
     price: 28.69,
     quantity: 1,
+    image: 'images',
   };
 
   beforeEach(async () => {

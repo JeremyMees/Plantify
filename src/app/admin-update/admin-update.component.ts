@@ -1,6 +1,6 @@
 import { Component, Output, Input } from '@angular/core';
 import { EventEmitter } from '@angular/core';
-import { Cart } from '../cart';
+import { Product } from '../product';
 
 @Component({
   selector: 'app-admin-update',
@@ -8,7 +8,7 @@ import { Cart } from '../cart';
   styleUrls: ['./admin-update.component.scss'],
 })
 export class AdminUpdateComponent {
-  @Input() choosenProduct: Cart;
+  @Input() choosenProduct: Product;
   @Output() updateClick = new EventEmitter<any>();
   constructor() {}
 

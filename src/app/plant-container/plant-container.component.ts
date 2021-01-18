@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { PlantService } from '../plant.service';
 import { FirebaseService } from '../firebase.service';
 import { CartService } from '../cart.service';
-import { Cart } from '../cart';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
+import { Product } from '../product';
 
 @Component({
   selector: 'app-plant-container',
@@ -13,9 +13,9 @@ import { take, takeUntil } from 'rxjs/operators';
   styleUrls: ['./plant-container.component.scss'],
 })
 export class PlantContainerComponent implements OnInit {
-  plants: Array<Cart>;
-  chosenPlant: Cart;
-  products: Array<Cart>;
+  plants: Array<Product>;
+  chosenPlant: Product;
+  products: Array<Product>;
   id: number;
   destroy$ = new Subject();
 
@@ -42,32 +42,34 @@ export class PlantContainerComponent implements OnInit {
     this.plantService
       .getPlants()
       .pipe(take(1))
-      .subscribe((value: Array<Cart>) => {
+      .subscribe((value: Array<Product>) => {
         this.plants = value;
       });
   }
 
-  onPlantChange(plant: Cart): void {
+  onPlantChange(plant: Product): void {
     this.router.navigateByUrl(`/product-list/${plant.id}`);
   }
 
   onQuantityChange(change: Array<number>) {
     const objIndex = this.plants.findIndex(
-      (plant: Cart) => plant.id === change[1]
+      (plant: Product) => plant.id === change[1]
     );
     if (change[0] === 1) {
+      console.log('plus');
       this.plants[objIndex].quantity = this.plants[objIndex].quantity + 1;
     } else {
       /* istanbul ignore if  */
       if (this.plants[objIndex].quantity <= 1) {
         alert('kan niet minder dan 1');
       } else {
+        console.log('min');
         this.plants[objIndex].quantity = this.plants[objIndex].quantity - 1;
       }
     }
   }
 
-  productToCart(product: Cart) {
+  productToCart(product: Product) {
     this.cartService.addItemToCart(product);
     this.plantService.openModal();
   }

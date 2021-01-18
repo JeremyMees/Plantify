@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../cart.service';
-import { Cart } from '../cart';
+import { Product } from '../product';
 
 @Component({
   selector: 'app-cart-container',
@@ -8,7 +8,7 @@ import { Cart } from '../cart';
   styleUrls: ['./cart-container.component.scss'],
 })
 export class CartContainerComponent implements OnInit {
-  products: Array<Cart>;
+  products: Array<Product>;
   totalPrice: number;
 
   constructor(private cartService: CartService) {}
@@ -20,7 +20,7 @@ export class CartContainerComponent implements OnInit {
 
   onQuantityChange(change: Array<any>) {
     const objIndex = this.products.findIndex(
-      (product: Cart) => product.id === change[1].id
+      (product: Product) => product.id === change[1].id
     );
     if (change[0] === 1) {
       this.products[objIndex].quantity = this.products[objIndex].quantity + 1;
@@ -36,7 +36,7 @@ export class CartContainerComponent implements OnInit {
     }
   }
 
-  deleteFromCart(product: Cart): void {
+  deleteFromCart(product: Product): void {
     this.cartService.deleteItemFromCart(product);
     this.products = this.cartService.getCartInventory();
     this.totalPriceOfProducts();

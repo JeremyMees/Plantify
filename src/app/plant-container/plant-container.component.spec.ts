@@ -7,9 +7,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { routes } from '../app-routing.module';
 import { By } from '@angular/platform-browser';
-import { PLANTS } from '../mock-plants';
 import { CartService } from '../cart.service';
 import { FirebaseService } from '../firebase.service';
+import { Product } from '../product';
 
 describe('PlantContainerComponent', () => {
   let component: PlantContainerComponent;
@@ -20,12 +20,13 @@ describe('PlantContainerComponent', () => {
   let activatedRouteSpy: jasmine.SpyObj<ActivatedRoute>;
   let router: Router;
   const params$ = new Subject<{ id?: string }>();
-  const mockPlant = {
+  const mockPlant: Product = {
     id: 1,
     latinName: 'Monstera Deliciosa',
     name: 'Alfredo',
     price: 28.69,
     quantity: 1,
+    image: 'images',
   };
 
   beforeEach(async () => {
@@ -84,8 +85,8 @@ describe('PlantContainerComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PlantContainerComponent);
     component = fixture.componentInstance;
-    fakeService.getPlants.and.returnValue(of(PLANTS));
-    fakeService.getSelectedPlant.and.returnValue(of(PLANTS[1]));
+    fakeService.getPlants.and.returnValue(of([mockPlant]));
+    fakeService.getSelectedPlant.and.returnValue(of(mockPlant));
     params$.next({});
     fixture.detectChanges();
   });
@@ -95,13 +96,13 @@ describe('PlantContainerComponent', () => {
   });
 
   it(`should bind PLANTS`, () => {
-    expect(component.plants).toEqual(PLANTS);
+    expect(component.plants).toEqual([mockPlant]);
   });
 
   describe('given no plant is selected', () => {
     beforeEach(() => {
       fixture.detectChanges();
-      fakeService.getPlantById.and.returnValue(of(PLANTS[1]));
+      fakeService.getPlantById.and.returnValue(of(mockPlant));
       params$.next({});
       fixture.detectChanges();
     });
@@ -113,14 +114,14 @@ describe('PlantContainerComponent', () => {
 
     it('should show the list', () => {
       const plantList = fixture.debugElement.query(By.css('app-list'));
-      expect(plantList.properties.plants).toEqual(PLANTS);
+      expect(plantList.properties.plants).toEqual([mockPlant]);
     });
   });
 
   describe('given a plant is clicked in the list', () => {
     it('should navigate to that plant', () => {
       spyOn(router, 'navigateByUrl');
-      const stubPlant = PLANTS[1];
+      const stubPlant = mockPlant;
       fixture.detectChanges();
       const plantList = fixture.debugElement.query(By.css('app-list'));
       plantList.triggerEventHandler('plantClick', stubPlant);
@@ -134,7 +135,7 @@ describe('PlantContainerComponent', () => {
   describe('when a plant is selected', () => {
     beforeEach(() => {
       fixture.detectChanges();
-      fakeService.getPlantById.and.returnValue(of(PLANTS[1]));
+      fakeService.getPlantById.and.returnValue(of(mockPlant));
       params$.next({ id: '1' });
       fixture.detectChanges();
     });
@@ -146,8 +147,8 @@ describe('PlantContainerComponent', () => {
   });
 
   it('should call cartService.additemToCart()', () => {
-    component.productToCart(PLANTS[1]);
-    expect(fakeCartService.addItemToCart).toHaveBeenCalledWith(PLANTS[1]);
+    component.productToCart(mockPlant);
+    expect(fakeCartService.addItemToCart).toHaveBeenCalledWith(mockPlant);
   });
 
   describe('when onQuantityChange() is called', () => {
@@ -164,7 +165,7 @@ describe('PlantContainerComponent', () => {
     });
 
     it('should decrement quantity', () => {
-      component.products = [PLANTS[0], PLANTS[1], PLANTS[2]];
+      component.products = [mockPlant, mockPlant, mockPlant];
       component.onQuantityChange([1, mockPlant.id]);
       component.onQuantityChange([0, mockPlant.id]);
       expect(component.plants[0].quantity).toEqual(1);

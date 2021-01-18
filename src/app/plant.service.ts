@@ -1,46 +1,45 @@
 import { Injectable } from '@angular/core';
-import { Cart } from './cart';
 import { Observable, of } from 'rxjs';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ModalContainerComponent } from './modal-container/modal-container.component';
 import { FirebaseService } from './firebase.service';
+import { Product } from './product';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PlantService {
-  chosenPlant: Cart;
+  chosenPlant: Product;
   modalRef: NgbModalRef;
-  plants: Array<Cart>;
+  plants: Array<Product>;
   constructor(
     private modalService: NgbModal,
     private firebaseService: FirebaseService
   ) {}
 
-  getPlants(): Observable<Array<Cart>> {
+  getPlants(): Observable<Array<Product>> {
     this.firebaseService.getProductsFromDB().subscribe((data) => {
       this.plants = data;
     });
     return of(this.plants);
   }
 
-  setSelectedPlant(plant: Cart): void {
+  setSelectedPlant(plant: Product): void {
     this.chosenPlant = plant;
   }
 
-  getSelectedPlant(): Observable<Cart> {
+  getSelectedPlant(): Observable<Product> {
     return of(this.chosenPlant);
   }
 
-  getPlantById(id: number): Observable<Cart> {
-    this.getPlants();
-    const plant = this.plants.find((p) => p.id === id);
+  getPlantById(id: number): Observable<Product> {
+    let plant = this.plants.find((obj) => obj.id === id);
     return of(plant);
   }
 
   switchProductSorting(how: string) {
     this.getPlants().subscribe((value) => {
-      const products: Array<Cart> = value;
+      const products: Array<Product> = value;
     });
     if (how === 'high') {
       alert('high');

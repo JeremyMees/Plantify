@@ -12,6 +12,7 @@ describe('ShoppingcartComponent', () => {
     name: 'Alfredo',
     price: 28.69,
     quantity: 1,
+    image: 'foo',
   };
 
   beforeEach(async () => {

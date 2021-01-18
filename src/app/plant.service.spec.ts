@@ -1,15 +1,23 @@
 import { TestBed } from '@angular/core/testing';
 import { PlantService } from './plant.service';
-import { PLANTS } from './mock-plants';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ModalContainerComponent } from './modal-container/modal-container.component';
 import { FirebaseService } from './firebase.service';
 import { Observable, of } from 'rxjs';
+import { Product } from './product';
 
 describe('PlantService', () => {
   let service: PlantService;
   let fakeService: jasmine.SpyObj<NgbModal>;
   let fakeFirebaseService: jasmine.SpyObj<FirebaseService>;
+  const mockPlant: Product = {
+    id: 1,
+    latinName: 'Monstera Deliciosa',
+    name: 'Alfredo',
+    price: 28.69,
+    quantity: 1,
+    image: 'images',
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -35,7 +43,7 @@ describe('PlantService', () => {
     fakeFirebaseService = TestBed.inject(
       FirebaseService
     ) as jasmine.SpyObj<FirebaseService>;
-    fakeFirebaseService.getProductsFromDB.and.returnValue(of(PLANTS));
+    fakeFirebaseService.getProductsFromDB.and.returnValue(of([mockPlant]));
   });
 
   it('should be created', () => {
@@ -44,18 +52,11 @@ describe('PlantService', () => {
 
   it('should get plants', () => {
     service.getPlants().subscribe((value) => {
-      expect(value).toEqual(PLANTS);
+      expect(value).toEqual([mockPlant]);
     });
   });
 
   it('should get the slected plant', () => {
-    const mockPlant = {
-      id: 1,
-      latinName: 'Monstera Deliciosa',
-      name: 'Alfredo',
-      price: 28.69,
-      quantity: 1,
-    };
     service.setSelectedPlant(mockPlant);
     service.getSelectedPlant().subscribe((result) => {
       expect(result).toEqual(mockPlant);
@@ -63,8 +64,9 @@ describe('PlantService', () => {
   });
 
   it('should get the plant by id', () => {
-    service.getPlantById(PLANTS[1].id).subscribe((plant) => {
-      expect(plant).toEqual(PLANTS[1]);
+    service.plants = [mockPlant];
+    service.getPlantById(mockPlant.id).subscribe((plant) => {
+      expect(plant).toEqual(mockPlant);
     });
   });
 

@@ -1,29 +1,30 @@
 import { Injectable } from '@angular/core';
 import { FirebaseService } from './firebase.service';
-import { Cart } from './cart';
+import { Product } from './product';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  cartInventory: Array<Cart> = [];
+  cartInventory: Array<Product> = [];
   totalPriceArray: Array<number> = [];
   totalPrice: number;
   constructor(private firebaseService: FirebaseService) {}
 
-  addItemToCart(plant: Cart): void {
-    let orderderdPlant: Cart = {
+  addItemToCart(plant: Product): void {
+    let orderderdPlant: Product = {
       id: plant.id,
       latinName: plant.latinName,
       name: plant.name,
       price: plant.price,
       quantity: plant.quantity,
+      image: plant.image,
     };
     this.cartInventory.push(orderderdPlant);
     this.getTotalPrice();
   }
 
-  deleteItemFromCart(product: Cart): void {
+  deleteItemFromCart(product: Product): void {
     const index = this.cartInventory.indexOf(product);
     /* istanbul ignore else  */
     if (index > -1) {
@@ -32,7 +33,7 @@ export class CartService {
     this.getTotalPrice();
   }
 
-  getCartInventory(): Array<Cart> {
+  getCartInventory(): Array<Product> {
     this.getTotalPrice();
     return this.cartInventory;
   }
@@ -40,7 +41,7 @@ export class CartService {
   getTotalPrice(): number {
     this.totalPrice = 0;
     this.totalPriceArray = [];
-    this.cartInventory.forEach((product: Cart) => {
+    this.cartInventory.forEach((product: Product) => {
       this.totalPriceArray.push(product.price * product.quantity);
     });
     this.totalPriceArray.forEach((result: number) => {
@@ -49,7 +50,7 @@ export class CartService {
     return this.roundTo(this.totalPrice, 2);
   }
 
-  payProducts(productsArray: Array<Cart>): void {
+  payProducts(productsArray: Array<Product>): void {
     this.firebaseService.boughtProductsToDb(productsArray);
     this.cartInventory = [];
     alert('shoppingcart is getting emptied now');

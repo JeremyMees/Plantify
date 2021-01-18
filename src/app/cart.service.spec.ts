@@ -1,16 +1,18 @@
 import { TestBed } from '@angular/core/testing';
 import { CartService } from './cart.service';
 import { FirebaseService } from './firebase.service';
+import { Product } from './product';
 
 describe('CartService', () => {
   let service: CartService;
   let fakeFirebaseService: jasmine.SpyObj<FirebaseService>;
-  const mockPlant = {
+  const mockPlant: Product = {
     id: 1,
     latinName: 'Monstera Deliciosa',
     name: 'Alfredo',
     price: 28.69,
     quantity: 1,
+    image: 'images',
   };
 
   beforeEach(() => {

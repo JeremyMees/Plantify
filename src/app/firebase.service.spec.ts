@@ -1,18 +1,18 @@
 import { TestBed } from '@angular/core/testing';
-import { Cart } from './cart';
 import { FirebaseService } from './firebase.service';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { PLANTS } from './mock-plants';
+import { Product } from './product';
 
 describe('FirebaseService', () => {
   let service: FirebaseService;
   let fakeFirestore: jasmine.SpyObj<AngularFirestore>;
-  const mockPlant: Cart = {
+  const mockPlant: Product = {
     id: 1,
     latinName: 'Monstera Deliciosa',
     name: 'Alfredo',
     price: 28.69,
     quantity: 1,
+    image: 'images',
   };
 
   beforeEach(() => {
@@ -20,7 +20,10 @@ describe('FirebaseService', () => {
       providers: [
         {
           provide: AngularFirestore,
-          useValue: jasmine.createSpyObj('AngularFirestore', ['collection']),
+          useValue: jasmine.createSpyObj('AngularFirestore', [
+            'collection.get',
+            'collection.delete',
+          ]),
         },
       ],
     });
@@ -46,17 +49,17 @@ describe('FirebaseService', () => {
     expect(fakeFirestore.collection).toHaveBeenCalledWith('products');
   });*/
 
-  it('should get products from database', () => {
+  /*it('should get products from database', () => {
     service.getProductsFromDB().subscribe((products) => {
-      expect(products).toEqual(PLANTS);
+      expect(products).toEqual([mockPlant]);
     });
-  });
+  });*/
 
-  it('should delete product from database', () => {
+  /*it('should delete product from database', () => {
     spyOn(window, 'alert');
-    service.deleteProductfromDB(mockPlant);
-    expect(window.alert).toHaveBeenCalledWith(mockPlant);
-  });
+    service.deleteProductfromDB(mockPlant.id);
+    expect(window.alert).toHaveBeenCalledWith('Product deleted successfully');
+  });*/
 
   it('should update product', () => {
     spyOn(window, 'alert');
