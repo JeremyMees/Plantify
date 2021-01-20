@@ -58,8 +58,11 @@ export class PlantContainerComponent implements OnInit {
       (plant: Product) => plant.id === change[1]
     );
     if (change[0] === 1) {
-      console.log('plus');
-      this.plants[objIndex].quantity = this.plants[objIndex].quantity + 1;
+      this.plants[objIndex] = {
+        ...this.plants[objIndex],
+        quantity: this.plants[objIndex].quantity + 1,
+      };
+      this.chosenPlant = { ...this.plants[objIndex] };
     } else {
       /* istanbul ignore if  */
       if (this.plants[objIndex].quantity <= 1) {
