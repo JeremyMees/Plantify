@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { NotificationService } from '../notification.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +10,11 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent {
   isNavbarCollapsed = true;
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private notificationService: NotificationService
+  ) {}
 
   logout(): void {
     this.authService.logout();
@@ -18,6 +23,11 @@ export class NavbarComponent {
   checkLogin(): void {
     this.authService.checkCookie('logged-in')
       ? this.router.navigateByUrl('/account')
-      : alert('log in first');
+      : this.notificationService.setNotification(
+          'Log in first',
+          'bottom',
+          2,
+          'Timer'
+        );
   }
 }

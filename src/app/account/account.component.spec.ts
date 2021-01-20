@@ -6,6 +6,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { routes } from '../app-routing.module';
+import { NotificationService } from '../notification.service';
 
 describe('AccountComponent', () => {
   let component: AccountComponent;
@@ -13,6 +14,7 @@ describe('AccountComponent', () => {
   let fakeAuthService: jasmine.SpyObj<AuthService>;
   let fakeFirebaseService: jasmine.SpyObj<FirebaseService>;
   let router: Router;
+  let fakeNotification: jasmine.SpyObj<NotificationService>;
   const mockPlant = {
     id: 1,
     latinName: 'Monstera Deliciosa',
@@ -48,6 +50,12 @@ describe('AccountComponent', () => {
             'getBoughtProducts',
           ]),
         },
+        {
+          provide: NotificationService,
+          useValue: jasmine.createSpyObj('NotificationService', [
+            'setNotification',
+          ]),
+        },
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
@@ -57,6 +65,9 @@ describe('AccountComponent', () => {
     fakeFirebaseService = TestBed.inject(
       FirebaseService
     ) as jasmine.SpyObj<FirebaseService>;
+    fakeNotification = TestBed.inject(
+      NotificationService
+    ) as jasmine.SpyObj<NotificationService>;
     router = TestBed.inject(Router);
   });
 
@@ -80,29 +91,45 @@ describe('AccountComponent', () => {
     it('should alert for invalid email address for not having .', () => {
       spyOn(window, 'alert');
       component.updateInputsNewValue('testen', 'testen@', 'testen', 'testen');
-      expect(window.alert).toHaveBeenCalledWith(
-        'Please enter a valid email address.'
+      expect(fakeNotification.setNotification).toHaveBeenCalledWith(
+        'Please enter a valid email address',
+        'bottom',
+        2,
+        'Timer'
       );
     });
 
     it('should alert for invalid email address for not having @', () => {
       spyOn(window, 'alert');
       component.updateInputsNewValue('testen', 'testen.', 'testen', 'testen');
-      expect(window.alert).toHaveBeenCalledWith(
-        'Please enter a valid email address.'
+      expect(fakeNotification.setNotification).toHaveBeenCalledWith(
+        'Please enter a valid email address',
+        'bottom',
+        2,
+        'Timer'
       );
     });
 
     it('should alert for two different passwords', () => {
       spyOn(window, 'alert');
       component.updateInputsNewValue('testen', 'foo@foo.com', 'foo', 'stub');
-      expect(window.alert).toHaveBeenCalledWith('Passwords are not the same');
+      expect(fakeNotification.setNotification).toHaveBeenCalledWith(
+        'Passwords are not the same',
+        'bottom',
+        2,
+        'Timer'
+      );
     });
 
     it('should alert that username is to short', () => {
       spyOn(window, 'alert');
       component.updateInputsNewValue('test', 'foo@foo.com', 'testen', 'testen');
-      expect(window.alert).toHaveBeenCalledWith('Username is to short');
+      expect(fakeNotification.setNotification).toHaveBeenCalledWith(
+        'Username is to short',
+        'bottom',
+        2,
+        'Timer'
+      );
     });
 
     it('should update the credentials from user', () => {

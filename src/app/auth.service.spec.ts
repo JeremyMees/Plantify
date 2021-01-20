@@ -5,6 +5,7 @@ import { routes } from './app-routing.module';
 import { CookieService } from 'ngx-cookie-service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from './auth.service';
+import { NotificationService } from './notification.service';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -12,6 +13,7 @@ describe('AuthService', () => {
   let router: Router;
   let fakeService: jasmine.SpyObj<CookieService>;
   let fakeAuthService: jasmine.SpyObj<AngularFireAuth>;
+  let fakeNotification: jasmine.SpyObj<NotificationService>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -36,6 +38,12 @@ describe('AuthService', () => {
             'onAuthStateChanged',
           ]),
         },
+        {
+          provide: NotificationService,
+          useValue: jasmine.createSpyObj('NotificationService', [
+            'setNotification',
+          ]),
+        },
       ],
     });
     service = TestBed.inject(AuthService);
@@ -48,6 +56,9 @@ describe('AuthService', () => {
     activatedRouteSpy = TestBed.inject(
       ActivatedRoute
     ) as jasmine.SpyObj<ActivatedRoute>;
+    fakeNotification = TestBed.inject(
+      NotificationService
+    ) as jasmine.SpyObj<NotificationService>;
     router = TestBed.inject(Router);
   });
 
@@ -117,6 +128,10 @@ describe('AuthService', () => {
       spyOn(router, 'navigateByUrl');
       service.login('test', 'test');
       expect(router.navigateByUrl).toHaveBeenCalledWith('/product-list');
+      expect(fakeNotification.setNotification).toHaveBeenCalledWith('Username or password is incorrect',
+          'top',
+          2,
+          'Clickable');
     });
 
     it(`should not login user`, () => {

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
+import { NotificationService } from './notification.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,8 @@ export class AuthService {
   constructor(
     private router: Router,
     private cookieService: CookieService,
-    private firebaseAuth: AngularFireAuth
+    private firebaseAuth: AngularFireAuth,
+    private notificationService: NotificationService
   ) {
     this.user = firebaseAuth.authState;
 
@@ -33,7 +35,12 @@ export class AuthService {
         this.router.navigateByUrl('/product-list');
       })
       .catch((err) => {
-        alert('username or password is incorrect');
+        this.notificationService.setNotification(
+          'Username or password is incorrect',
+          'top',
+          2,
+          'Clickable'
+        );
       });
   }
 
@@ -77,7 +84,12 @@ export class AuthService {
     user
       .sendEmailVerification()
       .then(() => {
-        alert('verification email is sent');
+        this.notificationService.setNotification(
+          'Verification email was sent',
+          'top',
+          2,
+          'Timer'
+        );
       })
       .catch((err: string) => {
         console.log(err);
@@ -88,7 +100,12 @@ export class AuthService {
     this.firebaseAuth
       .sendPasswordResetEmail(email)
       .then(() => {
-        alert('Password reset email is sent');
+        this.notificationService.setNotification(
+          'Password reset email was sent',
+          'top',
+          2,
+          'Timer'
+        );
       })
       .catch((err) => {
         console.log(err);

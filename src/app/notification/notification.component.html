@@ -1,0 +1,6 @@
+<div *ngIf="message" [ngClass]="placement" class="pop-up">
+  {{ message }}
+  <span [ngClass]="clickable" class="close" (click)="closeNotification()"
+    >X</span
+  >
+</div>

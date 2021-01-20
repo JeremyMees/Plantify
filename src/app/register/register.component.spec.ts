@@ -2,12 +2,13 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AuthService } from '../auth.service';
 import { RegisterComponent } from './register.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { By } from '@angular/platform-browser';
+import { NotificationService } from '../notification.service';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
   let fixture: ComponentFixture<RegisterComponent>;
   let fakeService: jasmine.SpyObj<AuthService>;
+  let fakeNotification: jasmine.SpyObj<NotificationService>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -17,10 +18,19 @@ describe('RegisterComponent', () => {
           provide: AuthService,
           useValue: jasmine.createSpyObj('AuthService', ['register']),
         },
+        {
+          provide: NotificationService,
+          useValue: jasmine.createSpyObj('NotificationService', [
+            'setNotification',
+          ]),
+        },
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
     fakeService = TestBed.inject(AuthService) as jasmine.SpyObj<AuthService>;
+    fakeNotification = TestBed.inject(
+      NotificationService
+    ) as jasmine.SpyObj<NotificationService>;
   });
 
   beforeEach(() => {
@@ -87,29 +97,45 @@ describe('RegisterComponent', () => {
     it('should alert for invalid email address for not having .', () => {
       spyOn(window, 'alert');
       component.register('testen', 'testen@', 'testen', 'testen');
-      expect(window.alert).toHaveBeenCalledWith(
-        'Please enter a valid email address.'
+      expect(fakeNotification.setNotification).toHaveBeenCalledWith(
+        'Please enter a valid email address',
+        'bottom',
+        2,
+        'Timer'
       );
     });
 
     it('should alert for invalid email address for not having @', () => {
       spyOn(window, 'alert');
       component.register('testen', 'testen.', 'testen', 'testen');
-      expect(window.alert).toHaveBeenCalledWith(
-        'Please enter a valid email address.'
+      expect(fakeNotification.setNotification).toHaveBeenCalledWith(
+        'Please enter a valid email address',
+        'bottom',
+        2,
+        'Timer'
       );
     });
 
     it('should alert for two different passwords', () => {
       spyOn(window, 'alert');
       component.register('testen', 'foo@foo.com', 'foo', 'stub');
-      expect(window.alert).toHaveBeenCalledWith('Passwords are not the same');
+      expect(fakeNotification.setNotification).toHaveBeenCalledWith(
+        'Passwords are not the same',
+        'bottom',
+        2,
+        'Timer'
+      );
     });
 
     it('should alert that username is to short', () => {
       spyOn(window, 'alert');
       component.register('test', 'foo@foo.com', 'testen', 'testen');
-      expect(window.alert).toHaveBeenCalledWith('Username is to short');
+      expect(fakeNotification.setNotification).toHaveBeenCalledWith(
+        'Username is to short',
+        'bottom',
+        2,
+        'Timer'
+      );
     });
 
     it('should register user', () => {

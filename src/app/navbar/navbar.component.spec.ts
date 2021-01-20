@@ -5,11 +5,13 @@ import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { routes } from '../app-routing.module';
 import { RouterTestingModule } from '@angular/router/testing';
+import { NotificationService } from '../notification.service';
 
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
   let fixture: ComponentFixture<NavbarComponent>;
   let fakeService: jasmine.SpyObj<AuthService>;
+  let fakeNotification: jasmine.SpyObj<NotificationService>;
   let router: Router;
 
   beforeEach(async () => {
@@ -25,10 +27,19 @@ describe('NavbarComponent', () => {
             'checkCookie',
           ]),
         },
+        {
+          provide: NotificationService,
+          useValue: jasmine.createSpyObj('NotificationService', [
+            'setNotification',
+          ]),
+        },
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
     fakeService = TestBed.inject(AuthService) as jasmine.SpyObj<AuthService>;
+    fakeNotification = TestBed.inject(
+      NotificationService
+    ) as jasmine.SpyObj<NotificationService>;
     router = TestBed.inject(Router);
   });
 
@@ -56,6 +67,11 @@ describe('NavbarComponent', () => {
     fakeService.checkCookie.and.returnValue(false);
     component.checkLogin();
     expect(fakeService.checkCookie).toHaveBeenCalledWith('logged-in');
-    expect(window.alert).toHaveBeenCalledWith('log in first');
+    expect(fakeNotification.setNotification).toHaveBeenCalledWith(
+      'Log in first',
+      'bottom',
+      2,
+      'Timer'
+    );
   });
 });

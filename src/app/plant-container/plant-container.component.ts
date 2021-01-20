@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
 import { Product } from '../product';
+import { NotificationService } from '../notification.service';
 
 @Component({
   selector: 'app-plant-container',
@@ -24,7 +25,8 @@ export class PlantContainerComponent implements OnInit {
     private route: ActivatedRoute,
     private plantService: PlantService,
     private cartService: CartService,
-    private firebaseService: FirebaseService
+    private firebaseService: FirebaseService,
+    private notificationService: NotificationService
   ) {}
 
   ngOnDestroy(): void {
@@ -61,7 +63,12 @@ export class PlantContainerComponent implements OnInit {
     } else {
       /* istanbul ignore if  */
       if (this.plants[objIndex].quantity <= 1) {
-        alert('kan niet minder dan 1');
+        this.notificationService.setNotification(
+          "Can't go lower than one",
+          'top',
+          2,
+          'Timer'
+        );
       } else {
         console.log('min');
         this.plants[objIndex].quantity = this.plants[objIndex].quantity - 1;

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../cart.service';
 import { Product } from '../product';
+import { NotificationService } from '../notification.service';
 
 @Component({
   selector: 'app-cart-container',
@@ -11,7 +12,10 @@ export class CartContainerComponent implements OnInit {
   products: Array<Product>;
   totalPrice: number;
 
-  constructor(private cartService: CartService) {}
+  constructor(
+    private cartService: CartService,
+    private notificationService: NotificationService
+  ) {}
 
   ngOnInit(): void {
     this.products = this.cartService.getCartInventory();
@@ -28,7 +32,12 @@ export class CartContainerComponent implements OnInit {
     } else {
       /* istanbul ignore if  */
       if (this.products[objIndex].quantity <= 1) {
-        alert('kan niet minder dan 1');
+        this.notificationService.setNotification(
+          "Can't go lower than one",
+          'top',
+          2,
+          'Timer'
+        );
       } else {
         this.products[objIndex].quantity = this.products[objIndex].quantity - 1;
         this.totalPriceOfProducts();

@@ -3,6 +3,7 @@ import { AuthService } from '../auth.service';
 import { FirebaseService } from '../firebase.service';
 import { Router } from '@angular/router';
 import { Product } from '../product';
+import { NotificationService } from '../notification.service';
 
 @Component({
   selector: 'app-account',
@@ -25,7 +26,8 @@ export class AccountComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private firebaseService: FirebaseService,
-    public router: Router
+    public router: Router,
+    private notificationService: NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -47,11 +49,26 @@ export class AccountComponent implements OnInit {
     newPasswordc: string
   ): void {
     if (newEmail.includes('@') === false || newEmail.includes('.') === false) {
-      alert('Please enter a valid email address.');
+      this.notificationService.setNotification(
+        'Please enter a valid email address',
+        'bottom',
+        2,
+        'Timer'
+      );
     } else if (newPassword !== newPasswordc) {
-      alert('Passwords are not the same');
+      this.notificationService.setNotification(
+        'Passwords are not the same',
+        'bottom',
+        2,
+        'Timer'
+      );
     } else if (newName.length < 6) {
-      alert('Username is to short');
+      this.notificationService.setNotification(
+        'Username is to short',
+        'bottom',
+        2,
+        'Timer'
+      );
     } else {
       this.name = newName;
       this.email = newEmail;

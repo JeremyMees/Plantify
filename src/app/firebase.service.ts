@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Product } from './product';
 import { Observable, of } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { NotificationService } from './notification.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,11 @@ export class FirebaseService {
   boughtProducts: Array<Product>;
   totalOfItems: number;
   productId: string;
-  constructor(private firestore: AngularFirestore) {}
+
+  constructor(
+    private firestore: AngularFirestore,
+    private notificationService: NotificationService
+  ) {}
 
   getProductsFromDB(): Observable<Array<Product>> {
     let productsArray = [];
@@ -54,7 +59,12 @@ export class FirebaseService {
       .subscribe((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           this.firestore.collection('products').doc(`${doc.id}`).delete();
-          alert('Product deleted successfully');
+          this.notificationService.setNotification(
+            'Product was deleted successfully',
+            'bottom',
+            2,
+            'Timer'
+          );
         });
       });
   }

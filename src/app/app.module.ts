@@ -28,6 +28,7 @@ import { AngularFireMessagingModule } from '@angular/fire/messaging';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './auth.service';
+import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { AuthService } from './auth.service';
     AdminAddComponent,
     AdminListComponent,
     AdminUpdateComponent,
+    NotificationComponent,
   ],
   imports: [
     BrowserModule,
