@@ -29,9 +29,8 @@
 
 .card {
   background-color: inherit;
-  position: relative;
-  top: 50%;
-  transform: translate(20%, 20%);
+  position: fixed;
+  top: 20%;
 }
 
 .image,
