@@ -19,7 +19,7 @@ describe('PlantContainerComponent', () => {
   let fakeFirebaseService: jasmine.SpyObj<FirebaseService>;
   let activatedRouteSpy: jasmine.SpyObj<ActivatedRoute>;
   let router: Router;
-  const params$ = new Subject<{ id?: string }>();
+  const params$ = new Subject<{ id?: number }>();
   const mockPlant: Product = {
     id: 1,
     latinName: 'Monstera Deliciosa',
@@ -40,7 +40,6 @@ describe('PlantContainerComponent', () => {
             'setSelectedPlant',
             'getSelectedPlant',
             'getPlants',
-            'getPlantById',
             'switchProductSorting',
             'openModal',
             'closeModal',
@@ -56,6 +55,7 @@ describe('PlantContainerComponent', () => {
             'deleteProductFromDB',
             'updateProductfromDB',
             'searchProductByName',
+            'getProductfromDBByID',
           ]),
         },
         {
@@ -102,7 +102,7 @@ describe('PlantContainerComponent', () => {
   describe('given no plant is selected', () => {
     beforeEach(() => {
       fixture.detectChanges();
-      fakeService.getPlantById.and.returnValue(of(mockPlant));
+      fakeFirebaseService.getProductfromDBByID.and.returnValue(of(mockPlant));
       params$.next({});
       fixture.detectChanges();
     });
@@ -119,30 +119,26 @@ describe('PlantContainerComponent', () => {
   });
 
   describe('given a plant is clicked in the list', () => {
-    it('should navigate to that plant', () => {
-      spyOn(router, 'navigateByUrl');
-      const stubPlant = mockPlant;
-      fixture.detectChanges();
-      const plantList = fixture.debugElement.query(By.css('app-list'));
-      plantList.triggerEventHandler('plantClick', stubPlant);
-
-      expect(router.navigateByUrl).toHaveBeenCalledWith(
-        `/product-list/${stubPlant.id}`
-      );
-    });
-  });
-
-  describe('when a plant is selected', () => {
     beforeEach(() => {
       fixture.detectChanges();
-      fakeService.getPlantById.and.returnValue(of(mockPlant));
-      params$.next({ id: '1' });
+      fakeFirebaseService.getProductfromDBByID.and.returnValue(of(mockPlant));
+      params$.next({ id: 0 });
       fixture.detectChanges();
     });
 
-    it('should show the details of the selected gym', () => {
-      const plantDetail = fixture.debugElement.query(By.css('app-details'));
-      expect(plantDetail.properties.plant).toEqual(component.chosenPlant);
+    it('should navigate to that plant', () => {
+      spyOn(router, 'navigateByUrl');
+      fixture.detectChanges();
+      const plantList = fixture.debugElement.query(By.css('app-list'));
+      plantList.triggerEventHandler('plantClick', mockPlant);
+
+      expect(router.navigateByUrl).toHaveBeenCalledWith(
+        `/product-list/${mockPlant.id}`
+      );
+    });
+
+    it('should get the plant from the database', () => {
+      expect(fakeFirebaseService.getProductfromDBByID).toHaveBeenCalled();
     });
   });
 

@@ -63,13 +63,6 @@ describe('PlantService', () => {
     });
   });
 
-  it('should get the plant by id', () => {
-    service.plants = [mockPlant];
-    service.getPlantById(mockPlant.id).subscribe((plant) => {
-      expect(plant).toEqual(mockPlant);
-    });
-  });
-
   describe('switchProductSorting', () => {
     it('should alert high', () => {
       spyOn(window, 'alert');

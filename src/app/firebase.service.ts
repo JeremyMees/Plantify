@@ -31,6 +31,12 @@ export class FirebaseService {
     return of(productsArray);
   }
 
+  getProductfromDBByID(id: number): Observable<any> {
+    return this.firestore
+      .collection('products', (ref) => ref.where('id', '==', id))
+      .get();
+  }
+
   boughtProductsToDb(productsArray: Array<Product>): void {
     this.boughtProducts = productsArray;
   }

@@ -17,7 +17,6 @@ export class DetailsComponent {
 
   quantityUp(plant: Product): void {
     this.quantityChanged.emit([1, plant.id]);
-    console.log('details', plant.quantity);
   }
 
   quantityDown(plant: Product): void {

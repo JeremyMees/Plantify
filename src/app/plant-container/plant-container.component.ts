@@ -15,7 +15,7 @@ import { NotificationService } from '../notification.service';
 })
 export class PlantContainerComponent implements OnInit {
   plants: Array<Product>;
-  chosenPlant: Product;
+  chosenPlant: any;
   products: Array<Product>;
   id: number;
   destroy$ = new Subject();
@@ -36,9 +36,13 @@ export class PlantContainerComponent implements OnInit {
   ngOnInit() {
     this.route.params.pipe(takeUntil(this.destroy$)).subscribe((params) => {
       if (+params.id >= 0) {
-        this.plantService.getPlantById(+params.id).subscribe((plant) => {
-          this.chosenPlant = plant;
-        });
+        this.firebaseService
+          .getProductfromDBByID(+params.id)
+          .subscribe((querySnapshot) => {
+            querySnapshot.forEach((doc: any) => {
+              this.chosenPlant = doc.data();
+            });
+          });
       }
     });
     this.plantService
@@ -73,8 +77,11 @@ export class PlantContainerComponent implements OnInit {
           'Timer'
         );
       } else {
-        console.log('min');
-        this.plants[objIndex].quantity = this.plants[objIndex].quantity - 1;
+        this.plants[objIndex] = {
+          ...this.plants[objIndex],
+          quantity: this.plants[objIndex].quantity - 1,
+        };
+        this.chosenPlant = { ...this.plants[objIndex] };
       }
     }
   }

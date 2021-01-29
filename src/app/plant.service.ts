@@ -4,7 +4,6 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ModalContainerComponent } from './modal-container/modal-container.component';
 import { FirebaseService } from './firebase.service';
 import { Product } from './product';
-import { tap } from 'rxjs/internal/operators/tap';
 
 @Injectable({
   providedIn: 'root',
@@ -19,14 +18,7 @@ export class PlantService {
   ) {}
 
   getPlants(): Observable<Array<Product>> {
-    return this.firebaseService.getProductsFromDB().pipe(
-      tap((value) => {
-        console.log(value);
-        console.log([...value]);
-
-        this.plants = value;
-      })
-    );
+    return this.firebaseService.getProductsFromDB();
   }
 
   setSelectedPlant(plant: Product): void {
@@ -35,11 +27,6 @@ export class PlantService {
 
   getSelectedPlant(): Observable<Product> {
     return of(this.chosenPlant);
-  }
-
-  getPlantById(id: number): Observable<Product> {
-    let plant = this.plants.find((obj) => obj.id === id);
-    return of(plant);
   }
 
   switchProductSorting(how: string) {

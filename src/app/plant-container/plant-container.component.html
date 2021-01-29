@@ -2,7 +2,7 @@
   <app-list
     class="left"
     [plants]="plants"
-    *ngIf="!chosenPlant"
+    *ngIf="!chosenPlant && plants"
     (sortProducts)="onSortChange($event)"
     (searchProduct)="searchProduct($event)"
     (plantClick)="onPlantChange($event)"
