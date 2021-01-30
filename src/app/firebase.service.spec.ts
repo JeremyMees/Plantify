@@ -2,10 +2,12 @@ import { TestBed } from '@angular/core/testing';
 import { FirebaseService } from './firebase.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Product } from './product';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 describe('FirebaseService', () => {
   let service: FirebaseService;
   let fakeFirestore: jasmine.SpyObj<AngularFirestore>;
+  let fakeStorage: jasmine.SpyObj<AngularFireStorage>;
   const mockPlant: Product = {
     id: 1,
     latinName: 'Monstera Deliciosa',
@@ -25,12 +27,19 @@ describe('FirebaseService', () => {
             'collection.delete',
           ]),
         },
+        {
+          provide: AngularFireStorage,
+          useValue: jasmine.createSpyObj('AngularFireStorage', ['upload']),
+        },
       ],
     });
     service = TestBed.inject(FirebaseService);
     fakeFirestore = TestBed.inject(
       AngularFirestore
     ) as jasmine.SpyObj<AngularFirestore>;
+    fakeStorage = TestBed.inject(
+      AngularFireStorage
+    ) as jasmine.SpyObj<AngularFireStorage>;
   });
 
   it('should be created', () => {
@@ -70,5 +79,16 @@ describe('FirebaseService', () => {
     spyOn(window, 'alert');
     service.searchProductByName('foo');
     expect(window.alert).toHaveBeenCalledWith('foo');
+  });
+
+  it('should upload image to firebase storage', () => {
+    const mockFile = {
+      files: ['stub'],
+    };
+    service.uploadImage('foo', mockFile);
+    expect(fakeStorage.upload).toHaveBeenCalledWith(
+      '/products/foo.png',
+      'stub'
+    );
   });
 });

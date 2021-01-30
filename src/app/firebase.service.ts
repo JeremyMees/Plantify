@@ -3,6 +3,7 @@ import { Product } from './product';
 import { Observable, of } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { NotificationService } from './notification.service';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,8 @@ export class FirebaseService {
 
   constructor(
     private firestore: AngularFirestore,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private afStorage: AngularFireStorage
   ) {}
 
   getProductsFromDB(): Observable<Array<Array<Product> | Array<string>>> {
@@ -51,16 +53,22 @@ export class FirebaseService {
   }
 
   addNewProductToDB(newProductArray: Array<Product>): void {
+    this.uploadImage(newProductArray[1], newProductArray[3]);
+    const imagePath = `products/${newProductArray[1]}.png`;
     this.getProductsFromDB();
     const newProduct = {
       latinName: newProductArray[0],
       name: newProductArray[1],
       price: newProductArray[2],
-      image: newProductArray[3],
+      image: imagePath,
       id: this.totalOfItems + 1,
       quantity: 1,
     };
     this.firestore.collection('products').add(newProduct);
+  }
+
+  uploadImage(imageName: any, image: any) {
+    this.afStorage.upload(`/products/${imageName}.png`, image.files[0]);
   }
 
   deleteProductfromDB(id: number): void {
