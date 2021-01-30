@@ -43,7 +43,9 @@ describe('PlantService', () => {
     fakeFirebaseService = TestBed.inject(
       FirebaseService
     ) as jasmine.SpyObj<FirebaseService>;
-    fakeFirebaseService.getProductsFromDB.and.returnValue(of([mockPlant]));
+    fakeFirebaseService.getProductsFromDB.and.returnValue(
+      of([[mockPlant], ['stubID']])
+    );
   });
 
   it('should be created', () => {
@@ -52,7 +54,7 @@ describe('PlantService', () => {
 
   it('should get plants', () => {
     service.getPlants().subscribe((value) => {
-      expect(value).toEqual([mockPlant]);
+      expect(value).toEqual([[mockPlant], ['stubID']]);
     });
   });
 

@@ -17,7 +17,7 @@ export class PlantService {
     private firebaseService: FirebaseService
   ) {}
 
-  getPlants(): Observable<Array<Product>> {
+  getPlants(): Observable<Array<Array<any>>> {
     return this.firebaseService.getProductsFromDB();
   }
 
@@ -31,7 +31,7 @@ export class PlantService {
 
   switchProductSorting(how: string) {
     this.getPlants().subscribe((value) => {
-      const products: Array<Product> = value;
+      const products: Array<Product> = value[0];
     });
     if (how === 'high') {
       alert('high');

@@ -9,13 +9,16 @@ import { Product } from '../product';
 })
 export class AdminContainerComponent implements OnInit {
   plants: Array<Product>;
+  ids: Array<string>;
   choosenProduct: Product;
+  choosenProductID: string;
 
   constructor(private firebaseService: FirebaseService) {}
 
   ngOnInit(): void {
     this.firebaseService.getProductsFromDB().subscribe((value: Array<any>) => {
-      this.plants = value;
+      this.plants = value[0];
+      this.ids = value[1];
     });
   }
 
@@ -23,15 +26,22 @@ export class AdminContainerComponent implements OnInit {
     this.firebaseService.addNewProductToDB(newProductArray);
   }
 
-  deleteProduct(plant: any): void {
+  deleteProduct(plant: Product): void {
     this.firebaseService.deleteProductfromDB(plant.id);
   }
 
-  updateProduct(updateArray: Array<any>): void {
-    this.firebaseService.updateProductfromDB(updateArray);
+  updateProduct(updateArray: Array<Product>): void {
+    this.firebaseService.updateProductfromDB(
+      updateArray,
+      this.choosenProductID
+    );
   }
 
   productToUpdate(product: Product): void {
     this.choosenProduct = product;
+    const arrIndex = this.plants.findIndex(
+      (plant: Product) => plant === product
+    );
+    this.choosenProductID = this.ids[arrIndex];
   }
 }

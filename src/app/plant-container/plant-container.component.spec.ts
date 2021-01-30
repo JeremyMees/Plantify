@@ -85,7 +85,7 @@ describe('PlantContainerComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PlantContainerComponent);
     component = fixture.componentInstance;
-    fakeService.getPlants.and.returnValue(of([mockPlant]));
+    fakeService.getPlants.and.returnValue(of([[mockPlant], ['stubID']]));
     fakeService.getSelectedPlant.and.returnValue(of(mockPlant));
     params$.next({});
     fixture.detectChanges();

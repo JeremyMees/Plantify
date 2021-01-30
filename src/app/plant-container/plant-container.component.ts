@@ -48,8 +48,8 @@ export class PlantContainerComponent implements OnInit {
     this.plantService
       .getPlants()
       .pipe(take(1))
-      .subscribe((value: Array<Product>) => {
-        this.plants = value;
+      .subscribe((value: Array<Array<Product>>) => {
+        this.plants = value[0];
       });
   }
 

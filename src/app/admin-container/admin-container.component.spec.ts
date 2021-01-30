@@ -44,7 +44,7 @@ describe('AdminContainerComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AdminContainerComponent);
     component = fixture.componentInstance;
-    fakeService.getProductsFromDB.and.returnValue(of([mockPlant]));
+    fakeService.getProductsFromDB.and.returnValue(of([[mockPlant], ['fooID']]));
     fixture.detectChanges();
   });
 
@@ -68,8 +68,12 @@ describe('AdminContainerComponent', () => {
   });
 
   it('should trigger function to update product', () => {
+    component.choosenProductID = 'fooId';
     component.updateProduct([mockPlant]);
-    expect(fakeService.updateProductfromDB).toHaveBeenCalledWith([mockPlant]);
+    expect(fakeService.updateProductfromDB).toHaveBeenCalledWith(
+      [mockPlant],
+      'fooId'
+    );
   });
 
   it('should set product to update as choosenProduct', () => {

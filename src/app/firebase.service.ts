@@ -11,24 +11,29 @@ export class FirebaseService {
   boughtProducts: Array<Product>;
   totalOfItems: number;
   productId: string;
+  productsArray: Array<Product>;
+  idArray: Array<string>;
 
   constructor(
     private firestore: AngularFirestore,
     private notificationService: NotificationService
   ) {}
 
-  getProductsFromDB(): Observable<Array<Product>> {
+  getProductsFromDB(): Observable<Array<Array<Product> | Array<string>>> {
     let productsArray = [];
+    let idArray = [];
     this.firestore
       .collection('products')
       .get()
       .subscribe((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           productsArray.push(doc.data());
+          idArray.push(doc.id);
         });
         this.totalOfItems = Math.max(...productsArray.map(({ id }) => id));
+        this.productsArray = productsArray;
       });
-    return of(productsArray);
+    return of([productsArray, idArray]);
   }
 
   getProductfromDBByID(id: number): Observable<any> {
@@ -75,8 +80,13 @@ export class FirebaseService {
       });
   }
 
-  updateProductfromDB(updateProduct: Array<any>): void {
-    alert(updateProduct);
+  updateProductfromDB(updateProduct: Array<Product>, id: string): void {
+    this.firestore.collection('products').doc(id).update({
+      latinName: updateProduct[0],
+      name: updateProduct[1],
+      price: updateProduct[2],
+      image: updateProduct[3],
+    });
   }
 
   searchProductByName(string: string): void {
