@@ -11,12 +11,11 @@ li {
 }
 
 .image {
-  position: absolute;
-  top: 15px;
-  left: 350px;
+  position: relative;
+  bottom: 100px;
+  left: 75%;
   width: 75px;
   height: 100px;
-  background-color: #6c757d;
 }
 
 .btn {
@@ -31,5 +30,6 @@ h2 {
 }
 
 .card {
-  background-color: #c069ee;
+  background-color: #c77fee;
+  height: 175px;
 }

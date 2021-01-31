@@ -73,6 +73,11 @@
 <ul>
   <li *ngFor="let boughtProduct of boughtProducts">
     <div class="card">
+      <img
+        class="card-img-top"
+        [src]="boughtProduct.image"
+        alt="image from {{ boughtProduct.latinName }}"
+      />
       <div class="card-body">
         <div class="card-text latinName">{{ boughtProduct.latinName }}</div>
         <div class="card-text name">
@@ -82,7 +87,6 @@
             Product details
           </button>
         </div>
-        <div class="image"></div>
       </div>
     </div>
   </li>

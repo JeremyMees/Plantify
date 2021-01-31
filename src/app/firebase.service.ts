@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { NotificationService } from './notification.service';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { finalize } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,7 @@ export class FirebaseService {
   productId: string;
   productsArray: Array<Product>;
   idArray: Array<string>;
+  url: Observable<string>;
 
   constructor(
     private firestore: AngularFirestore,
@@ -44,6 +46,12 @@ export class FirebaseService {
       .get();
   }
 
+  getIdFromProductByName(name: string): Observable<any> {
+    return this.firestore
+      .collection('products', (ref) => ref.where('name', '==', name))
+      .get();
+  }
+
   boughtProductsToDb(productsArray: Array<Product>): void {
     this.boughtProducts = productsArray;
   }
@@ -67,8 +75,31 @@ export class FirebaseService {
     this.firestore.collection('products').add(newProduct);
   }
 
-  uploadImage(imageName: any, image: any) {
-    this.afStorage.upload(`/products/${imageName}.png`, image.files[0]);
+  uploadImage(imageName: any, image: any): void {
+    const filePath = `/products/${imageName}.png`;
+    const fileRef = this.afStorage.ref(filePath);
+    const task = this.afStorage.upload(filePath, image.files[0]);
+    task
+      .snapshotChanges()
+      .pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe((url) => {
+            this.updateImageUrl(url, imageName);
+          });
+        })
+      )
+      .subscribe();
+  }
+
+  updateImageUrl(url: string, name: string): void {
+    this.getIdFromProductByName(name).subscribe((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        console.log('id', doc.id);
+        this.firestore.collection('products').doc(doc.id).update({
+          image: url,
+        });
+      });
+    });
   }
 
   deleteProductfromDB(id: number): void {
