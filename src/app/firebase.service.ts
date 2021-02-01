@@ -5,6 +5,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { NotificationService } from './notification.service';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +19,7 @@ export class FirebaseService {
   url: Observable<string>;
 
   constructor(
+    private router: Router,
     private firestore: AngularFirestore,
     private notificationService: NotificationService,
     private afStorage: AngularFireStorage
@@ -128,7 +130,17 @@ export class FirebaseService {
     });
   }
 
-  searchProductByName(string: string): void {
-    alert(string);
+  searchProductByName(name: string): void {
+    this.firestore
+      .collection('products', (ref) => ref.where('name', '==', name))
+      .get()
+      .subscribe((querySnapshot) => {
+        if (querySnapshot) {
+          querySnapshot.forEach((doc) => {
+            const data: any = doc.data();
+            this.router.navigateByUrl(`/product-list/${data.id}`);
+          });
+        }
+      });
   }
 }

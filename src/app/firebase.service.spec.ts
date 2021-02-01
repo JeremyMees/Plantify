@@ -3,11 +3,15 @@ import { FirebaseService } from './firebase.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Product } from './product';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { routes } from './app-routing.module';
 
 describe('FirebaseService', () => {
   let service: FirebaseService;
   let fakeFirestore: jasmine.SpyObj<AngularFirestore>;
   let fakeStorage: jasmine.SpyObj<AngularFireStorage>;
+  let router: Router;
   const mockPlant: Product = {
     id: 1,
     latinName: 'Monstera Deliciosa',
@@ -19,6 +23,7 @@ describe('FirebaseService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [RouterTestingModule.withRoutes(routes)],
       providers: [
         {
           provide: AngularFirestore,
@@ -43,6 +48,7 @@ describe('FirebaseService', () => {
     fakeStorage = TestBed.inject(
       AngularFireStorage
     ) as jasmine.SpyObj<AngularFireStorage>;
+    router = TestBed.inject(Router);
   });
 
   it('should be created', () => {
@@ -77,12 +83,6 @@ describe('FirebaseService', () => {
   //   spyOn(window, 'alert');
   //   service.updateProductfromDB([mockPlant],'stubID');
   // });
-
-  it('should search for product', () => {
-    spyOn(window, 'alert');
-    service.searchProductByName('foo');
-    expect(window.alert).toHaveBeenCalledWith('foo');
-  });
 
   // it('should upload image to firebase storage', () => {
   //   const mockFile = {
