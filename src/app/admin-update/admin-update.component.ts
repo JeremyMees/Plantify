@@ -16,7 +16,7 @@ export class AdminUpdateComponent {
     latinName: string,
     name: string,
     price: number,
-    image: string
+    image: any
   ): void {
     this.updateClick.emit([latinName, name, price, image]);
   }

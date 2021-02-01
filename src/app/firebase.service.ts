@@ -94,7 +94,6 @@ export class FirebaseService {
   updateImageUrl(url: string, name: string): void {
     this.getIdFromProductByName(name).subscribe((querySnapshot) => {
       querySnapshot.forEach((doc) => {
-        console.log('id', doc.id);
         this.firestore.collection('products').doc(doc.id).update({
           image: url,
         });
@@ -120,11 +119,12 @@ export class FirebaseService {
   }
 
   updateProductfromDB(updateProduct: Array<Product>, id: string): void {
+    this.uploadImage(updateProduct[1], updateProduct[3]);
     this.firestore.collection('products').doc(id).update({
       latinName: updateProduct[0],
       name: updateProduct[1],
       price: updateProduct[2],
-      image: updateProduct[3],
+      image: 'foo',
     });
   }
 

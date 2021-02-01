@@ -21,13 +21,11 @@
     value="{{ choosenProduct.price }}"
   />
   <br />
-  <input type="file" placeholder="image" #image class="file" />
+  <input type="file" placeholder="image" #image class="file" accept=".png" />
   <br />
   <button
     class="btn"
-    (click)="
-      updateProduct(latinName.value, name.value, price.value, image.value)
-    "
+    (click)="updateProduct(latinName.value, name.value, price.value, image)"
   >
     Update product
   </button>
