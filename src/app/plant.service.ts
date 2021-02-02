@@ -29,17 +29,6 @@ export class PlantService {
     return of(this.chosenPlant);
   }
 
-  switchProductSorting(how: string) {
-    this.getPlants().subscribe((value) => {
-      const products: Array<Product> = value[0];
-    });
-    if (how === 'high') {
-      alert('high');
-    } else if (how === 'low') {
-      alert('low');
-    } else alert('new');
-  }
-
   openModal(): void {
     this.modalRef = this.modalService.open(ModalContainerComponent, {
       centered: true,

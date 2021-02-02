@@ -40,7 +40,6 @@ describe('PlantContainerComponent', () => {
             'setSelectedPlant',
             'getSelectedPlant',
             'getPlants',
-            'switchProductSorting',
             'openModal',
             'closeModal',
           ]),
@@ -56,6 +55,9 @@ describe('PlantContainerComponent', () => {
             'updateProductfromDB',
             'searchProductByName',
             'getProductfromDBByID',
+            'getProductsHigh',
+            'getProductsLow',
+            'getProductsNew',
           ]),
         },
         {
@@ -168,10 +170,14 @@ describe('PlantContainerComponent', () => {
     });
   });
 
-  it('should call the service to sort the products different', () => {
-    component.onSortChange('high');
-    expect(fakeService.switchProductSorting).toHaveBeenCalledWith('high');
-  });
+  // fdescribe('sorting the products', () => {
+  //   it('should sort the products from high to low', () => {
+  //     const array = []
+  //     spyOn(router, 'navigate');
+  //     component.onSortChange('high');
+  //     expect(router.navigate).toHaveBeenCalledWith(['/product-list']);
+  //   });
+  // });
 
   it('should redirect the user to the productlist', () => {
     spyOn(router, 'navigateByUrl');

@@ -92,7 +92,34 @@ export class PlantContainerComponent implements OnInit {
   }
 
   onSortChange(how: string): void {
-    this.plantService.switchProductSorting(how);
+    if (how === 'high') {
+      const highArray: Array<Product> = [];
+      this.firebaseService.getProductsHigh().subscribe((querySnapshot) => {
+        querySnapshot.forEach((doc: any) => {
+          highArray.push(doc.data());
+        });
+        this.plants = highArray;
+        this.router.navigate(['/product-list']);
+      });
+    } else if (how === 'low') {
+      const lowArray: Array<Product> = [];
+      this.firebaseService.getProductsLow().subscribe((querySnapshot) => {
+        querySnapshot.forEach((doc: any) => {
+          lowArray.push(doc.data());
+        });
+        this.plants = lowArray;
+        this.router.navigate(['/product-list']);
+      });
+    } else {
+      const newArray: Array<Product> = [];
+      this.firebaseService.getProductsNew().subscribe((querySnapshot) => {
+        querySnapshot.forEach((doc: any) => {
+          newArray.push(doc.data());
+        });
+        this.plants = newArray;
+        this.router.navigate(['/product-list']);
+      });
+    }
   }
 
   redirectToProductList(): void {

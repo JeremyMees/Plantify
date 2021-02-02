@@ -65,26 +65,6 @@ describe('PlantService', () => {
     });
   });
 
-  describe('switchProductSorting', () => {
-    it('should alert high', () => {
-      spyOn(window, 'alert');
-      service.switchProductSorting('high');
-      expect(window.alert).toHaveBeenCalledWith('high');
-    });
-
-    it('should alert low', () => {
-      spyOn(window, 'alert');
-      service.switchProductSorting('low');
-      expect(window.alert).toHaveBeenCalledWith('low');
-    });
-
-    it('should alert new', () => {
-      spyOn(window, 'alert');
-      service.switchProductSorting('new');
-      expect(window.alert).toHaveBeenCalledWith('new');
-    });
-  });
-
   it('should trigger the service to open the modal', () => {
     service.openModal();
     expect(fakeService.open).toHaveBeenCalledWith(ModalContainerComponent, {

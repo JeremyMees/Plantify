@@ -69,10 +69,11 @@ export class FirebaseService {
     const newProduct = {
       latinName: newProductArray[0],
       name: newProductArray[1],
-      price: newProductArray[2],
+      price: Number(newProductArray[2]),
       image: imagePath,
       id: this.totalOfItems + 1,
       quantity: 1,
+      created_at: new Date(),
     };
     this.firestore.collection('products').add(newProduct);
   }
@@ -142,5 +143,23 @@ export class FirebaseService {
           });
         }
       });
+  }
+
+  getProductsHigh(): Observable<any> {
+    return this.firestore
+      .collection('products', (ref) => ref.orderBy('price', 'desc'))
+      .get();
+  }
+
+  getProductsLow(): Observable<any> {
+    return this.firestore
+      .collection('products', (ref) => ref.orderBy('price', 'asc'))
+      .get();
+  }
+
+  getProductsNew(): Observable<any> {
+    return this.firestore
+      .collection('products', (ref) => ref.orderBy('created_at', 'desc'))
+      .get();
   }
 }
