@@ -10,6 +10,7 @@ li {
   display: inline-block;
   margin-bottom: 10px;
   width: 23%;
+  cursor: pointer;
 }
 
 .green {
@@ -31,23 +32,33 @@ input:focus {
 }
 
 .btn {
-  background-color: #6c757d;
+  margin-left: 10px;
+  background-color: transparent;
+  box-shadow: 20px 20px 60px #c0c0c0, -20px -20px 60px #f1f1f1;
 }
 
 label {
   margin-right: 10px;
 }
 
-.line {
+.inputs {
+  padding: 1em;
   margin: auto;
-  margin-top: 20px;
-  width: 90%;
-  border-bottom: 1px solid rgb(34, 34, 34);
+  border-radius: 20px;
+  width: 95%;
+  box-shadow: 20px 20px 60px #c0c0c0, -20px -20px 60px #f1f1f1;
+  margin-bottom: 3rem;
 }
 
-.inputs {
-  width: 100%;
-  text-align: center;
+.input-content {
+  margin-left: 1em;
+}
+.bought {
+  margin: auto;
+  border-radius: 20px;
+  width: 95%;
+  box-shadow: 20px 20px 60px #c0c0c0, -20px -20px 60px #f1f1f1;
+  padding: 1em;
 }
 
 h4 {
@@ -61,4 +72,9 @@ h4 {
   left: 300px;
   width: 75px;
   height: 100px;
+}
+
+.card {
+  background-color: transparent;
+  border: none;
 }

@@ -21,8 +21,9 @@
   <br />
   <li>
     <div *ngIf="!totalPrice">No products in the shoppingcart yet</div>
-    <div *ngIf="totalPrice">
-      total : {{ totalPrice }}<button class="btn" (click)="pay()">pay</button>
+    <div class="total" *ngIf="totalPrice">
+      <p>total : {{ totalPrice }}</p>
+      <button class="btn" (click)="pay()">pay</button>
     </div>
   </li>
 </ul>

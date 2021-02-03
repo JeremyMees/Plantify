@@ -1,4 +1,6 @@
-<nav class="navbar navbar-expand-md sticky-top justify-content-end">
+<nav
+  class="navbar navbar-light navbar-expand-md sticky-top justify-content-end"
+>
   <h3>
     <a
       class="navbar-brand titel text-dark"
@@ -49,32 +51,34 @@
             >Account</a
           >
           <div
-            class="dropdown-menu bg-secondary"
+            class="dropdown-menu bg-light"
             aria-labelledby="dropdown"
             ngbDropdownMenu
           >
-            <a class="dropdown-item" (click)="checkLogin()"> Account </a>
+            <a class="dropdown-item text-dark" (click)="checkLogin()">
+              Account
+            </a>
             <a
-              class="dropdown-item"
+              class="dropdown-item text-dark"
               routerLink="/register"
               routerLinkActive="active"
               >Register</a
             >
             <a
-              class="dropdown-item"
+              class="dropdown-item text-dark"
               routerLink="/login"
               routerLinkActive="active"
               >Log in</a
             >
             <a
-              class="dropdown-item"
+              class="dropdown-item text-dark"
               (click)="logout()"
               routerLink="/product-list"
               routerLinkActive="active"
               >Log out</a
             >
             <a
-              class="dropdown-item"
+              class="dropdown-item text-dark"
               routerLink="/admin"
               routerLinkActive="active"
               >Admin</a

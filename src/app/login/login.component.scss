@@ -1,13 +1,14 @@
 .btn {
-  background-color: #d993ff;
+  background-color: #71e06c;
   width: 250px;
+  margin-bottom: 0.5rem;
 }
 
 input {
   background-color: transparent;
-  border: #ffffff solid 1px;
+  border: #e2e2e2 solid 1px;
   border-radius: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 0.5em;
   width: 250px;
 }
 
@@ -20,4 +21,8 @@ input:focus {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  box-shadow: 20px 20px 60px #cfcfcf, -20px -20px 60px #fffdfd;
+  padding: 1.5rem;
+  border-radius: 20px;
+  background-color: transparent;
 }
