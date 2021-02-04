@@ -1,27 +1,39 @@
 <div class="box">
-  <div class="image">
-    <img [src]="plant?.image" alt="image from {{ plant?.latinName }}" />
-  </div>
-  <div class="card">
-    <div class="card-titel">
-      <h1>details</h1>
+  <div class="table">
+    <div class="image">
+      <img
+        class="img-fluid"
+        [src]="plant?.image"
+        alt="image from {{ plant?.latinName }}"
+      />
     </div>
-    <div class="card-body">
-      <p class="card-text">{{ plant?.latinName }}</p>
-      <p class="card-text">{{ plant?.name }}</p>
-      <p class="card-text">{{ plant?.price }}</p>
-      <div class="inline">
-        <p class="card-text">
-          <button class="minus btn" (click)="quantityDown(plant)">-</button>
-          {{ plant?.quantity }}
-          <button class="plus btn" (click)="quantityUp(plant)">+</button>
-        </p>
+    <div class="card">
+      <div class="card-titel">
+        <h1>details</h1>
       </div>
-      <br />
-      <button class="add btn" (click)="addProductToCart(plant)">
-        Add to cart
-      </button>
-      <button class="btn" (click)="backToProductList()">Go back</button>
+      <div class="card-body">
+        <p class="card-text">{{ plant?.latinName }}</p>
+        <p class="card-text">{{ plant?.name }}</p>
+        <p class="card-text">{{ plant?.price }}</p>
+        <div class="inline">
+          <p class="card-text">
+            <button class="minus btn" (click)="quantityDown(plant)">-</button>
+            {{ plant?.quantity }}
+            <button class="plus btn" (click)="quantityUp(plant)">+</button>
+          </p>
+        </div>
+        <h5>Description</h5>
+        <div class="description">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic nesciunt
+          blanditiis animi placeat ipsam? Aspernatur error fuga nobis dolor
+          maiores!
+        </div>
+        <br />
+        <button class="add btn" (click)="addProductToCart(plant)">
+          Add to cart
+        </button>
+        <button class="btn" (click)="backToProductList()">Go back</button>
+      </div>
     </div>
   </div>
 </div>
