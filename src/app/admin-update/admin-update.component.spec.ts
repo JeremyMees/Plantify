@@ -21,18 +21,20 @@ describe('AdminUpdateComponent', () => {
       price: 69,
       quantity: 1,
       image: 'foo',
+      description: 'foo description',
     };
     fixture.detectChanges();
   });
 
   it('should emit the product to update', () => {
     spyOn(component.updateClick, 'emit');
-    component.updateProduct('test', 'foo', 69, 'stud');
+    component.updateProduct('test', 'foo', 69, 'stud', 'description');
     expect(component.updateClick.emit).toHaveBeenCalledWith([
       'test',
       'foo',
       69,
       'stud',
+      'description',
     ]);
   });
 });

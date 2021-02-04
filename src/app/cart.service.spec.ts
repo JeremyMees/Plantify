@@ -13,6 +13,7 @@ describe('CartService', () => {
     price: 28.69,
     quantity: 1,
     image: 'images',
+    description: 'foo description',
   };
 
   beforeEach(() => {

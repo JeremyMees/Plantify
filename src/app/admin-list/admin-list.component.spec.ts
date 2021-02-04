@@ -11,6 +11,7 @@ describe('AdminListComponent', () => {
     name: 'Alfredo',
     price: 28.69,
     quantity: 1,
+    description: 'foo description',
   };
 
   beforeEach(async () => {

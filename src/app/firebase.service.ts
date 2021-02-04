@@ -70,6 +70,7 @@ export class FirebaseService {
       latinName: newProductArray[0],
       name: newProductArray[1],
       price: Number(newProductArray[2]),
+      description: newProductArray[4],
       image: imagePath,
       id: this.totalOfItems + 1,
       quantity: 1,
@@ -128,6 +129,7 @@ export class FirebaseService {
       name: updateProduct[1],
       price: updateProduct[2],
       image: 'foo',
+      description: updateProduct[4],
     });
   }
 

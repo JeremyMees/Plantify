@@ -9,12 +9,25 @@
 
 input {
   background-color: transparent;
-  border: #ffffff solid 1px;
+  border: #e2e2e2 solid 1px;
   border-radius: 5px;
   margin-bottom: 5px;
   width: 350px;
 }
 
 input:focus {
+  outline: none;
+}
+
+textarea {
+  background-color: transparent;
+  border: #e2e2e2 solid 1px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  width: 350px;
+  min-height: 10em;
+}
+
+textarea:focus {
   outline: none;
 }

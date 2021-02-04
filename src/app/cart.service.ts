@@ -19,6 +19,7 @@ export class CartService {
       price: plant.price,
       quantity: plant.quantity,
       image: plant.image,
+      description: plant.description,
     };
     this.cartInventory.push(orderderdPlant);
     this.getTotalPrice();

@@ -21,11 +21,26 @@
     value="{{ choosenProduct.price }}"
   />
   <br />
+  <textarea
+    type="text"
+    placeholder="description"
+    #description
+    value="{{ choosenProduct.description }}"
+  ></textarea>
+  <br />
   <input type="file" placeholder="image" #image class="file" accept=".png" />
   <br />
   <button
     class="btn"
-    (click)="updateProduct(latinName.value, name.value, price.value, image)"
+    (click)="
+      updateProduct(
+        latinName.value,
+        name.value,
+        price.value,
+        image,
+        description.value
+      )
+    "
   >
     Update product
   </button>

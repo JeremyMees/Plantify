@@ -25,12 +25,13 @@ describe('AdminAddComponent', () => {
 
   it('should emit values from new product', () => {
     spyOn(component.newProduct, 'emit');
-    component.addProduct('test', 'testen', 12, 'testimage');
+    component.addProduct('test', 'testen', 12, 'testimage', 'foo description');
     expect(component.newProduct.emit).toHaveBeenCalledWith([
       'test',
       'testen',
       12,
       'testimage',
+      'foo description',
     ]);
   });
 });

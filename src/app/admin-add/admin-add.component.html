@@ -6,11 +6,21 @@
   <br />
   <input type="text" placeholder="Price" #price />
   <br />
+  <textarea type="text" placeholder="description" #description></textarea>
+  <br />
   <input type="file" placeholder="image" #image class="file" accept=".png" />
   <br />
   <button
     class="btn"
-    (click)="addProduct(latinName.value, name.value, price.value, image)"
+    (click)="
+      addProduct(
+        latinName.value,
+        name.value,
+        price.value,
+        image,
+        description.value
+      )
+    "
   >
     Add product
   </button>

@@ -27,6 +27,7 @@ describe('PlantContainerComponent', () => {
     price: 28.69,
     quantity: 1,
     image: 'images',
+    description: 'foo description',
   };
 
   beforeEach(async () => {
@@ -101,48 +102,48 @@ describe('PlantContainerComponent', () => {
     expect(component.plants).toEqual([mockPlant]);
   });
 
-  // describe('given no plant is selected', () => {
-  //   beforeEach(() => {
-  //     fixture.detectChanges();
-  //     fakeFirebaseService.getProductfromDBByID.and.returnValue(of(mockPlant));
-  //     params$.next({});
-  //     fixture.detectChanges();
-  //   });
+  describe('given no plant is selected', () => {
+    beforeEach(() => {
+      fixture.detectChanges();
+      fakeFirebaseService.getProductfromDBByID.and.returnValue(of(mockPlant));
+      params$.next({});
+      fixture.detectChanges();
+    });
 
-  //   it('should not show details', () => {
-  //     const plantDetail = fixture.debugElement.query(By.css('app-details'));
-  //     expect(plantDetail).toBeNull();
-  //   });
+    it('should not show details', () => {
+      const plantDetail = fixture.debugElement.query(By.css('app-details'));
+      expect(plantDetail).toBeNull();
+    });
 
-  //   it('should show the list', () => {
-  //     const plantList = fixture.debugElement.query(By.css('app-list'));
-  //     expect(plantList.properties.plants).toEqual([mockPlant]);
-  //   });
-  // });
+    it('should show the list', () => {
+      const plantList = fixture.debugElement.query(By.css('app-list'));
+      expect(plantList.properties.plants).toEqual([mockPlant]);
+    });
+  });
 
-  // describe('given a plant is clicked in the list', () => {
-  //   beforeEach(() => {
-  //     fixture.detectChanges();
-  //     fakeFirebaseService.getProductfromDBByID.and.returnValue(of(mockPlant));
-  //     params$.next({ id: 0 });
-  //     fixture.detectChanges();
-  //   });
+  describe('given a plant is clicked in the list', () => {
+    beforeEach(() => {
+      fixture.detectChanges();
+      fakeFirebaseService.getProductfromDBByID.and.returnValue(of(mockPlant));
+      params$.next({ id: 0 });
+      fixture.detectChanges();
+    });
 
-  //   it('should navigate to that plant', () => {
-  //     spyOn(router, 'navigateByUrl');
-  //     fixture.detectChanges();
-  //     const plantList = fixture.debugElement.query(By.css('app-list'));
-  //     plantList.triggerEventHandler('plantClick', mockPlant);
+    it('should navigate to that plant', () => {
+      spyOn(router, 'navigateByUrl');
+      fixture.detectChanges();
+      const plantList = fixture.debugElement.query(By.css('app-list'));
+      plantList.triggerEventHandler('plantClick', mockPlant);
 
-  //     expect(router.navigateByUrl).toHaveBeenCalledWith(
-  //       `/product-list/${mockPlant.id}`
-  //     );
-  //   });
+      expect(router.navigateByUrl).toHaveBeenCalledWith(
+        `/product-list/${mockPlant.id}`
+      );
+    });
 
-  //   it('should get the plant from the database', () => {
-  //     expect(fakeFirebaseService.getProductfromDBByID).toHaveBeenCalled();
-  //   });
-  // });
+    it('should get the plant from the database', () => {
+      expect(fakeFirebaseService.getProductfromDBByID).toHaveBeenCalled();
+    });
+  });
 
   it('should call cartService.additemToCart()', () => {
     component.productToCart(mockPlant);

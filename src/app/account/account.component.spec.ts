@@ -22,6 +22,7 @@ describe('AccountComponent', () => {
     price: 28.69,
     quantity: 1,
     image: 'foo',
+    description: 'foo description',
   };
 
   beforeEach(async () => {

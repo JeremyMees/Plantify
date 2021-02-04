@@ -10,7 +10,13 @@ export class AdminAddComponent {
   @Output() newImage = new EventEmitter<Event>();
   constructor() {}
 
-  addProduct(latinName: string, name: string, price: number, image: any): void {
-    this.newProduct.emit([latinName, name, price, image]);
+  addProduct(
+    latinName: string,
+    name: string,
+    price: number,
+    image: any,
+    description: string
+  ): void {
+    this.newProduct.emit([latinName, name, price, image, description]);
   }
 }
