@@ -5,7 +5,9 @@
     <p>email</p>
     <p class="text-secondary">{{ email }}</p>
     <button class="btn" (click)="updateToInputs()">update</button>
-    <div class="line"></div>
+    <button class="btn admin-button" (click)="toAdminPage()" [hidden]="!admin">
+      Go to admin page
+    </button>
   </div>
 </div>
 

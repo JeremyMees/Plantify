@@ -43,6 +43,7 @@ describe('AccountComponent', () => {
             'deleteCookie',
             'checkCookie',
             'updateUserCredentials',
+            'checkAdmin',
           ]),
         },
         {
@@ -212,5 +213,11 @@ describe('AccountComponent', () => {
     expect(router.navigateByUrl).toHaveBeenCalledWith(
       `/product-list/${mockPlant.id}`
     );
+  });
+
+  it('should redirect user to the admin page', () => {
+    spyOn(router, 'navigateByUrl');
+    component.toAdminPage();
+    expect(router.navigateByUrl).toHaveBeenCalledWith(`/admin`);
   });
 });

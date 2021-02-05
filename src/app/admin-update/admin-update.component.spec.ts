@@ -14,7 +14,7 @@ describe('AdminUpdateComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AdminUpdateComponent);
     component = fixture.componentInstance;
-    component.choosenProduct = {
+    component.chosenProduct = {
       id: 1,
       latinName: 'test',
       name: 'foo',

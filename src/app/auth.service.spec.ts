@@ -6,6 +6,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthService } from './auth.service';
 import { NotificationService } from './notification.service';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -14,11 +15,18 @@ describe('AuthService', () => {
   let fakeService: jasmine.SpyObj<CookieService>;
   let fakeAuthService: jasmine.SpyObj<AngularFireAuth>;
   let fakeNotification: jasmine.SpyObj<NotificationService>;
+  let fakeFirestoreService: jasmine.SpyObj<AngularFirestore>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule.withRoutes(routes)],
       providers: [
+        {
+          provide: AngularFirestore,
+          useValue: jasmine.createSpyObj('fakeFirestoreService', [
+            'collection.get',
+          ]),
+        },
         {
           provide: CookieService,
           useValue: jasmine.createSpyObj('CookieService', [

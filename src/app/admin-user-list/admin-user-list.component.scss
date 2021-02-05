@@ -5,9 +5,9 @@ ul {
 
 li {
   margin-right: 10px;
-  display: inline-block;
   margin-bottom: 10px;
-  width: 40%;
+  width: 100%;
+  color: rgb(70, 70, 70);
 }
 
 .image {
@@ -24,6 +24,7 @@ li {
 
 .btn:hover {
   color: black;
+  cursor: pointer;
 }
 h2 {
   margin-left: 35%;

@@ -1,0 +1,12 @@
+<div class="box">
+  <h2>Update admin</h2>
+  <input
+    type="text"
+    placeholder="email"
+    value="{{ chosenAdmin.email }}"
+    #email
+  />
+  <button class="btn" (click)="updateChosenAdmin(email.value)">
+    Update product
+  </button>
+</div>

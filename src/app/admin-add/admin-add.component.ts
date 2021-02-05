@@ -7,7 +7,6 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class AdminAddComponent {
   @Output() newProduct = new EventEmitter<Array<any>>();
-  @Output() newImage = new EventEmitter<Event>();
   constructor() {}
 
   addProduct(

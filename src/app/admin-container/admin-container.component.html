@@ -1,16 +1,42 @@
-<div class="parent">
-  <app-admin-list
-    (editClick)="productToUpdate($event)"
-    (deleteClick)="deleteProduct($event)"
-    class="left"
-    [plants]="plants"
-  ></app-admin-list>
-  <div class="right">
-    <app-admin-add (newProduct)="addNewProduct($event)"></app-admin-add>
-    <app-admin-update
-      *ngIf="choosenProduct"
-      [choosenProduct]="choosenProduct"
-      (updateClick)="updateProduct($event)"
-    ></app-admin-update>
+<div class="buttons">
+  <button class="btn" (click)="switchContent(false)">Products</button>
+  <button class="btn" (click)="switchContent(true)">Admins</button>
+</div>
+
+<div class="products" [hidden]="switch">
+  <div class="parent">
+    <app-admin-list
+      (editClick)="productToUpdate($event)"
+      (deleteClick)="deleteProduct($event)"
+      class="left"
+      [plants]="plants"
+    ></app-admin-list>
+    <div class="right">
+      <app-admin-add (newProduct)="addNewProduct($event)"></app-admin-add>
+      <app-admin-update
+        *ngIf="chosenProduct"
+        [chosenProduct]="chosenProduct"
+        (updateClick)="updateProduct($event)"
+      ></app-admin-update>
+    </div>
+  </div>
+</div>
+
+<div class="admins" [hidden]="!switch">
+  <div class="parent">
+    <app-admin-user-list
+      class="left"
+      [admins]="admins"
+      (editAdmin)="adminToUpdate($event)"
+      (delete)="adminToDelete($event)"
+    ></app-admin-user-list>
+    <div class="right">
+      <app-admin-user-add (newAdmin)="addNewAdmin($event)"></app-admin-user-add>
+      <app-admin-user-update
+        *ngIf="chosenAdmin"
+        [chosenAdmin]="chosenAdmin"
+        (updateAdmin)="updateAdmin($event)"
+      ></app-admin-user-update>
+    </div>
   </div>
 </div>

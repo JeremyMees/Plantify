@@ -4,6 +4,7 @@ import { FirebaseService } from '../firebase.service';
 import { Router } from '@angular/router';
 import { Product } from '../product';
 import { NotificationService } from '../notification.service';
+import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript';
 
 @Component({
   selector: 'app-account',
@@ -22,6 +23,7 @@ export class AccountComponent implements OnInit {
   boughtProducts: Array<Product>;
   credentials: any;
   input: boolean = false;
+  admin: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -33,8 +35,24 @@ export class AccountComponent implements OnInit {
   ngOnInit(): void {
     this.boughtProducts = this.firebaseService.getBoughtProducts();
     this.authService.getUserCredentials().then((credentials) => {
-      this.name = credentials.displayName;
-      this.email = credentials.email;
+      if (credentials == null) {
+        this.router.navigateByUrl('/product-list');
+      } else {
+        this.name = credentials.displayName;
+        this.email = credentials.email;
+
+        this.authService
+          .checkAdmin(credentials.email)
+          .subscribe((querySnapshot) => {
+            if (querySnapshot.empty) {
+              this.admin = false;
+            } else {
+              querySnapshot.forEach((doc: any) => {
+                this.admin = true;
+              });
+            }
+          });
+      }
     });
   }
 
@@ -104,5 +122,9 @@ export class AccountComponent implements OnInit {
 
   redirectToProductDetails(product: Product): void {
     this.router.navigateByUrl(`/product-list/${product.id}`);
+  }
+
+  toAdminPage(): void {
+    this.router.navigateByUrl('/admin');
   }
 }

@@ -7,11 +7,12 @@
         <div class="card-text name">
           {{ plant.name }}
           <div class="card-text price">{{ plant.price }}</div>
-          <button class="btn" (click)="selectForDelete(plant)">
-            Delete product
-          </button>
+
           <button class="btn" (click)="selectForUpdate(plant)">
             Update product
+          </button>
+          <button class="btn delete" (click)="selectForDelete(plant)">
+            Delete product
           </button>
         </div>
         <img

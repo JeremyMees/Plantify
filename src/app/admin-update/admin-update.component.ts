@@ -8,7 +8,7 @@ import { Product } from '../product';
   styleUrls: ['./admin-update.component.scss'],
 })
 export class AdminUpdateComponent {
-  @Input() choosenProduct: Product;
+  @Input() chosenProduct: Product;
   @Output() updateClick = new EventEmitter<any>();
   constructor() {}
 

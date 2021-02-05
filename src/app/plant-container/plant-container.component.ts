@@ -50,7 +50,6 @@ export class PlantContainerComponent implements OnInit {
       .pipe(take(1))
       .subscribe((value: Array<Array<Product>>) => {
         this.plants = value[0];
-        console.log(this.plants);
       });
   }
 
