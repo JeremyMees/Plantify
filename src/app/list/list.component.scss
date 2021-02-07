@@ -67,3 +67,35 @@ input:focus {
   background-color: #a6ffa1;
   outline: none;
 }
+
+.buttons {
+  width: 300px;
+  margin: auto;
+  transform: translate(30%);
+}
+
+.page {
+  margin-right: 10px;
+}
+
+.pagination {
+  justify-content: center;
+}
+
+ngb-pagination ::ng-deep a {
+  color: rgb(70, 70, 70) !important;
+}
+
+ngb-pagination ::ng-deep .page-item.active .page-link {
+  border: 2px solid #71e06c;
+  background-color: rgb(255, 255, 255);
+}
+
+ngb-pagination ::ng-deep .page-item.active .page-link:focus,
+.page-link:not(:disabled):not(.disabled):active:focus {
+  box-shadow: 0 0 0 0.1rem dimgrey;
+}
+
+ngb-pagination ::ng-deep .page-link:not(:disabled):not(.disabled):active:focus {
+  box-shadow: 0 0 0 0.1rem dimgrey;
+}

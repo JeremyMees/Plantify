@@ -48,7 +48,7 @@ describe('PlantContainerComponent', () => {
         {
           provide: FirebaseService,
           useValue: jasmine.createSpyObj('FirebaseService', [
-            'getProductsFromDB',
+            'getProductsNewAll',
             'boughtProductsToDb',
             'getBoughtProducts',
             'addNewProductToDB',
@@ -88,7 +88,15 @@ describe('PlantContainerComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PlantContainerComponent);
     component = fixture.componentInstance;
-    fakeService.getPlants.and.returnValue(of([[mockPlant], ['stubID']]));
+    fakeFirebaseService.getProductsNewAll.and.returnValue(
+      of([
+        {
+          data: () => {
+            return mockPlant;
+          },
+        },
+      ])
+    );
     fakeService.getSelectedPlant.and.returnValue(of(mockPlant));
     params$.next({});
     fixture.detectChanges();

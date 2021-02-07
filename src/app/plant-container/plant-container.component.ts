@@ -45,12 +45,13 @@ export class PlantContainerComponent implements OnInit {
           });
       }
     });
-    this.plantService
-      .getPlants()
-      .pipe(take(1))
-      .subscribe((value: Array<Array<Product>>) => {
-        this.plants = value[0];
+    const newArray: Array<Product> = [];
+    this.firebaseService.getProductsNewAll().subscribe((querySnapshot) => {
+      querySnapshot.forEach((doc: any) => {
+        newArray.push(doc.data());
       });
+      this.plants = newArray;
+    });
   }
 
   onPlantChange(plant: Product): void {
@@ -94,7 +95,7 @@ export class PlantContainerComponent implements OnInit {
   onSortChange(how: string): void {
     if (how === 'high') {
       const highArray: Array<Product> = [];
-      this.firebaseService.getProductsHigh().subscribe((querySnapshot) => {
+      this.firebaseService.getProductsHighAll().subscribe((querySnapshot) => {
         querySnapshot.forEach((doc: any) => {
           highArray.push(doc.data());
         });
@@ -103,7 +104,7 @@ export class PlantContainerComponent implements OnInit {
       });
     } else if (how === 'low') {
       const lowArray: Array<Product> = [];
-      this.firebaseService.getProductsLow().subscribe((querySnapshot) => {
+      this.firebaseService.getProductsLowAll().subscribe((querySnapshot) => {
         querySnapshot.forEach((doc: any) => {
           lowArray.push(doc.data());
         });
@@ -112,7 +113,7 @@ export class PlantContainerComponent implements OnInit {
       });
     } else {
       const newArray: Array<Product> = [];
-      this.firebaseService.getProductsNew().subscribe((querySnapshot) => {
+      this.firebaseService.getProductsNewAll().subscribe((querySnapshot) => {
         querySnapshot.forEach((doc: any) => {
           newArray.push(doc.data());
         });

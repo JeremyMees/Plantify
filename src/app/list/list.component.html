@@ -19,21 +19,38 @@
     />
   </div>
 </div>
-<ul>
-  <li *ngFor="let plant of plants" (click)="onSelect(plant)">
-    <div class="card">
-      <img
-        class="card-img-top"
-        [src]="plant.image"
-        alt="image from {{ plant.latinName }}"
-      />
-      <div class="card-body">
-        <div class="card-text latinName">{{ plant.latinName }}</div>
-        <div class="card-text name">
-          {{ plant.name }}
-          <div class="card-text price">{{ plant.price }}</div>
+<div>
+  <ul>
+    <li
+      *ngFor="
+        let plant of plants
+          | slice: (page - 1) * pageSize:(page - 1) * pageSize + pageSize
+      "
+    >
+      <div class="card" (click)="onSelect(plant)">
+        <img
+          class="card-img-top"
+          [src]="plant.image"
+          alt="image from {{ plant.latinName }}"
+        />
+        <div class="card-body">
+          <div class="card-text latinName">{{ plant.latinName }}</div>
+          <div class="card-text name">
+            {{ plant.name }}
+            <div class="card-text price">{{ plant.price }}</div>
+          </div>
         </div>
       </div>
-    </div>
-  </li>
-</ul>
+    </li>
+  </ul>
+  <div class="pagination">
+    <ngb-pagination
+      [collectionSize]="plants.length"
+      [(page)]="page"
+      [(pageSize)]="pageSize"
+      [maxSize]="5"
+      [rotate]="true"
+      [ellipses]="false"
+    ></ngb-pagination>
+  </div>
+</div>

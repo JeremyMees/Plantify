@@ -4,7 +4,6 @@ import { FirebaseService } from '../firebase.service';
 import { Router } from '@angular/router';
 import { Product } from '../product';
 import { NotificationService } from '../notification.service';
-import { collapseTextChangeRangesAcrossMultipleVersions } from 'typescript';
 
 @Component({
   selector: 'app-account',

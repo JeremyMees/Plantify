@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { routes } from '../app-routing.module';
 import { AuthService } from '../auth.service';
+import { Admin } from '../admin';
 
 describe('AdminContainerComponent', () => {
   let component: AdminContainerComponent;
@@ -23,6 +24,10 @@ describe('AdminContainerComponent', () => {
     quantity: 1,
     image: 'images',
     description: 'foo description',
+  };
+  const mockAdmin: Admin = {
+    email: 'admin@example.com',
+    id: 0,
   };
 
   beforeEach(async () => {
@@ -64,42 +69,55 @@ describe('AdminContainerComponent', () => {
     component = fixture.componentInstance;
     fakeService.getProductsFromDB.and.returnValue(of([[mockPlant], ['fooID']]));
     fakeAuthService.getUserCredentials.and.returnValue(
-      Promise.resolve({ email: 'test' })
+      Promise.resolve({ email: 'foo' })
+    );
+    fakeAuthService.checkAdmin.and.returnValue(
+      of([
+        {
+          empty: false,
+          data: () => {
+            return mockPlant;
+          },
+        },
+      ])
+    );
+    fakeAuthService.getAdminsFromDB.and.returnValue(
+      of([[mockAdmin], ['fooID']])
     );
     fixture.detectChanges();
   });
 
-  // it('should send new product to firebase service', () => {
-  //   component.addNewProduct([mockPlant]);
-  //   expect(fakeService.addNewProductToDB).toHaveBeenCalledWith([
-  //     {
-  //       id: 1,
-  //       latinName: 'Monstera Deliciosa',
-  //       name: 'Alfredo',
-  //       price: 28.69,
-  //       quantity: 1,
-  //       image: 'images',
-  //       description: 'foo description',
-  //     },
-  //   ]);
-  // });
+  it('should send new product to firebase service', () => {
+    component.addNewProduct([mockPlant]);
+    expect(fakeService.addNewProductToDB).toHaveBeenCalledWith([
+      {
+        id: 1,
+        latinName: 'Monstera Deliciosa',
+        name: 'Alfredo',
+        price: 28.69,
+        quantity: 1,
+        image: 'images',
+        description: 'foo description',
+      },
+    ]);
+  });
 
-  // it('should trigger function to delete product', () => {
-  //   component.deleteProduct(mockPlant);
-  //   expect(fakeService.deleteProductfromDB).toHaveBeenCalledWith(mockPlant.id);
-  // });
+  it('should trigger function to delete product', () => {
+    component.deleteProduct(mockPlant);
+    expect(fakeService.deleteProductfromDB).toHaveBeenCalledWith(mockPlant.id);
+  });
 
-  // it('should trigger function to update product', () => {
-  //   component.chosenProductID = 'fooId';
-  //   component.updateProduct([mockPlant]);
-  //   expect(fakeService.updateProductfromDB).toHaveBeenCalledWith(
-  //     [mockPlant],
-  //     'fooId'
-  //   );
-  // });
+  it('should trigger function to update product', () => {
+    component.chosenProductID = 'fooId';
+    component.updateProduct([mockPlant]);
+    expect(fakeService.updateProductfromDB).toHaveBeenCalledWith(
+      [mockPlant],
+      'fooId'
+    );
+  });
 
-  // it('should set product to update as chosenProduct', () => {
-  //   component.productToUpdate(mockPlant);
-  //   expect(component.chosenProduct).toEqual(mockPlant);
-  // });
+  it('should set product to update as chosenProduct', () => {
+    component.productToUpdate(mockPlant);
+    expect(component.chosenProduct).toEqual(mockPlant);
+  });
 });

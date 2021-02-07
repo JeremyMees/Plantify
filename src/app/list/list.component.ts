@@ -12,12 +12,16 @@ export class ListComponent {
   @Output() plantClick = new EventEmitter<Product>();
   @Output() sortProducts = new EventEmitter<string>();
   @Output() searchProduct = new EventEmitter<string>();
+  howSort: string = 'new';
+  page = 1;
+  pageSize = 8;
 
   onSelect(plant: Product): void {
     this.plantClick.emit(plant);
   }
 
   sort(how: string): void {
+    this.howSort = how;
     this.sortProducts.emit(how);
   }
 

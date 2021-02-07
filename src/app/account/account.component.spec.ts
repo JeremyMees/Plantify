@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { routes } from '../app-routing.module';
 import { NotificationService } from '../notification.service';
+import { of } from 'rxjs';
 
 describe('AccountComponent', () => {
   let component: AccountComponent;
@@ -80,6 +81,16 @@ describe('AccountComponent', () => {
       Promise.resolve({
         credentials: { displayName: 'Testname', email: 'Testemail' },
       })
+    );
+    fakeAuthService.checkAdmin.and.returnValue(
+      of([
+        {
+          empty: false,
+          data: () => {
+            return mockPlant;
+          },
+        },
+      ])
     );
     fixture.detectChanges();
   });

@@ -147,19 +147,19 @@ export class FirebaseService {
       });
   }
 
-  getProductsHigh(): Observable<any> {
+  getProductsHighAll(): Observable<any> {
     return this.firestore
       .collection('products', (ref) => ref.orderBy('price', 'desc'))
       .get();
   }
 
-  getProductsLow(): Observable<any> {
+  getProductsLowAll(): Observable<any> {
     return this.firestore
       .collection('products', (ref) => ref.orderBy('price', 'asc'))
       .get();
   }
 
-  getProductsNew(): Observable<any> {
+  getProductsNewAll(): Observable<any> {
     return this.firestore
       .collection('products', (ref) => ref.orderBy('created_at', 'desc'))
       .get();

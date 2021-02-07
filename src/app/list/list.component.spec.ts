@@ -25,6 +25,7 @@ describe('ListComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ListComponent);
     component = fixture.componentInstance;
+    component.plants = [mockPlant];
     fixture.detectChanges();
   });
 
