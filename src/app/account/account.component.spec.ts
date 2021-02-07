@@ -9,7 +9,7 @@ import { routes } from '../app-routing.module';
 import { NotificationService } from '../notification.service';
 import { of } from 'rxjs';
 
-describe('AccountComponent', () => {
+fdescribe('AccountComponent', () => {
   let component: AccountComponent;
   let fixture: ComponentFixture<AccountComponent>;
   let fakeAuthService: jasmine.SpyObj<AuthService>;
@@ -25,6 +25,7 @@ describe('AccountComponent', () => {
     image: 'foo',
     description: 'foo description',
   };
+  const mockAdmin = { email: 'foo', id: 0 };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -87,7 +88,7 @@ describe('AccountComponent', () => {
         {
           empty: false,
           data: () => {
-            return mockPlant;
+            return mockAdmin;
           },
         },
       ])
@@ -101,19 +102,7 @@ describe('AccountComponent', () => {
   });
 
   describe('update the credentials', () => {
-    it('should alert for invalid email address for not having .', () => {
-      spyOn(window, 'alert');
-      component.updateInputsNewValue('testen', 'testen@', 'testen', 'testen');
-      expect(fakeNotification.setNotification).toHaveBeenCalledWith(
-        'Please enter a valid email address',
-        'bottom',
-        2,
-        'Timer'
-      );
-    });
-
-    it('should alert for invalid email address for not having @', () => {
-      spyOn(window, 'alert');
+    it('should alert for invalid email address', () => {
       component.updateInputsNewValue('testen', 'testen.', 'testen', 'testen');
       expect(fakeNotification.setNotification).toHaveBeenCalledWith(
         'Please enter a valid email address',
@@ -124,7 +113,6 @@ describe('AccountComponent', () => {
     });
 
     it('should alert for two different passwords', () => {
-      spyOn(window, 'alert');
       component.updateInputsNewValue('testen', 'foo@foo.com', 'foo', 'stub');
       expect(fakeNotification.setNotification).toHaveBeenCalledWith(
         'Passwords are not the same',
@@ -230,5 +218,24 @@ describe('AccountComponent', () => {
     spyOn(router, 'navigateByUrl');
     component.toAdminPage();
     expect(router.navigateByUrl).toHaveBeenCalledWith(`/admin`);
+  });
+
+  // it("should redirect user to the product list because the user isn't logged in", () => {
+  //   spyOn(router, 'navigateByUrl');
+  //   fakeAuthService.checkAdmin.and.returnValue(of(null));
+  //   fixture.detectChanges();
+  //   expect(router.navigateByUrl).toHaveBeenCalledWith('/product-list');
+  // });
+
+  it('should set this.admin to false', () => {
+    fakeAuthService.checkAdmin.and.returnValue(
+      of([
+        {
+          empty: true,
+        },
+      ])
+    );
+    fixture.detectChanges();
+    expect(component.admin).toBe(false);
   });
 });

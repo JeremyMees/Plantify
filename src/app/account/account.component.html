@@ -35,9 +35,8 @@
       [ngClass]="colorEmail"
       (focusout)="checkEmail($event, emailInput.value)"
     />
-    <label *ngIf="colorEmail == 'red'">
-      Email needs to contain '@' and '.'</label
-    >
+    <label *ngIf="colorEmail == 'red'"> Please enter valid email address</label>
+
     <br />
     <label>New password </label>
     <input
