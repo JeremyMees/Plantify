@@ -11,6 +11,8 @@ export class AdminListComponent {
   @Input() plants: Array<Product>;
   @Output() deleteClick = new EventEmitter<Product>();
   @Output() editClick = new EventEmitter<Product>();
+  page = 1;
+  pageSize = 6;
 
   selectForDelete(plant: Product): void {
     this.deleteClick.emit(plant);

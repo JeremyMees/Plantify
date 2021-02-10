@@ -8,6 +8,8 @@ li {
   margin-bottom: 10px;
   width: 100%;
   color: rgb(70, 70, 70);
+  width: 40%;
+  min-width: 250px;
 }
 
 .image {
@@ -42,4 +44,26 @@ h2 {
 
 .delete:hover {
   color: red;
+}
+
+.pagination {
+  justify-content: center;
+}
+
+ngb-pagination ::ng-deep a {
+  color: rgb(70, 70, 70) !important;
+}
+
+ngb-pagination ::ng-deep .page-item.active .page-link {
+  border: 2px solid #71e06c;
+  background-color: rgb(255, 255, 255);
+}
+
+ngb-pagination ::ng-deep .page-item.active .page-link:focus,
+.page-link:not(:disabled):not(.disabled):active:focus {
+  box-shadow: 0 0 0 0.1rem dimgrey;
+}
+
+ngb-pagination ::ng-deep .page-link:not(:disabled):not(.disabled):active:focus {
+  box-shadow: 0 0 0 0.1rem dimgrey;
 }

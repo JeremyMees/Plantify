@@ -1,6 +1,7 @@
 .btn {
   background-color: #71e06c;
-  width: 350px;
+  width: 50%;
+  min-width: 250px;
 }
 
 input {
@@ -8,7 +9,8 @@ input {
   border: #e2e2e2 solid 1px;
   border-radius: 5px;
   margin-bottom: 5px;
-  width: 350px;
+  width: 50%;
+  min-width: 250px;
 }
 
 input:focus {
@@ -20,7 +22,8 @@ textarea {
   border: #e2e2e2 solid 1px;
   border-radius: 5px;
   margin-bottom: 5px;
-  width: 350px;
+  width: 50%;
+  min-width: 250px;
   min-height: 10em;
 }
 

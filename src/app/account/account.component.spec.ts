@@ -9,7 +9,7 @@ import { routes } from '../app-routing.module';
 import { NotificationService } from '../notification.service';
 import { of } from 'rxjs';
 
-fdescribe('AccountComponent', () => {
+describe('AccountComponent', () => {
   let component: AccountComponent;
   let fixture: ComponentFixture<AccountComponent>;
   let fakeAuthService: jasmine.SpyObj<AuthService>;

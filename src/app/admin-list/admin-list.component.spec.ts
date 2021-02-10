@@ -24,6 +24,7 @@ describe('AdminListComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AdminListComponent);
     component = fixture.componentInstance;
+    component.plants = [mockPlant];
     fixture.detectChanges();
   });
 
