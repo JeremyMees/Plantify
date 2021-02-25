@@ -29,34 +29,30 @@ export class AdminContainerComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.authService.getUserCredentials().then((credentials) => {
-      if (credentials == null) {
-        this.router.navigateByUrl('/product-list');
-      } else {
-        this.authService
-          .checkAdmin(credentials.email)
-          .subscribe((querySnapshot) => {
-            if (querySnapshot.empty) {
-              this.router.navigateByUrl('/product-list');
-            } else {
-              querySnapshot.forEach((doc: any) => {
-                this.firebaseService
-                  .getProductsFromDB()
-                  .subscribe((value: Array<any>) => {
-                    this.plants = value[0];
-                    this.ids = value[1];
-                  });
-                this.authService
-                  .getAdminsFromDB()
-                  .subscribe((value: Array<any>) => {
-                    this.admins = value[0];
-                    this.adminsID = value[1];
-                  });
-              });
-            }
-          });
-      }
+    // this.authService.getUserCredentials().then((credentials) => {
+    //   if (credentials == null) {
+    //     this.router.navigateByUrl('/product-list');
+    //   } else {
+    // this.authService
+    //   .checkAdmin(credentials.email)
+    //   .subscribe((querySnapshot) => {
+    //     if (querySnapshot.empty) {
+    //       this.router.navigateByUrl('/product-list');
+    //     } else {
+    //querySnapshot.forEach((doc: any) => {
+    this.firebaseService.getProductsFromDB().subscribe((value: Array<any>) => {
+      this.plants = value[0];
+      this.ids = value[1];
     });
+    this.authService.getAdminsFromDB().subscribe((value: Array<any>) => {
+      this.admins = value[0];
+      this.adminsID = value[1];
+    });
+    //     });
+    //   }
+    // });
+    //   }
+    // });
   }
 
   addNewProduct(newProductArray: Array<Product>): void {

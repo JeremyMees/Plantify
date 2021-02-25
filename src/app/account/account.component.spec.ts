@@ -83,16 +83,6 @@ describe('AccountComponent', () => {
         credentials: { displayName: 'Testname', email: 'Testemail' },
       })
     );
-    fakeAuthService.checkAdmin.and.returnValue(
-      of([
-        {
-          empty: false,
-          data: () => {
-            return mockAdmin;
-          },
-        },
-      ])
-    );
     fixture.detectChanges();
   });
 
@@ -218,24 +208,5 @@ describe('AccountComponent', () => {
     spyOn(router, 'navigateByUrl');
     component.toAdminPage();
     expect(router.navigateByUrl).toHaveBeenCalledWith(`/admin`);
-  });
-
-  // it("should redirect user to the product list because the user isn't logged in", () => {
-  //   spyOn(router, 'navigateByUrl');
-  //   fakeAuthService.checkAdmin.and.returnValue(of(null));
-  //   fixture.detectChanges();
-  //   expect(router.navigateByUrl).toHaveBeenCalledWith('/product-list');
-  // });
-
-  it('should set this.admin to false', () => {
-    fakeAuthService.checkAdmin.and.returnValue(
-      of([
-        {
-          empty: true,
-        },
-      ])
-    );
-    fixture.detectChanges();
-    expect(component.admin).toBe(false);
   });
 });

@@ -6,6 +6,7 @@ import { Observable, of } from 'rxjs';
 import { NotificationService } from './notification.service';
 import { Admin } from './admin';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { first, map, switchMap, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -216,9 +217,30 @@ export class AuthService {
       });
   }
 
-  checkAdmin(email: string): Observable<any> {
+  checkAdmin(email: string): Observable<boolean> {
     return this.firestore
       .collection('admins', (ref) => ref.where('email', '==', email))
-      .get();
+      .get()
+      .pipe(
+        map((value: any) => {
+          return !value.empty;
+        })
+      );
+  }
+
+  isLoggedIn(): Observable<any> {
+    return this.firebaseAuth.authState.pipe(first());
+  }
+
+  authGaurdAdmin(): Observable<boolean> {
+    return this.isLoggedIn().pipe(
+      switchMap((user: any) => {
+        if (user) {
+          return this.checkAdmin(user.email);
+        } else {
+          return of(false);
+        }
+      })
+    );
   }
 }

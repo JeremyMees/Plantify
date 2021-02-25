@@ -34,24 +34,8 @@ export class AccountComponent implements OnInit {
   ngOnInit(): void {
     this.boughtProducts = this.firebaseService.getBoughtProducts();
     this.authService.getUserCredentials().then((credentials) => {
-      if (credentials === null) {
-        this.router.navigateByUrl('/product-list');
-      } else {
-        this.name = credentials.displayName;
-        this.email = credentials.email;
-
-        this.authService
-          .checkAdmin(credentials.email)
-          .subscribe((querySnapshot) => {
-            if (querySnapshot.empty) {
-              this.admin = false;
-            } else {
-              querySnapshot.forEach((doc: any) => {
-                this.admin = true;
-              });
-            }
-          });
-      }
+      this.name = credentials.displayName;
+      this.email = credentials.email;
     });
   }
 
