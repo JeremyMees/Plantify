@@ -14,7 +14,6 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class AdminGuard implements CanActivate {
-  timer: any;
   constructor(private authService: AuthService, public router: Router) {}
 
   canActivate(
@@ -23,6 +22,7 @@ export class AdminGuard implements CanActivate {
   ): Observable<boolean> {
     return this.authService.authGuardAdmin().pipe(
       tap((isAdmin: boolean) => {
+        console.log(isAdmin);
         if (!isAdmin) {
           this.router.navigateByUrl('/product-list');
         }

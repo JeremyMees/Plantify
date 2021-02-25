@@ -243,4 +243,16 @@ export class AuthService {
       })
     );
   }
+
+  isUserLoggedIn(): Observable<any> {
+    return this.firebaseAuth.authState.pipe(
+      switchMap((user: any) => {
+        if (user) {
+          return of(true);
+        } else {
+          return of(false);
+        }
+      })
+    );
+  }
 }

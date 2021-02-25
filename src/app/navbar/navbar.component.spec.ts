@@ -53,25 +53,4 @@ describe('NavbarComponent', () => {
     component.logout();
     expect(fakeService.logout).toHaveBeenCalled();
   });
-
-  it('should check if current user is logged in and return true', () => {
-    spyOn(router, 'navigateByUrl');
-    fakeService.checkCookie.and.returnValue(true);
-    component.checkLogin();
-    expect(fakeService.checkCookie).toHaveBeenCalledWith('logged-in');
-    expect(router.navigateByUrl).toHaveBeenCalledWith('/account');
-  });
-
-  it('should check if current user is logged in and return false', () => {
-    spyOn(window, 'alert');
-    fakeService.checkCookie.and.returnValue(false);
-    component.checkLogin();
-    expect(fakeService.checkCookie).toHaveBeenCalledWith('logged-in');
-    expect(fakeNotification.setNotification).toHaveBeenCalledWith(
-      'Log in first',
-      'bottom',
-      2,
-      'Timer'
-    );
-  });
 });

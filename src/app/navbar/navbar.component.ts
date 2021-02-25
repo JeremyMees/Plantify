@@ -19,15 +19,4 @@ export class NavbarComponent {
   logout(): void {
     this.authService.logout();
   }
-
-  checkLogin(): void {
-    this.authService.checkCookie('logged-in')
-      ? this.router.navigateByUrl('/account')
-      : this.notificationService.setNotification(
-          'Log in first',
-          'bottom',
-          2,
-          'Timer'
-        );
-  }
 }

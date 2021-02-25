@@ -55,7 +55,11 @@
             aria-labelledby="dropdown"
             ngbDropdownMenu
           >
-            <a class="dropdown-item text-dark" (click)="checkLogin()">
+            <a
+              class="dropdown-item text-dark"
+              routerLink="/account"
+              routerLinkActive="active"
+            >
               Account
             </a>
             <a
