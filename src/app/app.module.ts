@@ -32,6 +32,8 @@ import { NotificationComponent } from './notification/notification.component';
 import { AdminUserListComponent } from './admin-user-list/admin-user-list.component';
 import { AdminUserUpdateComponent } from './admin-user-update/admin-user-update.component';
 import { AdminUserAddComponent } from './admin-user-add/admin-user-add.component';
+import { FooterComponent } from './footer/footer.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,7 @@ import { AdminUserAddComponent } from './admin-user-add/admin-user-add.component
     AdminUserListComponent,
     AdminUserUpdateComponent,
     AdminUserAddComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,6 +69,7 @@ import { AdminUserAddComponent } from './admin-user-add/admin-user-add.component
     AngularFireAuthModule,
     AngularFireMessagingModule,
     AngularFireStorageModule,
+    MatIconModule,
   ],
   providers: [CookieService, AuthService],
   bootstrap: [AppComponent],

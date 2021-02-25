@@ -1,0 +1,24 @@
+.footer {
+  background-color: #71e06c;
+  padding-top: 1em;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.icon :hover {
+  color: #353434;
+  cursor: pointer;
+}
+
+.text {
+  display: inline;
+  padding-left: 1em;
+  padding-bottom: 5px;
+}
