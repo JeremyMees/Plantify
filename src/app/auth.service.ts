@@ -232,7 +232,7 @@ export class AuthService {
     return this.firebaseAuth.authState.pipe(first());
   }
 
-  authGaurdAdmin(): Observable<boolean> {
+  authGuardAdmin(): Observable<boolean> {
     return this.isLoggedIn().pipe(
       switchMap((user: any) => {
         if (user) {

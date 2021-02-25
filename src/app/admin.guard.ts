@@ -21,7 +21,7 @@ export class AdminGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> {
-    return this.authService.authGaurdAdmin().pipe(
+    return this.authService.authGuardAdmin().pipe(
       tap((isAdmin: boolean) => {
         if (!isAdmin) {
           this.router.navigateByUrl('/product-list');
