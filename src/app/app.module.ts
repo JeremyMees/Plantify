@@ -35,6 +35,7 @@ import { AdminUserAddComponent } from './admin-user-add/admin-user-add.component
 import { FooterComponent } from './footer/footer.component';
 import { MatIconModule } from '@angular/material/icon';
 import { HomeComponent } from './home/home.component';
+import { MissionComponent } from './mission/mission.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { HomeComponent } from './home/home.component';
     AdminUserAddComponent,
     FooterComponent,
     HomeComponent,
+    MissionComponent,
   ],
   imports: [
     BrowserModule,
