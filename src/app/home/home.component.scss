@@ -1,0 +1,109 @@
+.mission {
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 1em;
+}
+
+.mission-text {
+  margin: auto;
+  color: #333;
+}
+
+.loves {
+  color: #333;
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 1em;
+}
+
+.buttons {
+  background-color: #71e06c;
+  margin-bottom: 1em;
+}
+
+.perfect {
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 1em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.perfect-image {
+  flex-grow: grow;
+  height: 100%;
+  flex: 50%;
+}
+
+img {
+  max-height: 100%;
+  min-width: 100%;
+  object-fit: cover;
+  vertical-align: bottom;
+}
+
+.perfect-content {
+  flex: 50%;
+}
+
+.perfect-text {
+  color: #333;
+  margin-top: 50%;
+  position: relative;
+  left: -2em;
+  text-shadow: -1px 0 rgb(255, 255, 255), 0 1px rgb(255, 255, 255),
+    1px 0 rgb(255, 255, 255), 0 -1px rgb(255, 255, 255);
+}
+
+.perfect-btn {
+  display: block;
+  margin: auto;
+}
+
+.grower-text {
+  margin-top: 1em;
+  margin: auto;
+  color: #333;
+}
+
+.title {
+  margin-top: 1em;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  flex-grow: 0;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+li {
+  height: 100%;
+  text-align: left;
+  flex: 1em;
+  padding-left: 1em;
+}
+
+.card {
+  background-color: inherit;
+}
+
+.card-body {
+  background-color: inherit;
+}
+
+.card :hover {
+  cursor: pointer;
+}
+
+@media (max-width: 500px) {
+  .perfect-text {
+    margin-top: 1em;
+    position: relative;
+    left: 0;
+  }
+}

@@ -1,0 +1,61 @@
+<div class="mission">
+  <div class="mission-text">
+    <h2>Our green mission</h2>
+    <p>
+      Plants are green, but so is our mission! Plantify literally wants to make
+      living rooms and offices greener with the most beautiful plants. We
+      ourselves try to contribute by making our processes as sustainable as
+      possible.
+      <b>Want to know more about our green aspirations?</b>
+    </p>
+    <button class="btn buttons">Read more about our mission</button>
+  </div>
+</div>
+
+<div class="perfect">
+  <div class="perfect-image">
+    <img class="w-50" src="../assets/pexels-daria-shevtsova-887767.jpg" />
+  </div>
+  <div class="perfect-content">
+    <div class="perfect-text">
+      <h2>Plants that perfectly fits youre whole home</h2>
+      <p>You can find the perfect plants for every place just on our site</p>
+      <button class="btn buttons perfect-btn">Go to the products</button>
+    </div>
+  </div>
+</div>
+
+<div class="loves">
+  <h2>Our newest loves</h2>
+  <div>
+    <ul>
+      <li *ngFor="let plant of plants">
+        <div class="card" (click)="onSelect(plant)">
+          <img
+            class="img-fluid"
+            [src]="plant.image"
+            alt="image from {{ plant.latinName }}"
+          />
+          <div class="card-body">
+            <div class="card-text latinName">{{ plant.latinName }}</div>
+            <div class="card-text name">
+              {{ plant.name }}
+              <div class="card-text price">{{ plant.price }}</div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="grower-text">
+    <h2 class="title">Directly from the grower, at your home</h2>
+    <p>
+      We get our plants directly from the grower. These are all local growers.
+      In a garden center, plants are sometimes days or weeks before they are
+      sold. A plant that is ordered from us is only removed from the nursery on
+      the day of shipment. This is how we guarantee fresh plants of high
+      quality. In the end, that's what it's all about!
+    </p>
+  </div>
+</div>

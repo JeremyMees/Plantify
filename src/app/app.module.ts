@@ -34,6 +34,7 @@ import { AdminUserUpdateComponent } from './admin-user-update/admin-user-update.
 import { AdminUserAddComponent } from './admin-user-add/admin-user-add.component';
 import { FooterComponent } from './footer/footer.component';
 import { MatIconModule } from '@angular/material/icon';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { MatIconModule } from '@angular/material/icon';
     AdminUserUpdateComponent,
     AdminUserAddComponent,
     FooterComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

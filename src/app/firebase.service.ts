@@ -164,4 +164,12 @@ export class FirebaseService {
       .collection('products', (ref) => ref.orderBy('created_at', 'desc'))
       .get();
   }
+
+  getProductsNewFour(): Observable<any> {
+    return this.firestore
+      .collection('products', (ref) =>
+        ref.orderBy('created_at', 'desc').limit(4)
+      )
+      .get();
+  }
 }

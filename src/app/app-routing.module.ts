@@ -9,8 +9,10 @@ import { RegisterComponent } from './register/register.component';
 import { AdminContainerComponent } from './admin-container/admin-container.component';
 import { AdminGuard } from './admin.guard';
 import { LoginGuard } from './login.guard';
+import { HomeComponent } from './home/home.component';
 
 export const routes: Routes = [
+  { path: 'home', component: HomeComponent },
   { path: 'product-list', component: PlantContainerComponent },
   { path: 'product-list/:id', component: PlantContainerComponent },
   { path: 'shopping-cart', component: CartContainerComponent },
@@ -22,7 +24,7 @@ export const routes: Routes = [
     component: AdminContainerComponent,
     canActivate: [AdminGuard],
   },
-  { path: '', redirectTo: 'product-list', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
 ];
 
