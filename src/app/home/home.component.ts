@@ -29,4 +29,8 @@ export class HomeComponent implements OnInit {
   onSelect(plant: Product): void {
     this.router.navigateByUrl(`/product-list/${plant.id}`);
   }
+
+  redirectToProductList(): void {
+    this.router.navigateByUrl(`/product-list`);
+  }
 }

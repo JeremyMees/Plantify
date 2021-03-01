@@ -74,4 +74,10 @@ describe('HomeComponent', () => {
     component.onSelect(mockPlant);
     expect(router.navigateByUrl).toHaveBeenCalledWith('/product-list/1');
   });
+
+  it('should redirect to the product list', () => {
+    spyOn(router, 'navigateByUrl');
+    component.redirectToProductList();
+    expect(router.navigateByUrl).toHaveBeenCalledWith('/product-list');
+  });
 });
