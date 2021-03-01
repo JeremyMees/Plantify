@@ -80,4 +80,10 @@ describe('HomeComponent', () => {
     component.redirectToProductList();
     expect(router.navigateByUrl).toHaveBeenCalledWith('/product-list');
   });
+
+  it('should redirect to mission page', () => {
+    spyOn(router, 'navigateByUrl');
+    component.redirectToMission();
+    expect(router.navigateByUrl).toHaveBeenCalledWith('/mission');
+  });
 });

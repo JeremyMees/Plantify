@@ -33,4 +33,8 @@ export class HomeComponent implements OnInit {
   redirectToProductList(): void {
     this.router.navigateByUrl(`/product-list`);
   }
+
+  redirectToMission(): void {
+    this.router.navigateByUrl(`/mission`);
+  }
 }
