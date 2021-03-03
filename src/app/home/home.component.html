@@ -16,7 +16,7 @@
 
 <div class="perfect">
   <div class="perfect-image">
-    <img class="w-50" src="../assets/pexels-daria-shevtsova-887767.jpg" />
+    <img class="image w-50" src="../assets/pexels-daria-shevtsova-887767.jpg" />
   </div>
   <div class="perfect-content">
     <div class="perfect-text">
@@ -30,25 +30,27 @@
 </div>
 
 <div class="loves">
-  <h2>Our newest loves</h2>
+  <h1 class="loves-titel">Our newest loves</h1>
   <div>
     <ul>
-      <li *ngFor="let plant of plants">
-        <div class="card" (click)="onSelect(plant)">
-          <img
-            class="img-fluid"
-            [src]="plant.image"
-            alt="image from {{ plant.latinName }}"
-          />
-          <div class="card-body">
-            <div class="card-text latinName">{{ plant.latinName }}</div>
-            <div class="card-text name">
-              {{ plant.name }}
-              <div class="card-text price">{{ plant.price }}</div>
+      <div class="flex-container">
+        <li class="list-item" *ngFor="let plant of plants">
+          <div class="card" (click)="onSelect(plant)">
+            <img
+              [src]="plant.image"
+              class="loves-image"
+              alt="image from {{ plant.latinName }}"
+            />
+            <div class="card-body">
+              <div class="card-text latinName">{{ plant.latinName }}</div>
+              <div class="card-text name">
+                {{ plant.name }}
+                <div class="card-text price">{{ plant.price }}</div>
+              </div>
             </div>
           </div>
-        </div>
-      </li>
+        </li>
+      </div>
     </ul>
   </div>
 
