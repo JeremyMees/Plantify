@@ -1,104 +1,114 @@
-<div class="inputs" *ngIf="input === false">
-  <div class="input-content">
-    <p>username</p>
-    <p class="text-secondary">{{ name }}</p>
-    <p>email</p>
-    <p class="text-secondary">{{ email }}</p>
-    <button class="btn" (click)="updateToInputs()">update</button>
-    <button class="btn admin-button" (click)="toAdminPage()" [hidden]="!admin">
-      Go to admin page
-    </button>
+<div class="container">
+  <div class="inputs" *ngIf="input === false">
+    <div class="input-content">
+      <p>username</p>
+      <p class="text-secondary">{{ name }}</p>
+      <p>email</p>
+      <p class="text-secondary">{{ email }}</p>
+      <button class="btn style" (click)="updateToInputs()">update</button>
+      <button
+        class="btn admin-button"
+        (click)="toAdminPage()"
+        [hidden]="!admin"
+      >
+        Go to admin page
+      </button>
+    </div>
   </div>
-</div>
 
-<div class="inputs" *ngIf="input === true">
-  <div class="input-content">
-    <label>Username </label>
-    <input
-      [value]="[name]"
-      type="string"
-      id="name"
-      #nameInput
-      [ngClass]="colorLengthName"
-      (focusout)="checkName($event, nameInput.value)"
-    />
-    <label *ngIf="colorLengthName == 'red'">
-      Name needs to contain 6 characters</label
-    >
-    <br />
-    <label>Email </label>
-    <input
-      [value]="[email]"
-      type="string"
-      id="email"
-      #emailInput
-      [ngClass]="colorEmail"
-      (focusout)="checkEmail($event, emailInput.value)"
-    />
-    <label *ngIf="colorEmail == 'red'"> Please enter valid email address</label>
+  <div class="inputs" *ngIf="input === true">
+    <div class="input-content">
+      <label>Username </label>
+      <input
+        [value]="[name]"
+        type="string"
+        id="name"
+        #nameInput
+        [ngClass]="colorLengthName"
+        (focusout)="checkName($event, nameInput.value)"
+      />
+      <label *ngIf="colorLengthName == 'red'">
+        Name needs to contain 6 characters</label
+      >
+      <br />
+      <label>Email </label>
+      <input
+        [value]="[email]"
+        type="string"
+        id="email"
+        #emailInput
+        [ngClass]="colorEmail"
+        (focusout)="checkEmail($event, emailInput.value)"
+      />
+      <label *ngIf="colorEmail == 'red'">
+        Please enter valid email address</label
+      >
 
-    <br />
-    <label>New password </label>
-    <input
-      placeholder="Password"
-      type="password"
-      id="password"
-      #passwordInput
-      (focusout)="lengthPassword($event)"
-      [ngClass]="colorLengthPassword"
-    />
-    <label *ngIf="colorLengthPassword == 'red'">
-      Password needs to contain 6 characters</label
-    >
-    <br />
-    <label>New password check </label>
-    <input
-      placeholder="Password check"
-      type="password"
-      id="passwordc"
-      #passwordcInput
-      [ngClass]="colorCheck"
-      (focusout)="checkPassword($event, passwordInput.value)"
-    />
-    <label *ngIf="colorCheck == 'red'"> Passwords aren't the same</label>
-    <br />
-    <button
-      class="btn"
-      (click)="
-        updateInputsNewValue(
-          nameInput.value,
-          emailInput.value,
-          passwordInput.value,
-          passwordcInput.value
-        )
-      "
-    >
-      update
-    </button>
+      <br />
+      <label>New password </label>
+      <input
+        placeholder="Password"
+        type="password"
+        id="password"
+        #passwordInput
+        (focusout)="lengthPassword($event)"
+        [ngClass]="colorLengthPassword"
+      />
+      <label *ngIf="colorLengthPassword == 'red'">
+        Password needs to contain 6 characters</label
+      >
+      <br />
+      <label>New password check </label>
+      <input
+        placeholder="Password check"
+        type="password"
+        id="passwordc"
+        #passwordcInput
+        [ngClass]="colorCheck"
+        (focusout)="checkPassword($event, passwordInput.value)"
+      />
+      <label *ngIf="colorCheck == 'red'"> Passwords aren't the same</label>
+      <br />
+      <button
+        class="btn style"
+        (click)="
+          updateInputsNewValue(
+            nameInput.value,
+            emailInput.value,
+            passwordInput.value,
+            passwordcInput.value
+          )
+        "
+      >
+        update
+      </button>
+    </div>
   </div>
-</div>
 
-<div class="bought">
-  <h4>Recently bought products</h4>
-  <ul>
-    <li
-      *ngFor="let boughtProduct of boughtProducts"
-      (click)="redirectToProductDetails(boughtProduct)"
-    >
-      <div class="card">
-        <img
-          class="card-img-top"
-          [src]="boughtProduct.image"
-          alt="image from {{ boughtProduct.latinName }}"
-        />
-        <div class="card-body">
-          <div class="card-text latinName">{{ boughtProduct.latinName }}</div>
-          <div class="card-text name">
-            {{ boughtProduct.name }}
-            <div class="card-text price">{{ boughtProduct.price }}</div>
+  <div class="bought" [hidden]="boughtProducts == undefined">
+    <h4>Recently bought products</h4>
+    <ul>
+      <div class="flex-container">
+        <li
+          class="list-item"
+          *ngFor="let boughtProduct of boughtProducts"
+          (click)="redirectToProductDetails(boughtProduct)"
+        >
+          <div class="product">
+            <img
+              class="card-img-top"
+              [src]="boughtProduct.image"
+              alt="image from {{ boughtProduct.latinName }}"
+            />
+            <div class="product-body">
+              <div class="name">
+                <b>{{ boughtProduct.name }}</b>
+                <div class="price">{{ boughtProduct.price }}</div>
+              </div>
+            </div>
           </div>
-        </div>
+        </li>
       </div>
-    </li>
-  </ul>
+    </ul>
+  </div>
 </div>

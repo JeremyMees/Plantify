@@ -1,28 +1,30 @@
-<div class="centered">
-  <input class="input" placeholder="Email address" type="text" #email />
-  <br />
-  <input class="input" type="password" placeholder="Password" #password />
-  <br />
-  <button class="btn" (click)="login(email.value, password.value)">
-    log in
-  </button>
-  <br />
-  <button [hidden]="forgot" class="btn" (click)="forgotPassword()">
-    Forgot your password ?
-  </button>
-  <input
-    [hidden]="!forgot"
-    class="input"
-    placeholder="Email address"
-    type="text"
-    #emailReset
-  />
-  <br />
-  <button
-    [hidden]="!forgot"
-    class="btn"
-    (click)="resetPassword(emailReset.value)"
-  >
-    Send reset email.
-  </button>
+<div class="container">
+  <div class="centered">
+    <input class="input" placeholder="Email address" type="text" #email />
+    <br />
+    <input class="input" type="password" placeholder="Password" #password />
+    <br />
+    <button class="btn" (click)="login(email.value, password.value)">
+      log in
+    </button>
+    <br />
+    <button [hidden]="forgot" class="btn" (click)="forgotPassword()">
+      Forgot your password ?
+    </button>
+    <input
+      [hidden]="!forgot"
+      class="input"
+      placeholder="Email address"
+      type="text"
+      #emailReset
+    />
+    <br />
+    <button
+      [hidden]="!forgot"
+      class="btn"
+      (click)="resetPassword(emailReset.value)"
+    >
+      Send reset email.
+    </button>
+  </div>
 </div>

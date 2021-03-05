@@ -1,29 +1,30 @@
 <ul>
-  <li *ngFor="let product of products">
-    <div class="card">
-      <img
-        class="card-img-top"
-        [src]="product.image"
-        alt="image from {{ product.latinName }}"
-      />
-      <div class="card-body">
-        <div class="card-text">name : {{ product.name }}</div>
-        <div class="card-text">
-          price : {{ (product.price * product.quantity).toFixed(2) }}
+  <div class="flex-container">
+    <li *ngFor="let product of products">
+      <div class="product">
+        <img
+          class="card-img-top"
+          [src]="product.image"
+          alt="image from {{ product.latinName }}"
+        />
+        <div class="product-bode">
+          <div class="">name : {{ product.name }}</div>
+          <div class="">
+            price : {{ (product.price * product.quantity).toFixed(2) }}
+          </div>
+          <div class="">quantity : {{ product.quantity }}</div>
+          <button class="btn" (click)="dec(product)">-</button>
+          <button class="btn" (click)="inc(product)">+</button>
+          <button class="btn" (click)="deleteFromCart(product)">delete</button>
         </div>
-        <div class="card-text">quantity : {{ product.quantity }}</div>
-        <button class="btn" (click)="dec(product)">-</button>
-        <button class="btn" (click)="inc(product)">+</button>
-        <button class="btn" (click)="deleteFromCart(product)">delete</button>
       </div>
-    </div>
-  </li>
-  <br />
-  <li>
-    <div *ngIf="!totalPrice">No products in the shoppingcart yet</div>
-    <div class="total" *ngIf="totalPrice">
-      <p>total : {{ totalPrice }}</p>
-      <button class="btn" (click)="pay()">pay</button>
-    </div>
-  </li>
+    </li>
+  </div>
 </ul>
+<div *ngIf="!totalPrice">No products in the shoppingcart yet</div>
+<div class="total" *ngIf="totalPrice">
+  <p>
+    total : <b>{{ totalPrice }}</b>
+  </p>
+  <button class="btn pay" (click)="pay()">pay</button>
+</div>

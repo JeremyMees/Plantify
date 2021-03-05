@@ -1,81 +1,127 @@
 ul {
   list-style: none;
-  text-align: center;
+  padding-left: 0;
+}
+
+.list {
+  width: 90%;
+  color: #333;
+  margin: 0 auto;
+  margin-bottom: 1em;
+}
+
+.flex-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  margin: auto;
 }
 
 li {
-  display: inline-block;
+  padding: 0.5em;
   text-align: left;
+  width: 23%;
+  margin-bottom: 1em;
+  margin-right: 1em;
+  border: 1px solid #333;
+  border-radius: 15px;
+}
+
+.product {
+  position: relative;
+  height: 100%;
+}
+
+.product-body {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+}
+
+.header {
+  width: 90%;
+  margin: auto;
+  padding: 1em;
+  height: auto;
+}
+
+@media (max-width: 750px) {
+  li {
+    width: 100%;
+  }
+
+  .header {
+    width: 50%;
+    margin: auto;
+    padding: 1em;
+    height: auto;
+  }
+
+  .flex-container {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.product :hover {
+  cursor: pointer;
 }
 
 .btn {
   background-color: #71e06c;
 }
 
-.margin-r {
-  margin-right: 5px;
-}
-
-button {
-  margin-top: 10px;
-  margin-bottom: 20px;
-}
-
-.card {
-  background-color: #bfc5bf;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  width: 400px;
-}
-
-.card-body {
-  background-color: inherit;
-  padding: -5px;
-}
-
-.price {
-  position: absolute;
-  right: 20px;
-  bottom: 20px;
-}
-
-img {
-  text-align: center;
-  width: 400px;
-  height: 450px;
-}
-
-.parent {
-  display: flex;
-  justify-content: center;
-}
-
-.input-group {
-  margin-left: 5px;
-  height: 30px;
-  width: 350px;
-}
-
 input {
-  background-color: #71e06c;
-  position: relative;
-  top: 9px;
-  height: 40px;
+  display: inline;
+  background: inherit;
+  border: 1px solid #333;
+  border-radius: 15px;
+}
+
+input[type="submit"] {
+  margin-left: -60px;
+  height: 25px;
+  width: 60px;
+  background: inherit;
+  border: none;
+  color: #333;
+}
+
+input[type="submit"]:hover {
+  color: black;
+}
+
+input[type="submit"]:focus {
+  background: inherit;
+}
+
+.search {
+  max-width: 400px;
+  width: 90%;
+  margin: auto;
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+
+.buttons {
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.button {
+  margin-left: 1em;
+  margin-bottom: 1em;
 }
 
 input:focus {
   background-color: #a6ffa1;
   outline: none;
-}
-
-.buttons {
-  width: 300px;
-  margin: auto;
-  transform: translate(30%);
-}
-
-.page {
-  margin-right: 10px;
 }
 
 .pagination {

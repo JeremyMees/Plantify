@@ -1,8 +1,10 @@
-<app-shoppingcart
-  *ngIf="products"
-  [totalPrice]="totalPrice"
-  [products]="products"
-  (quantityChanged)="onQuantityChange($event)"
-  (deleteItemFromCart)="deleteFromCart($event)"
-  (productsToPay)="payForProducts($event)"
-></app-shoppingcart>
+<div class="container">
+  <app-shoppingcart
+    *ngIf="products"
+    [totalPrice]="totalPrice"
+    [products]="products"
+    (quantityChanged)="onQuantityChange($event)"
+    (deleteItemFromCart)="deleteFromCart($event)"
+    (productsToPay)="payForProducts($event)"
+  ></app-shoppingcart>
+</div>

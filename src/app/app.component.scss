@@ -1,1 +1,13 @@
+.footer {
+  flex-basis: 230px;
+}
 
+.page .page-wrap {
+  flex-grow: 1;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}

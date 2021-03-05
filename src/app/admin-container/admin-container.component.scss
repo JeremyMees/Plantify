@@ -1,18 +1,7 @@
 .container {
-  width: 100%;
-}
-
-.right-top {
-  position: relative;
-  top: 0px;
-  flex: 1;
-  height: 50%;
-}
-.right-bottom {
-  position: relative;
-  bottom: 0px;
-  flex: 1;
-  height: 50%;
+  width: 90%;
+  display: block;
+  margin: auto;
 }
 
 .update {
@@ -26,7 +15,7 @@
 .btn {
   background-color: #71e06c;
   width: 45%;
-  margin-right: 0.5em;
+  margin-left: 0.5em;
 }
 
 .btn:hover {
@@ -34,6 +23,7 @@
 }
 
 .buttons {
+  display: block;
   margin: auto;
   min-width: 300px;
   max-width: 50%;

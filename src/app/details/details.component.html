@@ -1,29 +1,27 @@
-<div class="box">
-  <div class="table">
+<div class="parent">
+  <div class="child">
     <div class="image">
-      <img
-        class="img-fluid"
-        [src]="plant?.image"
-        alt="image from {{ plant?.latinName }}"
-      />
+      <img [src]="plant?.image" alt="image from {{ plant?.latinName }}" />
     </div>
-    <div class="card">
-      <div class="card-titel">
+  </div>
+  <div class="child">
+    <div class="content">
+      <div>
         <h1>details</h1>
       </div>
-      <div class="card-body">
-        <p class="card-text">{{ plant?.latinName }}</p>
-        <p class="card-text">{{ plant?.name }}</p>
-        <p class="card-text">{{ plant?.price }}</p>
+      <div>
+        <p>{{ plant?.latinName }}</p>
+        <p>{{ plant?.name }}</p>
+        <p>{{ plant?.price }}</p>
         <div class="inline">
-          <p class="card-text">
+          <p>
             <button class="minus btn" (click)="quantityDown(plant)">-</button>
             {{ plant?.quantity }}
             <button class="plus btn" (click)="quantityUp(plant)">+</button>
           </p>
         </div>
         <h5>Description</h5>
-        <div class="description card-text">
+        <div class="description">
           {{ plant?.description }}
         </div>
         <br />

@@ -1,28 +1,22 @@
-.details {
-  margin-top: 30px;
-  text-align: center;
-  position: fixed;
-  width: 100%;
+.parent {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   height: 100%;
-  left: 0;
-  top: 0;
-  margin-left: 0;
+  margin-bottom: 2em;
+  margin-top: 2em;
 }
 
-.box {
-  background-color: #bfc5bf;
+img {
+  object-fit: contain;
   width: 100%;
+  height: 400px;
 }
 
-.table {
-  background-color: #bfc5bf;
-  display: table;
-  border: none;
-  position: fixed;
-  left: 0;
-  top: 0;
-  margin: 0;
-  height: 100%;
+.child {
+  width: 50%;
 }
 
 .btn {
@@ -32,26 +26,23 @@
   margin-bottom: 5px;
 }
 
-.card {
-  background-color: inherit;
-  position: fixed;
-  top: 20%;
+@media (max-width: 800px) {
+  img {
+    object-fit: contain;
+    width: 100%;
+    height: 350px;
+  }
+
+  .parent {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
-.image,
-.card {
-  border: none;
-  display: table-cell;
-  vertical-align: top;
-  width: 50%;
-  height: 100%;
-}
-
-img {
-  margin-left: 0;
-  margin-top: 10em;
-}
-
-.description {
-  max-width: 400px;
+@media (max-width: 500px) {
+  img {
+    object-fit: contain;
+    width: 100%;
+    height: 250px;
+  }
 }

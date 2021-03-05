@@ -1,47 +1,41 @@
-<div class="parent">
-  <div class="btn-group">
-    <button class="btn" (click)="sort('high')">high - low</button>
-    <button class="btn" (click)="sort('low')">low - high</button>
-    <button class="btn" (click)="sort('new')">new - old</button>
-  </div>
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <button class="btn" type="button" (click)="searchByString(search.value)">
-        Search
-      </button>
-    </div>
-    <input
-      aria-describedby="inputGroup-sizing-default"
-      type="text"
-      #search
-      class="form-control"
-      placeholder="Product name"
-    />
-  </div>
+<div class="buttons">
+  <button class="btn button" (click)="sort('high')">high - low</button>
+  <button class="btn button" (click)="sort('low')">low - high</button>
+  <button class="btn button" (click)="sort('new')">new - old</button>
 </div>
-<div>
+<div class="search">
+  <input
+    aria-describedby="inputGroup-sizing-default"
+    type="text"
+    #search
+    class="form-control"
+    placeholder="Product name"
+  />
+  <input type="submit" value="search" (click)="searchByString(search.value)" />
+</div>
+<div class="list">
   <ul>
-    <li
-      *ngFor="
-        let plant of plants
-          | slice: (page - 1) * pageSize:(page - 1) * pageSize + pageSize
-      "
-    >
-      <div class="card" (click)="onSelect(plant)">
-        <img
-          class="card-img-top"
-          [src]="plant.image"
-          alt="image from {{ plant.latinName }}"
-        />
-        <div class="card-body">
-          <div class="card-text latinName">{{ plant.latinName }}</div>
-          <div class="card-text name">
-            {{ plant.name }}
-            <div class="card-text price">{{ plant.price }}</div>
+    <div class="flex-container">
+      <li
+        class="list-item"
+        *ngFor="
+          let plant of plants
+            | slice: (page - 1) * pageSize:(page - 1) * pageSize + pageSize
+        "
+      >
+        <div class="product" (click)="onSelect(plant)">
+          <div class="header">
+            <img [src]="plant.image" alt="image from {{ plant.latinName }}" />
+          </div>
+          <div class="product-body">
+            <div class="product-text name">
+              <b>{{ plant.name }}</b>
+              <div class="product-text price">{{ plant.price }}</div>
+            </div>
           </div>
         </div>
-      </div>
-    </li>
+      </li>
+    </div>
   </ul>
   <div class="pagination">
     <ngb-pagination

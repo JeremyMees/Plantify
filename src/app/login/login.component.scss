@@ -1,15 +1,15 @@
 .btn {
   background-color: #71e06c;
-  width: 250px;
+  width: 100%;
   margin-bottom: 0.5rem;
 }
 
 input {
   background-color: transparent;
-  border: #e2e2e2 solid 1px;
+  border: #333 solid 1px;
   border-radius: 5px;
   margin-bottom: 0.5em;
-  width: 250px;
+  width: 100%;
 }
 
 input:focus {
@@ -17,12 +17,16 @@ input:focus {
 }
 
 .centered {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  box-shadow: 20px 20px 60px #cfcfcf, -20px -20px 60px #fffdfd;
+  display: block;
+  margin: auto;
+  width: 90%;
+  max-width: 300px;
   padding: 1.5rem;
-  border-radius: 20px;
+  border-radius: 15px;
+  border: 1px solid #333;
   background-color: transparent;
+}
+
+.container {
+  padding: 2em;
 }
