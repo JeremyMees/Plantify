@@ -1,4 +1,29 @@
 .btn {
   background-color: #71e06c;
   margin-left: 5px;
+  margin-bottom: 1em;
+}
+
+.container {
+  padding-top: 1em;
+  height: 5em;
+  background-color: transparent;
+}
+
+.close {
+  position: relative;
+  bottom: 40px;
+  outline: none;
+  color: crimson;
+}
+
+.close:hover {
+  color: red;
+}
+
+.body {
+  width: 90%;
+  display: block;
+  margin: auto;
+  margin-bottom: 1em;
 }
