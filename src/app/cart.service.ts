@@ -51,8 +51,8 @@ export class CartService {
     return this.roundTo(this.totalPrice, 2);
   }
 
-  payProducts(productsArray: Array<Product>): void {
-    this.firebaseService.boughtProductsToDb(productsArray);
+  payProducts(productsArray: Array<Product>, email: string): void {
+    this.firebaseService.boughtProductsToDb(productsArray, email);
     this.cartInventory = [];
     alert('shoppingcart is getting emptied now');
   }

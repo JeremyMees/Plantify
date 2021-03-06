@@ -83,6 +83,20 @@ describe('AccountComponent', () => {
         credentials: { displayName: 'Testname', email: 'Testemail' },
       })
     );
+    fakeFirebaseService.getBoughtProducts.and.returnValue(
+      of([
+        {
+          data: () => {
+            return 'foo';
+          },
+        },
+        {
+          data: () => {
+            return 'stub';
+          },
+        },
+      ])
+    );
     fixture.detectChanges();
   });
 

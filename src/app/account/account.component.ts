@@ -4,6 +4,7 @@ import { FirebaseService } from '../firebase.service';
 import { Router } from '@angular/router';
 import { Product } from '../product';
 import { NotificationService } from '../notification.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-account',
@@ -19,7 +20,7 @@ export class AccountComponent implements OnInit {
   colorEmail: string;
   colorLengthPassword: string;
   colorCheck: string;
-  boughtProducts: Array<Product>;
+  boughtProducts: Array<any>;
   credentials: any;
   input: boolean = false;
   admin: boolean = false;
@@ -32,10 +33,18 @@ export class AccountComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.boughtProducts = this.firebaseService.getBoughtProducts();
+    let boughtArray: Array<any> = [];
     this.authService.getUserCredentials().then((credentials) => {
       this.name = credentials.displayName;
       this.email = credentials.email;
+      this.firebaseService
+        .getBoughtProducts(credentials.email)
+        .subscribe((querySnapshot) => {
+          querySnapshot.forEach((doc: any) => {
+            boughtArray.push(doc.data());
+          });
+          this.boughtProducts = boughtArray;
+        });
     });
   }
 

@@ -26,7 +26,6 @@ export class LoginGuard implements CanActivate {
     | UrlTree {
     return this.authService.isUserLoggedIn().pipe(
       tap((isUserLoggedIn: boolean) => {
-        console.log(isUserLoggedIn);
         if (!isUserLoggedIn) {
           this.router.navigateByUrl('/login');
         }

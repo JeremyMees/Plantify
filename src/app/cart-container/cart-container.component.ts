@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from '../cart.service';
 import { Product } from '../product';
 import { NotificationService } from '../notification.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-cart-container',
@@ -11,15 +12,20 @@ import { NotificationService } from '../notification.service';
 export class CartContainerComponent implements OnInit {
   products: Array<Product>;
   totalPrice: number;
+  email: string;
 
   constructor(
     private cartService: CartService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
     this.products = this.cartService.getCartInventory();
     this.totalPriceOfProducts();
+    this.authService.getUserCredentials().then((credentials) => {
+      this.email = credentials.email;
+    });
   }
 
   onQuantityChange(change: Array<any>) {
@@ -56,7 +62,7 @@ export class CartContainerComponent implements OnInit {
   }
 
   payForProducts(): void {
-    this.cartService.payProducts(this.products);
+    this.cartService.payProducts(this.products, this.email);
     this.products = this.cartService.getCartInventory();
     this.totalPriceOfProducts();
   }

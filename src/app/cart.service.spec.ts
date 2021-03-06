@@ -63,7 +63,7 @@ describe('CartService', () => {
   });
 
   it('should pay products', () => {
-    service.payProducts([mockPlant]);
+    service.payProducts([mockPlant], 'stubemail');
     expect(service.cartInventory).toEqual([]);
   });
 });

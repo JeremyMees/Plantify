@@ -54,12 +54,27 @@ export class FirebaseService {
       .get();
   }
 
-  boughtProductsToDb(productsArray: Array<Product>): void {
-    this.boughtProducts = productsArray;
+  boughtProductsToDb(productsArray: Array<Product>, email: string): void {
+    productsArray.forEach((product) => {
+      const data = {
+        email: email,
+        latinName: product.latinName,
+        name: product.name,
+        price: Number(product.price),
+        description: product.description,
+        image: product.image,
+        id: product.id,
+        quantity: product.quantity,
+        bought_at: new Date(),
+      };
+      this.firestore.collection('bought').add(data);
+    });
   }
 
-  getBoughtProducts(): Array<Product> {
-    return this.boughtProducts;
+  getBoughtProducts(email: string): any {
+    return this.firestore
+      .collection('bought', (ref) => ref.where('email', '==', email).limit(4))
+      .get();
   }
 
   addNewProductToDB(newProductArray: Array<Product>): void {
