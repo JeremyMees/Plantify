@@ -3,11 +3,13 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CartContainerComponent } from './cart-container.component';
 import { CartService } from '../cart.service';
 import { Product } from '../product';
+import { AuthService } from '../auth.service';
 
 describe('CartContainerComponent', () => {
   let component: CartContainerComponent;
   let fixture: ComponentFixture<CartContainerComponent>;
   let fakeService: jasmine.SpyObj<CartService>;
+  let fakeAuthService: jasmine.SpyObj<AuthService>;
   let spy: any;
   const mockPlant: Product = {
     id: 1,
@@ -33,15 +35,25 @@ describe('CartContainerComponent', () => {
             'payProducts',
           ]),
         },
+        {
+          provide: AuthService,
+          useValue: jasmine.createSpyObj('AuthService', ['getUserCredentials']),
+        },
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
     fakeService = TestBed.inject(CartService) as jasmine.SpyObj<CartService>;
+    fakeAuthService = TestBed.inject(
+      AuthService
+    ) as jasmine.SpyObj<AuthService>;
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CartContainerComponent);
     component = fixture.componentInstance;
+    fakeAuthService.getUserCredentials.and.returnValue(
+      Promise.resolve({ email: 'foo-email' })
+    );
     fixture.detectChanges();
   });
 

@@ -6,10 +6,10 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { routes } from './app-routing.module';
+import { BehaviorSubject, of } from 'rxjs';
 
 describe('FirebaseService', () => {
   let service: FirebaseService;
-  let fakeFirestore: jasmine.SpyObj<AngularFirestore>;
   let fakeStorage: jasmine.SpyObj<AngularFireStorage>;
   let router: Router;
   const mockPlant: Product = {
@@ -21,6 +21,19 @@ describe('FirebaseService', () => {
     image: 'images',
     description: 'foo description',
   };
+  const fakeFirestore = {
+    collection: (name: string) => ({
+      valueChanges: () => new BehaviorSubject({ foo: 'bar' }),
+      set: (_d: any) => new Promise((resolve, _reject) => resolve('stub')),
+      get: () =>
+        new BehaviorSubject({
+          data: () => {
+            return mockPlant;
+          },
+          id: 'foo',
+        }),
+    }),
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -28,10 +41,7 @@ describe('FirebaseService', () => {
       providers: [
         {
           provide: AngularFirestore,
-          useValue: jasmine.createSpyObj('AngularFirestore', [
-            'collection.get',
-            'collection.delete',
-          ]),
+          useValue: jasmine.createSpyObj(fakeFirestore),
         },
         {
           provide: AngularFireStorage,
@@ -43,9 +53,6 @@ describe('FirebaseService', () => {
       ],
     });
     service = TestBed.inject(FirebaseService);
-    fakeFirestore = TestBed.inject(
-      AngularFirestore
-    ) as jasmine.SpyObj<AngularFirestore>;
     fakeStorage = TestBed.inject(
       AngularFireStorage
     ) as jasmine.SpyObj<AngularFireStorage>;
@@ -55,6 +62,11 @@ describe('FirebaseService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  // it('should get products from database', () => {
+  //   service.getProductsFromDB();
+  //   expect(service.productsArray).toEqual([mockPlant]);
+  // });
 
   // it('should return the bought products', () => {
   //   service.getBoughtProducts('stubemail').subscribe((querySnapshot)=>{
