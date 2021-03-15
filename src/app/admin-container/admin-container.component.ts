@@ -41,14 +41,17 @@ export class AdminContainerComponent implements OnInit {
 
   addNewProduct(newProductArray: Array<Product>): void {
     this.firebaseService.addNewProductToDB(newProductArray);
+    this.ngOnInit();
   }
 
   deleteProduct(plant: Product): void {
     this.firebaseService.deleteProductfromDB(plant.id);
+    this.ngOnInit();
   }
 
   updateProduct(updateArray: Array<Product>): void {
     this.firebaseService.updateProductfromDB(updateArray, this.chosenProductID);
+    this.ngOnInit();
   }
 
   productToUpdate(product: Product): void {
@@ -71,13 +74,19 @@ export class AdminContainerComponent implements OnInit {
 
   updateAdmin(email: string): void {
     this.authService.updateAdminDB(email, this.chosenAdminID);
+    this.switch = true;
+    this.ngOnInit();
   }
 
   addNewAdmin(email: string): void {
     this.authService.addNewAdminToDB(email);
+    this.switch = true;
+    this.ngOnInit();
   }
 
   adminToDelete(admin: Admin): void {
     this.authService.deleteAdminfromDB(admin.id);
+    this.switch = true;
+    this.ngOnInit();
   }
 }
