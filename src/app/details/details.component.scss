@@ -25,6 +25,17 @@ img {
   margin-bottom: 1em;
 }
 
+.btn-q {
+  border: none;
+  background-color: inherit;
+  margin-right: 5px;
+  margin-bottom: 1em;
+}
+
+.quantity {
+  font-size: 2em;
+}
+
 @media (max-width: 700px) {
   img {
     object-fit: contain;

@@ -7,20 +7,21 @@
   <div class="child">
     <div class="content">
       <div>
-        <h1>{{ "DETAILS.description" | translate }}</h1>
-      </div>
-      <div>
+        <h1>{{ plant?.name }}</h1>
         <p>{{ plant?.latinName }}</p>
-        <p>{{ plant?.name }}</p>
-        <p>{{ plant?.price }}</p>
+        <p>
+          <b>{{ plant?.price }}</b>
+        </p>
         <div class="inline">
-          <p>
-            <button class="minus btn" (click)="quantityDown(plant)">-</button>
+          <p class="quantity">
+            <button class="minus btn-q" (click)="quantityDown(plant)">-</button>
+
             {{ plant?.quantity }}
-            <button class="plus btn" (click)="quantityUp(plant)">+</button>
+
+            <button class="plus btn-q" (click)="quantityUp(plant)">+</button>
           </p>
         </div>
-        <h5>Description</h5>
+        <h5>{{ "DETAILS.description" | translate }}</h5>
         <div class="description">
           {{ plant?.description }}
         </div>
