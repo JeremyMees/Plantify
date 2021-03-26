@@ -3,6 +3,7 @@ import { AuthService } from '../auth.service';
 import { RegisterComponent } from './register.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NotificationService } from '../notification.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -13,6 +14,7 @@ describe('RegisterComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [RegisterComponent],
+      imports: [TranslateModule.forRoot()],
       providers: [
         {
           provide: AuthService,

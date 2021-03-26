@@ -1,6 +1,10 @@
 <div class="container">
-  <button class="btn" (click)="switchContent(false)">Products</button>
-  <button class="btn" (click)="switchContent(true)">Admins</button>
+  <button class="btn" (click)="switchContent(false)">
+    {{ "ADMIN.CONTAINER.products" | translate }}
+  </button>
+  <button class="btn" (click)="switchContent(true)">
+    {{ "ADMIN.CONTAINER.admins" | translate }}
+  </button>
 
   <div class="products" [hidden]="switch">
     <div class="row">

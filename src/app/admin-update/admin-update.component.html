@@ -1,34 +1,40 @@
 <div class="box">
-  <h2>Update product</h2>
+  <h2>{{ "ADMIN.UPDATE.title" | translate }}</h2>
   <input
     type="text"
-    placeholder="latin name"
+    placeholder="{{ 'ADMIN.UPDATE.latin' | translate }}"
     value="{{ chosenProduct.latinName }}"
     #latinName
   />
   <br />
   <input
     type="text"
-    placeholder="Name"
+    placeholder="{{ 'ADMIN.UPDATE.name' | translate }}"
     #name
     value="{{ chosenProduct.name }}"
   />
   <br />
   <input
     type="text"
-    placeholder="Price"
+    placeholder="{{ 'ADMIN.UPDATE.price' | translate }}"
     #price
     value="{{ chosenProduct.price }}"
   />
   <br />
   <textarea
     type="text"
-    placeholder="description"
+    placeholder="{{ 'ADMIN.UPDATE.description' | translate }}"
     #description
     value="{{ chosenProduct.description }}"
   ></textarea>
   <br />
-  <input type="file" placeholder="image" #image class="file" accept=".png" />
+  <input
+    type="file"
+    placeholder="{{ 'ADMIN.UPDATE.image' | translate }}"
+    #image
+    class="file"
+    accept=".png"
+  />
   <br />
   <button
     class="btn"
@@ -42,6 +48,6 @@
       )
     "
   >
-    Update product
+    {{ "ADMIN.UPDATE.button" | translate }}
   </button>
 </div>

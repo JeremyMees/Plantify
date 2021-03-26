@@ -1,5 +1,5 @@
 <div class="box">
-  <h2>Update admin</h2>
+  <h2>{{ "ADMIN.UPDATE-USER.title" | translate }}</h2>
   <input
     type="text"
     placeholder="email"
@@ -7,6 +7,6 @@
     #email
   />
   <button class="btn" (click)="updateChosenAdmin(email.value)">
-    Update product
+    {{ "ADMIN.UPDATE-USER.button" | translate }}
   </button>
 </div>

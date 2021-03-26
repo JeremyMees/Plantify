@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { AdminAddComponent } from './admin-add.component';
 
 describe('AdminAddComponent', () => {
@@ -10,6 +11,7 @@ describe('AdminAddComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [AdminAddComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      imports: [TranslateModule.forRoot()],
     }).compileComponents();
   });
 

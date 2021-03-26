@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { routes } from '../app-routing.module';
 import { AuthService } from '../auth.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('AdminContainerComponent', () => {
   let component: AdminContainerComponent;
@@ -60,7 +61,10 @@ describe('AdminContainerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule.withRoutes(routes)],
+      imports: [
+        RouterTestingModule.withRoutes(routes),
+        TranslateModule.forRoot(),
+      ],
       declarations: [AdminContainerComponent],
       providers: [
         { provide: FirebaseService, useValue: fakeFirebaseService },

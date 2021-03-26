@@ -1,7 +1,11 @@
 <ul>
   <li *ngFor="let admin of admins; let i = index">
-    <button class="btn" (click)="selectForUpdate(admin)">update</button>
-    <button class="btn delete" (click)="selectForDelete(admin)">delete</button>
+    <button class="btn" (click)="selectForUpdate(admin)">
+      {{ "ADMIN.LIST-USER.update" | translate }}
+    </button>
+    <button class="btn delete" (click)="selectForDelete(admin)">
+      {{ "ADMIN.LIST-USER.delete" | translate }}
+    </button>
     {{ admin.email }}
   </li>
 </ul>

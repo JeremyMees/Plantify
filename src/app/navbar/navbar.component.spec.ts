@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { routes } from '../app-routing.module';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NotificationService } from '../notification.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
@@ -17,7 +18,10 @@ describe('NavbarComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [NavbarComponent],
-      imports: [RouterTestingModule.withRoutes(routes)],
+      imports: [
+        RouterTestingModule.withRoutes(routes),
+        TranslateModule.forRoot(),
+      ],
       providers: [
         {
           provide: AuthService,

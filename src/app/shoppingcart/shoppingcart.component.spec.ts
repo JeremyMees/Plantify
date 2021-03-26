@@ -1,6 +1,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ShoppingcartComponent } from './shoppingcart.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('ShoppingcartComponent', () => {
   let component: ShoppingcartComponent;
@@ -19,6 +20,7 @@ describe('ShoppingcartComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ShoppingcartComponent],
+      imports: [TranslateModule.forRoot()],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   });

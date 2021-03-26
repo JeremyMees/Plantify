@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AdminUserAddComponent } from './admin-user-add.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('AdminUserAddComponent', () => {
   let component: AdminUserAddComponent;
@@ -9,6 +9,7 @@ describe('AdminUserAddComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AdminUserAddComponent],
+      imports: [TranslateModule.forRoot()],
     }).compileComponents();
   });
 

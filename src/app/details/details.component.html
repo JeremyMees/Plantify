@@ -7,7 +7,7 @@
   <div class="child">
     <div class="content">
       <div>
-        <h1>details</h1>
+        <h1>{{ "DETAILS.description" | translate }}</h1>
       </div>
       <div>
         <p>{{ plant?.latinName }}</p>
@@ -26,9 +26,11 @@
         </div>
         <br />
         <button class="add btn" (click)="addProductToCart(plant)">
-          Add to cart
+          {{ "DETAILS.cart" | translate }}
         </button>
-        <button class="btn" (click)="backToProductList()">Go back</button>
+        <button class="btn" (click)="backToProductList()">
+          {{ "DETAILS.back" | translate }}
+        </button>
       </div>
     </div>
   </div>

@@ -1,24 +1,26 @@
 <div class="container">
   <div class="inputs" *ngIf="input === false">
     <div class="input-content">
-      <p>username</p>
+      <p>{{ "ACCOUNT.username" | translate }}</p>
       <p class="text-secondary">{{ name }}</p>
-      <p>email</p>
+      <p>{{ "ACCOUNT.email" | translate }}</p>
       <p class="text-secondary">{{ email }}</p>
-      <button class="btn style" (click)="updateToInputs()">update</button>
+      <button class="btn style" (click)="updateToInputs()">
+        {{ "ACCOUNT.update" | translate }}
+      </button>
       <button
         class="btn admin-button"
         (click)="toAdminPage()"
         [hidden]="!admin"
       >
-        Go to admin page
+        {{ "ACCOUNT.button" | translate }}
       </button>
     </div>
   </div>
 
   <div class="inputs" *ngIf="input === true">
     <div class="input-content">
-      <label>Username </label>
+      <label>{{ "ACCOUNT.username" | translate }} </label>
       <input
         [value]="[name]"
         type="string"
@@ -28,10 +30,10 @@
         (focusout)="checkName($event, nameInput.value)"
       />
       <label *ngIf="colorLengthName == 'red'">
-        Name needs to contain 6 characters</label
+        {{ "ACCOUNT.name-label" | translate }}</label
       >
       <br />
-      <label>Email </label>
+      <label>{{ "ACCOUNT.email" | translate }} </label>
       <input
         [value]="[email]"
         type="string"
@@ -41,11 +43,11 @@
         (focusout)="checkEmail($event, emailInput.value)"
       />
       <label *ngIf="colorEmail == 'red'">
-        Please enter valid email address</label
+        {{ "ACCOUNT.email-label" | translate }}</label
       >
 
       <br />
-      <label>New password </label>
+      <label>{{ "ACCOUNT.password" | translate }} </label>
       <input
         placeholder="Password"
         type="password"
@@ -55,10 +57,10 @@
         [ngClass]="colorLengthPassword"
       />
       <label *ngIf="colorLengthPassword == 'red'">
-        Password needs to contain 6 characters</label
+        {{ "ACCOUNT.password-label" | translate }}</label
       >
       <br />
-      <label>New password check </label>
+      <label>{{ "ACCOUNT.password-check" | translate }} </label>
       <input
         placeholder="Password check"
         type="password"
@@ -67,7 +69,9 @@
         [ngClass]="colorCheck"
         (focusout)="checkPassword($event, passwordInput.value)"
       />
-      <label *ngIf="colorCheck == 'red'"> Passwords aren't the same</label>
+      <label *ngIf="colorCheck == 'red'">
+        {{ "ACCOUNT.password-check-label" | translate }}</label
+      >
       <br />
       <button
         class="btn style"
@@ -80,13 +84,13 @@
           )
         "
       >
-        update
+        {{ "ACCOUNT.update" | translate }}
       </button>
     </div>
   </div>
 
   <div class="bought" [hidden]="boughtProducts == undefined">
-    <h4>Recently bought products</h4>
+    <h4>{{ "ACCOUNT.recent" | translate }}</h4>
     <ul>
       <div class="flex-container">
         <li

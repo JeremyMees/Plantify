@@ -3,50 +3,54 @@
     <input
       type="text"
       id="name"
-      placeholder="Name"
+      placeholder="{{ 'REGISTER.name' | translate }}"
       #name
       [ngClass]="colorLengthName"
       (focusout)="checkName($event, name.value)"
     />
     <br />
     <label *ngIf="colorLengthName == 'red'">
-      Name needs to contain 6 characters</label
+      {{ "REGISTER.name-label" | translate }}</label
     >
     <br />
     <input
       type="text"
       id="email"
-      placeholder="Email address"
+      placeholder="{{ 'REGISTER.email' | translate }}"
       #email
       [ngClass]="colorEmail"
       (focusout)="checkEmail($event, email.value)"
     />
     <br />
-    <label *ngIf="colorEmail == 'red'"> Unvalid email address</label>
+    <label *ngIf="colorEmail == 'red'">
+      {{ "REGISTER.email-label" | translate }}</label
+    >
     <br />
     <input
       (focusout)="lengthPassword($event)"
       type="password"
       id="password"
-      placeholder="Password"
+      placeholder="{{ 'REGISTER.password' | translate }}"
       #password
       [ngClass]="colorLengthPassword"
     />
     <br />
     <label *ngIf="colorLengthPassword == 'red'">
-      Password needs to contain 6 characters</label
+      {{ "REGISTER.password-label" | translate }}</label
     >
     <br />
     <input
       (focusout)="checkPassword($event, password.value)"
-      placeholder="Password check"
+      placeholder="{{ 'REGISTER.password-check' | translate }}"
       type="password"
       id="passwordc"
       #passwordc
       [ngClass]="colorCheck"
     />
     <br />
-    <label *ngIf="colorCheck == 'red'"> Passwords aren't the same</label>
+    <label *ngIf="colorCheck == 'red'">
+      {{ "REGISTER.password-check-label" | translate }}</label
+    >
     <br />
     <button
       class="btn"
@@ -54,7 +58,7 @@
         register(name.value, email.value, password.value, passwordc.value)
       "
     >
-      Register
+      {{ "REGISTER.button" | translate }}
     </button>
   </div>
 </div>

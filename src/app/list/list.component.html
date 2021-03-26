@@ -1,7 +1,13 @@
 <div class="buttons">
-  <button class="btn button" (click)="sort('high')">high - low</button>
-  <button class="btn button" (click)="sort('low')">low - high</button>
-  <button class="btn button" (click)="sort('new')">new - old</button>
+  <button class="btn button" (click)="sort('high')">
+    {{ "LIST.high" | translate }}
+  </button>
+  <button class="btn button" (click)="sort('low')">
+    {{ "LIST.low" | translate }}
+  </button>
+  <button class="btn button" (click)="sort('new')">
+    {{ "LIST.new" | translate }}
+  </button>
 </div>
 <div class="search">
   <input
@@ -9,9 +15,13 @@
     type="text"
     #search
     class="form-control"
-    placeholder="Product name"
+    placeholder="{{ 'LIST.search-placeholder' | translate }}"
   />
-  <input type="submit" value="search" (click)="searchByString(search.value)" />
+  <input
+    type="submit"
+    value="{{ 'LIST.search' | translate }}"
+    (click)="searchByString(search.value)"
+  />
 </div>
 <div class="list">
   <ul>

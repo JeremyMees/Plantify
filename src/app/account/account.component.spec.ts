@@ -8,6 +8,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { routes } from '../app-routing.module';
 import { NotificationService } from '../notification.service';
 import { of } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('AccountComponent', () => {
   let component: AccountComponent;
@@ -29,7 +30,10 @@ describe('AccountComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule.withRoutes(routes)],
+      imports: [
+        RouterTestingModule.withRoutes(routes),
+        TranslateModule.forRoot(),
+      ],
       declarations: [AccountComponent],
       providers: [
         {

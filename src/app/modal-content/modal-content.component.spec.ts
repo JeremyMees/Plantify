@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PlantService } from '../plant.service';
 import { ModalContentComponent } from './modal-content.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('ModalContentComponent', () => {
   let component: ModalContentComponent;
@@ -11,6 +12,7 @@ describe('ModalContentComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ModalContentComponent],
+      imports: [TranslateModule.forRoot()],
       providers: [
         {
           provide: PlantService,

@@ -1,14 +1,28 @@
 <div>
-  <h2>Add new product</h2>
-  <input type="text" placeholder="latin name" #latinName />
+  <h2>{{ "ADMIN.ADD.title" | translate }}</h2>
+  <input
+    type="text"
+    placeholder="{{ 'ADMIN.ADD.latin' | translate }}"
+    #latinName
+  />
   <br />
-  <input type="text" placeholder="Name" #name />
+  <input type="text" placeholder="{{ 'ADMIN.ADD.name' | translate }}" #name />
   <br />
-  <input type="text" placeholder="Price" #price />
+  <input type="text" placeholder="{{ 'ADMIN.ADD.price' | translate }}" #price />
   <br />
-  <textarea type="text" placeholder="description" #description></textarea>
+  <textarea
+    type="text"
+    placeholder="{{ 'ADMIN.ADD.description' | translate }}"
+    #description
+  ></textarea>
   <br />
-  <input type="file" placeholder="image" #image class="file" accept=".png" />
+  <input
+    type="file"
+    placeholder="{{ 'ADMIN.ADD.image' | translate }}"
+    #image
+    class="file"
+    accept=".png"
+  />
   <br />
   <button
     class="btn"
@@ -22,6 +36,6 @@
       )
     "
   >
-    Add product
+    {{ "ADMIN.ADD.button" | translate }}
   </button>
 </div>

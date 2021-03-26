@@ -13,10 +13,10 @@
           <div class="card-text price">{{ plant.price }}</div>
 
           <button class="btn" (click)="selectForUpdate(plant)">
-            Update product
+            {{ "ADMIN.LIST.update" | translate }}
           </button>
           <button class="btn delete" (click)="selectForDelete(plant)">
-            Delete product
+            {{ "ADMIN.LIST.delete" | translate }}
           </button>
         </div>
         <img

@@ -1,0 +1,158 @@
+{
+  "HOME": {
+    "MISSION": {
+      "title": "Our green mission",
+      "text": "Plants are green, but so is our mission! Plantify literally wants to make living rooms and offices greener with the most beautiful plants. We ourselves try to contribute by making our processes as sustainable as possible.",
+      "bold": "Want to know more about our green aspirations?",
+      "button": "Read more about our mission"
+    },
+    "PERFECT": {
+      "title": "Plants that perfectly fits youre whole home",
+      "text": "You can find the perfect plants for every place just on our site",
+      "button": "Go to the products"
+    },
+    "LOVES": {
+      "title": "Our newest loves"
+    },
+    "GROWER": {
+      "title": "Directly from the grower, at your home",
+      "text": "We get our plants directly from the grower. These are all local growers. In a garden center, plants are sometimes days or weeks before they are sold. A plant that is ordered from us is only removed from the nursery on the day of shipment. This is how we guarantee fresh plants of high quality. In the end, that's what it's all about!"
+    }
+  },
+  "FOOTER": {
+    "title": "Why Plantify?",
+    "text": "At Plantify we try to make buying plants online fun. We are happy to advise you on how to make your interior even greener. That not only looks hip and cozy, it is also healthy for you. Plants purify the air in your living room or bedroom, so you breathe cleaner air.",
+    "profile": "Plantify profile",
+    "where": "Where to find us"
+  },
+  "NAVBAR": {
+    "product": "Products",
+    "account": "Account",
+    "register": "Register",
+    "login": "Log in",
+    "logout": "Log out",
+    "mission": "Mission"
+  },
+  "MISSION": {
+    "GREEN": {
+      "title": "The green mission from Plantify",
+      "text": "Plantify originated from the will to literally green houses with the most beautiful houseplants. Buying fresh house plants could be simpler and more convenient instead of lifting a fracture in the garden center, you had to be able to do it online to order. But, not only our plants need the most beautiful shade of green we also go for green in our business processes. Which means; less use of plastic and more focus on recycling, CO2 emissions compensation, a longer life of your houseplant, a transparent production process and cooperate with 'green' initiatives."
+    },
+    "LONG": {
+      "title": "A long and green plant life",
+      "text": "At Plantify, we think it is important that the houseplant you purchase has a long life. That is not only good for your wallet, because you don't have to buy a new houseplant as often, but it is also less harmful to the environment! If we all keep our houseplants alive longer, we can reduce the impact of polluting production processes!"
+    },
+    "DELIVERY": {
+      "title": "Delivery without worries!",
+      "text": "Unfortunately, just like driving to the garden center, delivering parcels entails CO2 emissions. But, because we want to minimize our impact on the planet, we work together with USPS. They are working hard to deliver completely emission-free in 25 inner cities from 2025, with bicycles and electric vehicles. In addition, we are looking into the possibilities of using a tool that calculates the CO2 emissions per package. With these insights, we can not only optimize our delivery method, but also investigate how we can best offset those emissions."
+    },
+    "PLASTIC": {
+      "title": "Less plastic and more efficiency",
+      "text": "Our packaging is made from FSC cardboard and is therefore produced as sustainably as possible. We ship houseplants in all kinds of different shapes and sizes, which means there is sometimes still empty space in the box. Currently we use 4 sizes of boxes, but if we want to use a box that fits the plant perfectly for all plants, we need 10 to 15 different box sizes. That challenge is still too great. We are, however, developing a box that can hold several plants at the same time! We are also trying to develop an adaptable box. In addition, we have set ourselves the goal of no longer using plastic to protect the plant in the box by the end of 2022. We would also like to replace the protective plastic for the ceramic pots with a sustainable method!"
+    },
+    "HELP": {
+      "title": "Help Plantify become even greener!",
+      "text": "Are you also for a healthy planet and do you know exactly what we need to do to make our business processes greener? Let us know! We can use your help and are open to green partnerships."
+    }
+  },
+  "ACCOUNT": {
+    "username": "Username",
+    "email": "Email",
+    "name-label": "Name needs to contain 6 characters",
+    "email-label": "Please enter a valid email address",
+    "password": "New password",
+    "password-check": "New password check",
+    "password-label": "Password needs to contain 6 characters",
+    "password-check-label": "Password aren't the same",
+    "update": "update",
+    "recent": "Recently bought products",
+    "button": "Go to admin page"
+  },
+  "ADMIN": {
+    "ADD": {
+      "title": "Add new product",
+      "button": "Add product",
+      "latin": "Latin name",
+      "name": "Name",
+      "price": "Price",
+      "image": "Image",
+      "description": "Description"
+    },
+    "UPDATE": {
+      "title": "Update product",
+      "button": "Update product",
+      "latin": "Latin name",
+      "name": "Name",
+      "price": "Price",
+      "image": "Image",
+      "description": "Description"
+    },
+    "LIST": {
+      "update": "Update product",
+      "delete": "Delete product"
+    },
+    "ADD-USER": {
+      "title": "Add new admin",
+      "button": "Add admin"
+    },
+    "UPDATE-USER": {
+      "title": "Update admin",
+      "button": "Update admin"
+    },
+    "LIST-USER": {
+      "update": "Update",
+      "delete": "Delete"
+    },
+    "CONTAINER": {
+      "products": "Products",
+      "admins": "Admins"
+    }
+  },
+  "DETAILS": {
+    "description": "Description",
+    "cart": "Add to cart",
+    "back": "Go back"
+  },
+  "LIST": {
+    "high": "High - Low",
+    "low": "Low - High",
+    "new": "New - Old",
+    "search-placeholder": "Product name",
+    "search": "Search"
+  },
+  "LOGIN": {
+    "email": "Email address",
+    "password": "Password",
+    "forgot": "Forgot your password ?",
+    "reset": "Send reset email"
+  },
+  "MODAL": {
+    "continue": "Continue shopping or checkout",
+    "list": "Continue shopping",
+    "cart": "Go to shoppingcart"
+  },
+  "404": {
+    "title": "404 page not found",
+    "button": "To home page"
+  },
+  "REGISTER": {
+    "name": "Name",
+    "email": "Email address",
+    "name-label": "Name needs to contain 6 characters",
+    "email-label": "Unvalid email address",
+    "password": "Password",
+    "password-check": "Password check",
+    "password-label": "Password needs to contain 6 characters",
+    "password-check-label": "Password aren't the same",
+    "button": "Register"
+  },
+  "CART": {
+    "name": "Name : ",
+    "price": "Price :",
+    "quantity": "Quantity : ",
+    "total": "Total : ",
+    "delete": "Delete",
+    "pay": "Pay",
+    "empty": "No products in the shoppingcart yet"
+  }
+}

@@ -1,0 +1,158 @@
+{
+  "HOME": {
+    "MISSION": {
+      "title": "Onze groene missie",
+      "text": "Planten zijn groen en onze missie ook! Plantify wilt letterlijk alle kamers thuis en op het kantoor groen maken met de mooiste planeten. Wij proberen zelf bij te dragen door onze processen zo duurzaam mogelijk te maken.",
+      "bold": "Meer weten over onze groene ambities?",
+      "button": "Meer lezen over onze missie"
+    },
+    "PERFECT": {
+      "title": "Planten die perfect in je hele huis passen",
+      "text": "Je kan de plant voor iedere plaats vinden op onze site",
+      "button": "Ga naar de producten"
+    },
+    "LOVES": {
+      "title": "Onze nieuwe liefdes"
+    },
+    "GROWER": {
+      "title": "Direct van de kweker naar jouw huis",
+      "text": "We halen onze planten rechtstreeks van de kweker. Dit zijn allemaal lokale telers. In een tuincentrum staan planten soms dagen of weken voordat ze verkocht worden. Een plant die bij ons besteld is, wordt pas op de dag van verzending uit de kwekerij gehaald. Zo garanderen we verse planten van hoge kwaliteit. Daar draait het uiteindelijk om!"
+    }
+  },
+  "FOOTER": {
+    "title": "Waarom Plantify?",
+    "text": "Bij Plantify proberen we het online kopen van planten leuk te maken. Wij adviseren u graag hoe u uw interieur nog groener kunt maken. Dat ziet er niet alleen hip en gezellig uit, het is ook nog eens gezond voor jou. Planten zuiveren de lucht in je woon- of slaapkamer, waardoor je schonere lucht inademt.",
+    "profile": "Plantify profiel",
+    "where": "Waar kan je ons vinden"
+  },
+  "NAVBAR": {
+    "product": "Producten",
+    "account": "Profiel",
+    "register": "Registeren",
+    "login": "Log in",
+    "logout": "Log uit",
+    "mission": "Missie"
+  },
+  "MISSION": {
+    "GREEN": {
+      "title": "De groene missie van Plantify",
+      "text": "Plantify is ontstaan vanuit de wil tot letterlijk kassen met de mooiste kamerplanten. Verse kamerplanten kopen kan eenvoudiger en handiger in plaats van een breuk in het tuincentrum op te heffen, je moest het online kunnen doen om te bestellen. Maar niet alleen onze planten hebben de mooiste groentint nodig, we gaan ook voor groen in onze bedrijfsprocessen. Wat betekent; minder gebruik van plastic en meer focus op recycling, CO2 uitstoot compensatie, een langere levensduur van je kamerplant, een transparant productieproces en meewerken aan 'groene' initiatieven."
+    },
+    "LONG": {
+      "title": "Een lang en groen planten leven",
+      "text": "Bij Plantify vinden we het belangrijk dat de kamerplant die je aanschaft lang meegaat. Dat is niet alleen goed voor je portemonnee, want je hoeft minder vaak een nieuwe kamerplant te kopen, maar het is ook minder belastend voor het milieu! Als we allemaal onze kamerplanten langer in leven houden, kunnen we de impact van vervuilende productieprocessen verminderen!"
+    },
+    "DELIVERY": {
+      "title": "Bezorging zonder hoofdzorgen!",
+      "text": "Helaas brengt het bezorgen van pakketten, net als het rijden naar het tuincentrum, CO2-uitstoot met zich mee. Maar omdat we onze impact op de planeet willen minimaliseren, werken we samen met USPS. Er wordt hard gewerkt om vanaf 2025 in 25 binnensteden volledig emissievrij te leveren, met fietsen en elektrische voertuigen. Daarnaast onderzoeken we de mogelijkheden om een tool in te zetten die de CO2-uitstoot per verpakking berekent. Met deze inzichten kunnen we niet alleen onze bezorgmethode optimaliseren, maar ook onderzoeken hoe we die uitstoot het beste kunnen compenseren."
+    },
+    "PLASTIC": {
+      "title": "Minder plastiek en efficiënter",
+      "text": "Onze verpakkingen zijn gemaakt van FSC-karton en daarom zo duurzaam mogelijk geproduceerd. Wij verzenden kamerplanten in allerlei verschillende soorten en maten waardoor er soms nog ruimte in de doos zit. Momenteel gebruiken we 4 formaten dozen, maar als we voor alle planten een doos willen gebruiken die perfect bij de plant past, hebben we 10 tot 15 verschillende doosmaten nodig. Die uitdaging is nog steeds te groot. We zijn echter een bak aan het ontwikkelen waar meerdere planten tegelijk in passen! We proberen ook een aanpasbare doos te ontwikkelen. Daarnaast hebben we ons ten doel gesteld om eind 2022 geen plastic meer te gebruiken om de plant in de bak te beschermen. Ook willen we het beschermplastic voor de keramische potten vervangen door een duurzame methode!"
+    },
+    "HELP": {
+      "title": "Help Plantify om nog groener te worden!",
+      "text": "Ben jij ook voor een gezonde planeet en weet jij precies wat wij moeten doen om onze bedrijfsprocessen groener te maken? Laat het ons weten! Wij kunnen uw hulp goed gebruiken en staan open voor groene samenwerkingen."
+    }
+  },
+  "ACCOUNT": {
+    "username": "Gebruikersnaam",
+    "email": "Email",
+    "name-label": "Naam moet 6 karakters bevatten",
+    "email-label": "Gelieve een geldig e-mailadres in te geven",
+    "password": "Nieuw wachtwoord",
+    "password-check": "Nieuw wachtwoord controleren",
+    "password-label": "Wachtwoord moet 6 karakters bevatten",
+    "password-check-label": "Wachtwoorden zijn niet het zelfde",
+    "update": "bijwerken",
+    "recent": "Recent gekochten producten",
+    "button": "Ga naar beheerders pagina"
+  },
+  "ADMIN": {
+    "ADD": {
+      "title": "Nieuw product toevoegen",
+      "button": "Product toevoegen",
+      "latin": "Latijnse naam",
+      "name": "Naam",
+      "price": "Prijs",
+      "image": "Foto",
+      "description": "Omschrijving"
+    },
+    "UPDATE": {
+      "title": "Product bijwerken",
+      "button": "Product bijwerken",
+      "latin": "Latijnse naam",
+      "name": "Naam",
+      "price": "Prijs",
+      "image": "Foto",
+      "description": "Omschrijving"
+    },
+    "LIST": {
+      "update": "Product bijwerken",
+      "delete": "Product verwijderen"
+    },
+    "ADD-USER": {
+      "title": "Nieuwe beheerder toevoegen",
+      "button": "Beheerder toevoegen"
+    },
+    "UPDATE-USER": {
+      "title": "Beheerder bijwerken",
+      "button": "Beheerder bijwerken"
+    },
+    "LIST-USER": {
+      "update": "Bijwerken",
+      "delete": "Verwijderen"
+    },
+    "CONTAINER": {
+      "products": "Producten",
+      "admins": "Beheerders"
+    }
+  },
+  "DETAILS": {
+    "description": "Omschrijving",
+    "cart": "Toevoegen aan mandje",
+    "back": "Ga terug"
+  },
+  "LIST": {
+    "high": "Hoog - Laag",
+    "low": "Laag - Hoog",
+    "new": "Nieuw - Oud",
+    "search-placeholder": "Product naam",
+    "search": "Zoek"
+  },
+  "LOGIN": {
+    "email": "Email adres",
+    "password": "Wachtwoord",
+    "forgot": "Wachtwoord vergeten ?",
+    "reset": "Verstuur reset email"
+  },
+  "MODAL": {
+    "continue": "Doorgaan met winkelen of afrekenen",
+    "list": "Verder winkelen",
+    "cart": "Naar winkelmadje"
+  },
+  "404": {
+    "title": "404 pagina niet gevonden",
+    "button": "Naar de home pagina"
+  },
+  "REGISTER": {
+    "name": "Naam",
+    "email": "Email adres",
+    "name-label": "Naam moet 6 karakters bevatten",
+    "email-label": "Ongeldig email adres",
+    "password": "Wachtwoord",
+    "password-check": "wachtwoord controleren",
+    "password-label": "wachtwoord moet 6 karakters bevatten",
+    "password-check-label": "wachtwoorden zijn niet het zelfden",
+    "button": "Registeren"
+  },
+  "CART": {
+    "name": "Naam : ",
+    "price": "Prijs :",
+    "quantity": "Hoeveelheid : ",
+    "total": "Totaal : ",
+    "delete": "Verwijderen",
+    "pay": "Betalen",
+    "empty": "Nog geen producten in het winkelmandje"
+  }
+}

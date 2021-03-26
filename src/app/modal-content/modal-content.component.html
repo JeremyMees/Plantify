@@ -10,9 +10,11 @@
   </button>
 </div>
 <div class="body">
-  <p>continue shopping or checkout</p>
-  <button class="btn" (click)="closeActiveModal()">continue shopping</button>
+  <p>{{ "MODAL.continue" | translate }}</p>
+  <button class="btn" (click)="closeActiveModal()">
+    {{ "MODAL.list" | translate }}
+  </button>
   <button class="btn" (click)="redirectToShoppingcart()">
-    go to shoppingcart
+    {{ "MODAL.cart" | translate }}
   </button>
 </div>

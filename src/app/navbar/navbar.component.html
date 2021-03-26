@@ -31,7 +31,7 @@
           routerLink="/product-list"
           routerLinkActive="active"
           class="text-dark"
-          >Products</a
+          >{{ "NAVBAR.product" | translate }}</a
         >
       </li>
       <li class="navbar-item">
@@ -40,7 +40,7 @@
           routerLinkActive="active"
           class="text-dark"
           ><mat-icon aria-hidden="false" aria-label="shopping-cart icon"
-            >shopping_cart</mat-icon
+            >shopping_basket</mat-icon
           ></a
         >
       </li>
@@ -50,7 +50,7 @@
             class="nav-link dropdown-toggle text-dark"
             id="dropdown"
             ngbDropdownToggle
-            >Account</a
+            >{{ "NAVBAR.account" | translate }}</a
           >
           <div
             class="dropdown-menu bg-light"
@@ -62,34 +62,49 @@
               routerLink="/account"
               routerLinkActive="active"
             >
-              Account
+              {{ "NAVBAR.account" | translate }}
             </a>
             <a
               class="dropdown-item text-dark"
               routerLink="/register"
               routerLinkActive="active"
-              >Register</a
+              >{{ "NAVBAR.register" | translate }}</a
             >
             <a
               class="dropdown-item text-dark"
               routerLink="/login"
               routerLinkActive="active"
-              >Log in</a
+              >{{ "NAVBAR.login" | translate }}</a
             >
             <a
               class="dropdown-item text-dark"
               (click)="logout()"
               routerLink="/product-list"
               routerLinkActive="active"
-              >Log out</a
+              >{{ "NAVBAR.logout" | translate }}</a
             >
           </div>
         </li>
       </ul>
       <li class="navbar-item">
-        <a routerLink="/mission" routerLinkActive="active" class="text-dark"
-          >Mission</a
+        <a routerLink="/mission" routerLinkActive="active" class="text-dark">{{
+          "NAVBAR.mission" | translate
+        }}</a>
+      </li>
+      <li>
+        <select
+          #langSelect
+          (change)="translate.use(langSelect.value)"
+          class="btn"
         >
+          <option
+            *ngFor="let lang of translate.getLangs()"
+            [value]="lang"
+            [selected]="lang === translate.currentLang"
+          >
+            {{ lang }}
+          </option>
+        </select>
       </li>
     </div>
   </ul>

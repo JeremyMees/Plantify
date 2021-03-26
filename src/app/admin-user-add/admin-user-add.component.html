@@ -1,6 +1,8 @@
 <div>
-  <h2>Add new admin</h2>
+  <h2>{{ "ADMIN.ADD-USER.title" | translate }}</h2>
   <input type="text" placeholder="email" #email />
   <br />
-  <button class="btn" (click)="addAdmin(email.value)">Add admin</button>
+  <button class="btn" (click)="addAdmin(email.value)">
+    {{ "ADMIN.ADD-USER.button" | translate }}
+  </button>
 </div>

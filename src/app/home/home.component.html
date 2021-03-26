@@ -1,15 +1,12 @@
 <div class="mission">
   <div class="mission-text">
-    <h2>Our green mission</h2>
+    <h2>{{ "HOME.MISSION.title" | translate }}</h2>
     <p>
-      Plants are green, but so is our mission! Plantify literally wants to make
-      living rooms and offices greener with the most beautiful plants. We
-      ourselves try to contribute by making our processes as sustainable as
-      possible.
-      <b>Want to know more about our green aspirations?</b>
+      {{ "HOME.MISSION.text" | translate }}
+      <b>{{ "HOME.MISSION.bold" | translate }}</b>
     </p>
     <button class="btn buttons" (click)="redirectToMission()">
-      Read more about our mission
+      {{ "HOME.MISSION.button" | translate }}
     </button>
   </div>
 </div>
@@ -20,17 +17,17 @@
   </div>
   <div class="perfect-content">
     <div class="perfect-text">
-      <h2>Plants that perfectly fits youre whole home</h2>
-      <p>You can find the perfect plants for every place just on our site</p>
+      <h2>{{ "HOME.PERFECT.title" | translate }}</h2>
+      <p>{{ "HOME.PERFECT.text" | translate }}</p>
       <button class="btn buttons perfect-btn" (click)="redirectToProductList()">
-        Go to the products
+        {{ "HOME.PERFECT.button" | translate }}
       </button>
     </div>
   </div>
 </div>
 
 <div class="loves">
-  <h1 class="loves-titel">Our newest loves</h1>
+  <h1 class="loves-titel">{{ "HOME.LOVES.title" | translate }}</h1>
   <div>
     <ul>
       <div class="flex-container">
@@ -55,13 +52,7 @@
   </div>
 
   <div class="grower-text">
-    <h2 class="title">Directly from the grower, at your home</h2>
-    <p>
-      We get our plants directly from the grower. These are all local growers.
-      In a garden center, plants are sometimes days or weeks before they are
-      sold. A plant that is ordered from us is only removed from the nursery on
-      the day of shipment. This is how we guarantee fresh plants of high
-      quality. In the end, that's what it's all about!
-    </p>
+    <h2 class="title">{{ "HOME.GROWER.title" | translate }}</h2>
+    <p>{{ "HOME.GROWER.text" | translate }}</p>
   </div>
 </div>
