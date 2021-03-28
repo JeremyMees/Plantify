@@ -20,6 +20,7 @@ describe('FirebaseService', () => {
     quantity: 1,
     image: 'images',
     description: 'foo description',
+    stripe: 'UNDEFINED',
   };
   const fakeFirestore = {
     collection: (name: string) => ({

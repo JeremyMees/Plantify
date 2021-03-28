@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { FirebaseService } from './firebase.service';
+import { Stripe } from './stripe';
 import { Product } from './product';
+import { loadStripe } from '@stripe/stripe-js';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -9,6 +12,7 @@ export class CartService {
   cartInventory: Array<Product> = [];
   totalPriceArray: Array<number> = [];
   totalPrice: number;
+  stripePromise = loadStripe(environment.stripe_key);
   constructor(private firebaseService: FirebaseService) {}
 
   addItemToCart(plant: Product): void {
@@ -20,6 +24,7 @@ export class CartService {
       quantity: plant.quantity,
       image: plant.image,
       description: plant.description,
+      stripe: plant.stripe,
     };
     this.cartInventory.push(orderderdPlant);
     this.getTotalPrice();
@@ -51,10 +56,23 @@ export class CartService {
     return this.roundTo(this.totalPrice, 2);
   }
 
-  payProducts(productsArray: Array<Product>, email: string): void {
-    this.firebaseService.boughtProductsToDb(productsArray, email);
+  async payProducts(
+    stripeArray: Array<Stripe>,
+    productArray: Array<Product>,
+    email: string
+  ): Promise<void> {
+    this.firebaseService.boughtProductsToDb(productArray, email);
+    const stripe = await this.stripePromise;
+    const { error } = await stripe.redirectToCheckout({
+      mode: 'payment',
+      lineItems: stripeArray,
+      successUrl: `${window.location.href}/payment-success`,
+      cancelUrl: `${window.location.href}/payment-failure`,
+    });
+  }
+
+  resetStripe() {
     this.cartInventory = [];
-    alert('shoppingcart is getting emptied now');
   }
 
   roundTo(num: number, places: number): number {

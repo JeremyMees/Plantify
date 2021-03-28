@@ -24,7 +24,16 @@
     </li>
   </div>
 </ul>
-<div *ngIf="!totalPrice">{{ "CART.empty" | translate }}</div>
+
+<div *ngIf="!totalPrice" class="no-products">
+  <h4>{{ "CART.empty" | translate }}</h4>
+  <a routerLink="/product-list" routerLinkActive="active">
+    <button class="no-product-button">
+      {{ "CART.product-button" | translate }}
+    </button>
+  </a>
+</div>
+
 <div class="total" *ngIf="totalPrice">
   <p>
     {{ "CART.total" | translate }}<b>{{ totalPrice }}</b>

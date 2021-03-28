@@ -14,6 +14,7 @@ describe('CartService', () => {
     quantity: 1,
     image: 'images',
     description: 'foo description',
+    stripe: 'UNDEFINED',
   };
 
   beforeEach(() => {
@@ -63,7 +64,22 @@ describe('CartService', () => {
   });
 
   it('should pay products', () => {
-    service.payProducts([mockPlant], 'stubemail');
+    service.payProducts(
+      [{ price: 'foo', quantity: 1 }],
+      [mockPlant],
+      'stubemail'
+    );
+    expect(fakeFirebaseService.boughtProductsToDb).toHaveBeenCalledWith(
+      [mockPlant],
+      'stubemail'
+    );
+    expect(service.cartInventory).toEqual([]);
+  });
+
+  it('should reset the cart inventory', () => {
+    service.cartInventory = [mockPlant];
+    expect(service.cartInventory).toEqual([mockPlant]);
+    service.resetStripe();
     expect(service.cartInventory).toEqual([]);
   });
 });

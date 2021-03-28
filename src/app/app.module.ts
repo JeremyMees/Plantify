@@ -39,6 +39,8 @@ import { MissionComponent } from './mission/mission.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { SuccesStripeComponent } from './succes-stripe/succes-stripe.component';
+import { FailureStripeComponent } from './failure-stripe/failure-stripe.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -70,6 +72,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     FooterComponent,
     HomeComponent,
     MissionComponent,
+    SuccesStripeComponent,
+    FailureStripeComponent,
   ],
   imports: [
     BrowserModule,

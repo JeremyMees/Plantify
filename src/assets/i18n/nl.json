@@ -153,6 +153,17 @@
     "total": "Totaal : ",
     "delete": "Verwijderen",
     "pay": "Betalen",
-    "empty": "Nog geen producten in het winkelmandje"
+    "empty": "Nog geen producten in het winkelmandje",
+    "product-button": "Producten toevoegen"
+  },
+  "SUCCESS": {
+    "title": "Betaling succesvol",
+    "text": "Bedankt om te kopen bij Plantify",
+    "button": "Naar home page"
+  },
+  "FAILURE": {
+    "title": "Er is iets mis gegaan",
+    "text": "Probeer opnieuw en als het weer niet werkt neem dan contact bij ons op",
+    "button": "Probeer opnieuw"
   }
 }

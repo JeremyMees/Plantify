@@ -25,6 +25,7 @@ describe('AccountComponent', () => {
     quantity: 1,
     image: 'foo',
     description: 'foo description',
+    stripe: 'UNDEFINED',
   };
   const mockAdmin = { email: 'foo', id: 0 };
 

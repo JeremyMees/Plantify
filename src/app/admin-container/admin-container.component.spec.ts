@@ -22,6 +22,7 @@ describe('AdminContainerComponent', () => {
     quantity: 1,
     image: 'images',
     description: 'foo description',
+    stripe: 'UNDEFINED',
   };
 
   const fakeFirebaseService = {
@@ -93,6 +94,7 @@ describe('AdminContainerComponent', () => {
         quantity: 1,
         image: 'images',
         description: 'foo description',
+        stripe: 'UNDEFINED',
       },
     ]);
   });

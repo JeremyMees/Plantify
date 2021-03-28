@@ -11,12 +11,16 @@ import { AdminGuard } from './admin.guard';
 import { LoginGuard } from './login.guard';
 import { HomeComponent } from './home/home.component';
 import { MissionComponent } from './mission/mission.component';
+import { SuccesStripeComponent } from './succes-stripe/succes-stripe.component';
+import { FailureStripeComponent } from './failure-stripe/failure-stripe.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'product-list', component: PlantContainerComponent },
   { path: 'product-list/:id', component: PlantContainerComponent },
   { path: 'shopping-cart', component: CartContainerComponent },
+  { path: 'shopping-cart/payment-success', component: SuccesStripeComponent },
+  { path: 'shopping-cart/payment-failure', component: FailureStripeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'account', component: AccountComponent, canActivate: [LoginGuard] },
   { path: 'register', component: RegisterComponent },

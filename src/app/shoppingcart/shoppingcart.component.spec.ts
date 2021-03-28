@@ -15,6 +15,7 @@ describe('ShoppingcartComponent', () => {
     quantity: 1,
     image: 'foo',
     description: 'foo description',
+    stripe: 'UNDEFINED',
   };
 
   beforeEach(async () => {
@@ -28,6 +29,7 @@ describe('ShoppingcartComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ShoppingcartComponent);
     component = fixture.componentInstance;
+    component.products = [mockPlant];
     fixture.detectChanges();
   });
 

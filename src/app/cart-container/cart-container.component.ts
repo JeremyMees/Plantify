@@ -3,6 +3,7 @@ import { CartService } from '../cart.service';
 import { Product } from '../product';
 import { NotificationService } from '../notification.service';
 import { AuthService } from '../auth.service';
+import { Stripe } from '../stripe';
 
 @Component({
   selector: 'app-cart-container',
@@ -61,8 +62,8 @@ export class CartContainerComponent implements OnInit {
     this.totalPrice = this.cartService.getTotalPrice();
   }
 
-  payForProducts(): void {
-    this.cartService.payProducts(this.products, this.email);
+  payForProducts(stripeArray: Array<Stripe>): void {
+    this.cartService.payProducts(stripeArray, this.products, this.email);
     this.products = this.cartService.getCartInventory();
     this.totalPriceOfProducts();
   }

@@ -49,6 +49,32 @@ ul {
   background-color: #71e06c;
 }
 
+.no-products {
+  margin-top: 10em;
+  width: 100%;
+  text-align: center;
+  color: #333;
+}
+
+.no-product-button {
+  padding: 1em;
+  border: 2px solid #71e06c;
+  border-radius: 25px;
+  background-color: inherit;
+  transition: ease-out 0.3s;
+  color: #333;
+}
+
+.no-product-button:hover {
+  color: #ffffff;
+  background-color: #71e06c;
+  cursor: pointer;
+}
+
+.no-product-button:focus {
+  outline: none;
+}
+
 @media (max-width: 550px) {
   li {
     width: 100%;
@@ -57,5 +83,10 @@ ul {
   .flex-container {
     display: flex;
     flex-direction: column;
+  }
+
+  .no-products {
+    margin-top: 5em;
+    margin-bottom: 5em;
   }
 }

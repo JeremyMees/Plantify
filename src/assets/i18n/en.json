@@ -153,6 +153,17 @@
     "total": "Total : ",
     "delete": "Delete",
     "pay": "Pay",
-    "empty": "No products in the shoppingcart yet"
+    "empty": "No products in the shoppingcart yet",
+    "product-button": "Add products"
+  },
+  "SUCCESS": {
+    "title": "Payment succesfull",
+    "text": "Thanks for shopping by Plantify",
+    "button": "To home page"
+  },
+  "FAILURE": {
+    "title": "Something went wrong",
+    "text": "Try again and if it still doesn't work please contact us",
+    "button": "Try again"
   }
 }

@@ -24,6 +24,7 @@ describe('AdminUpdateComponent', () => {
       quantity: 1,
       image: 'foo',
       description: 'foo description',
+      stripe: 'UNDEFINED',
     };
     fixture.detectChanges();
   });

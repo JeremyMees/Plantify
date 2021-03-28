@@ -6,4 +6,5 @@ export interface Product {
   quantity: number;
   image: string;
   description: string;
+  stripe: string;
 }

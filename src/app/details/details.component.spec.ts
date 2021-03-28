@@ -15,6 +15,7 @@ describe('DetailsComponent', () => {
     quantity: 1,
     image: 'images',
     description: 'foo description',
+    stripe: 'UNDEFINED',
   };
 
   beforeEach(async () => {

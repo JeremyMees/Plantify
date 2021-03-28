@@ -19,6 +19,7 @@ describe('CartContainerComponent', () => {
     quantity: 1,
     image: 'images',
     description: 'foo description',
+    stripe: 'UNDEFINED',
   };
 
   beforeEach(async () => {
@@ -75,7 +76,7 @@ describe('CartContainerComponent', () => {
   });
 
   it('should call cartService.payForProducts() with the correct value', () => {
-    component.payForProducts();
+    component.payForProducts([{ price: 'foo', quantity: 1 }]);
     expect(fakeService.payProducts).toHaveBeenCalled();
     expect(fakeService.getCartInventory).toHaveBeenCalled();
   });

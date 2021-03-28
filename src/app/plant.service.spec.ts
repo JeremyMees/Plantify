@@ -18,6 +18,7 @@ describe('PlantService', () => {
     quantity: 1,
     image: 'images',
     description: 'foo description',
+    stripe: 'UNDEFINED',
   };
 
   beforeEach(() => {
