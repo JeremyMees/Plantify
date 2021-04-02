@@ -32,6 +32,15 @@ img {
   margin-bottom: 1em;
 }
 
+.btn-q:hover {
+  cursor: pointer;
+  color: #333;
+}
+
+.btn-q:focus {
+  outline: none;
+}
+
 .quantity {
   font-size: 2em;
 }

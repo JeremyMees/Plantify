@@ -44,6 +44,11 @@
           ></a
         >
       </li>
+      <li class="navbar-item">
+        <a routerLink="/mission" routerLinkActive="active" class="text-dark">{{
+          "NAVBAR.mission" | translate
+        }}</a>
+      </li>
       <ul class="navbar-nav mr-auto">
         <li class="nav-item dropdown" ngbDropdown>
           <a
@@ -83,29 +88,24 @@
               routerLinkActive="active"
               >{{ "NAVBAR.logout" | translate }}</a
             >
+            <li>
+              <select
+                #langSelect
+                (change)="translate.use(langSelect.value)"
+                class="btn"
+              >
+                <option
+                  *ngFor="let lang of translate.getLangs()"
+                  [value]="lang"
+                  [selected]="lang === translate.currentLang"
+                >
+                  {{ lang }}
+                </option>
+              </select>
+            </li>
           </div>
         </li>
       </ul>
-      <li class="navbar-item">
-        <a routerLink="/mission" routerLinkActive="active" class="text-dark">{{
-          "NAVBAR.mission" | translate
-        }}</a>
-      </li>
-      <li>
-        <select
-          #langSelect
-          (change)="translate.use(langSelect.value)"
-          class="btn"
-        >
-          <option
-            *ngFor="let lang of translate.getLangs()"
-            [value]="lang"
-            [selected]="lang === translate.currentLang"
-          >
-            {{ lang }}
-          </option>
-        </select>
-      </li>
     </div>
   </ul>
 </nav>

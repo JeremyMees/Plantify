@@ -99,11 +99,13 @@
           (click)="redirectToProductDetails(boughtProduct)"
         >
           <div class="product">
-            <img
-              class="card-img-top"
-              [src]="boughtProduct.image"
-              alt="image from {{ boughtProduct.latinName }}"
-            />
+            <div class="image-container">
+              <img
+                class="card-img-top"
+                [src]="boughtProduct.image"
+                alt="image from {{ boughtProduct.latinName }}"
+              />
+            </div>
             <div class="product-body">
               <div class="name">
                 <b>{{ boughtProduct.name }}</b>

@@ -26,12 +26,12 @@
     "where": "Waar kan je ons vinden"
   },
   "NAVBAR": {
-    "product": "Producten",
-    "account": "Profiel",
-    "register": "Registeren",
-    "login": "Log in",
-    "logout": "Log uit",
-    "mission": "Missie"
+    "product": "PRODUCTEN",
+    "account": "PROFIEL",
+    "register": "REGISTREREN",
+    "login": "LOG IN",
+    "logout": "LOG UIT",
+    "mission": "MISSIE"
   },
   "MISSION": {
     "GREEN": {

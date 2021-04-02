@@ -27,3 +27,11 @@
   margin: auto;
   margin-bottom: 1em;
 }
+
+@media (max-width: 370px) {
+  .btn {
+    display: block;
+    margin: auto;
+    margin-bottom: 1em;
+  }
+}

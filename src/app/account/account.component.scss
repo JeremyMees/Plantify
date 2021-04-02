@@ -17,6 +17,22 @@ ul {
   justify-content: center;
 }
 
+.image-container {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 250px;
+}
+
+.card-img-top {
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
 .style {
   border: 1px solid #333;
   border-radius: 15px;
@@ -44,7 +60,7 @@ li {
   width: 23%;
   margin-bottom: 1em;
   margin-right: 1em;
-  border: 1px solid #333;
+  background-color: rgb(227, 229, 226);
   border-radius: 15px;
 }
 
@@ -99,7 +115,7 @@ label {
   border-radius: 20px;
   width: 100%;
   margin-bottom: 1em;
-  border: 1px solid #333;
+  background-color: rgb(227, 229, 226);
   border-radius: 15px;
 }
 

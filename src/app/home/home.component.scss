@@ -94,15 +94,24 @@ li {
 
 .loves-image {
   object-fit: contain;
+  max-width: 100%;
+  height: 100%;
+}
+
+.loves-image-container {
+  padding-top: 1em;
   width: 100%;
-  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 250px;
 }
 
 .card {
   max-height: 100%;
   flex: 25%;
   text-align: left;
-  background-color: inherit;
+  background-color: rgb(227, 229, 226);
 }
 
 .card-body {

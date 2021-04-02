@@ -13,7 +13,7 @@
 
 <div class="perfect">
   <div class="perfect-image">
-    <img class="image w-50" src="../assets/pexels-daria-shevtsova-887767.jpg" />
+    <img class="image w-50" src="../assets/pexels-anna.png" />
   </div>
   <div class="perfect-content">
     <div class="perfect-text">
@@ -33,11 +33,13 @@
       <div class="flex-container">
         <li class="list-item" *ngFor="let plant of plants">
           <div class="card" (click)="onSelect(plant)">
-            <img
-              [src]="plant.image"
-              class="loves-image"
-              alt="image from {{ plant.latinName }}"
-            />
+            <div class="loves-image-container">
+              <img
+                [src]="plant.image"
+                class="loves-image"
+                alt="image from {{ plant.latinName }}"
+              />
+            </div>
             <div class="card-body">
               <div class="card-text latinName">{{ plant.latinName }}</div>
               <div class="card-text name">

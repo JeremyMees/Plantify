@@ -2,24 +2,24 @@
   <div class="flex-container">
     <li *ngFor="let product of products">
       <div class="product">
-        <img
-          class="card-img-top"
-          [src]="product.image"
-          alt="image from {{ product.latinName }}"
-        />
-        <div class="product-bode">
-          <div class="">{{ "CART.name" | translate }}{{ product.name }}</div>
-          <div class="">
-            {{ "CART.price" | translate
-            }}{{ (product.price * product.quantity).toFixed(2) }}
-          </div>
-          <div class="">
-            {{ "CART.quantity" | translate }}{{ product.quantity }}
-          </div>
-          <button class="btn" (click)="dec(product)">-</button>
-          <button class="btn" (click)="inc(product)">+</button>
-          <button class="btn" (click)="deleteFromCart(product)">delete</button>
+        <div class="image-container">
+          <img
+            class="card-img-top"
+            [src]="product.image"
+            alt="image from {{ product.latinName }}"
+          />
         </div>
+        <div>
+          {{ "CART.name" | translate }}<b>{{ product.name }}</b>
+        </div>
+        <div>
+          {{ "CART.price" | translate
+          }}{{ (product.price * product.quantity).toFixed(2) }}
+        </div>
+        <div>{{ "CART.quantity" | translate }}{{ product.quantity }}</div>
+        <button class="btn" (click)="dec(product)"><b>-</b></button>
+        <button class="btn" (click)="inc(product)"><b>+</b></button>
+        <button class="btn" (click)="deleteFromCart(product)">delete</button>
       </div>
     </li>
   </div>
