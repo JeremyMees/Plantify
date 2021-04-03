@@ -154,7 +154,24 @@
     "delete": "Verwijderen",
     "pay": "Betalen",
     "empty": "Nog geen producten in het winkelmandje",
-    "product-button": "Producten toevoegen"
+    "product-button": "Producten toevoegen",
+    "FORM": {
+      "name": "Naam",
+      "frontname": "Voornaam",
+      "name-error": "Voer een geldige naam in",
+      "frontname-error": "Voer een geldige voornaam in",
+      "streetname": "Straatnaam",
+      "streetname-error": "Voer een geldige straatnaam in",
+      "housenumber": "Huisnummerr",
+      "housenumber-error": "Voer een geldige huisnummer in",
+      "zipcode": "Postcode & Gemeenten",
+      "zipcode-error": "Voer een geldige postcode in",
+      "city-error": "Voer een geldige gemeenten in",
+      "email": "Email adres",
+      "email-error": "Voer een geldige email adres in",
+      "number": "Telefoonnummer",
+      "number-error": "Voer een geldige telefoonnummer in"
+    }
   },
   "SUCCESS": {
     "title": "Betaling succesvol",

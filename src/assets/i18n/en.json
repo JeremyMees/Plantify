@@ -154,7 +154,24 @@
     "delete": "Delete",
     "pay": "Pay",
     "empty": "No products in the shoppingcart yet",
-    "product-button": "Add products"
+    "product-button": "Add products",
+    "FORM": {
+      "name": "Name",
+      "frontname": "Frontname",
+      "name-error": "Please enter valid name",
+      "frontname-error": "Please enter valid frontname",
+      "streetname": "Streetname",
+      "streetname-error": "Please enter valid streetname",
+      "housenumber": "Housenumber",
+      "housenumber-error": "Please enter valid housenumber",
+      "zipcode": "Zipcode & City",
+      "zipcode-error": "Please enter valid zipcode",
+      "city-error": "Please enter valid city",
+      "email": "Email adresse",
+      "email-error": "Please enter valid email adress",
+      "number": "Phone number",
+      "number-error": "Please enter valid phone number"
+    }
   },
   "SUCCESS": {
     "title": "Payment succesfull",

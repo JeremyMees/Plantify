@@ -1,16 +1,50 @@
 li {
   padding: 0.5em;
   text-align: left;
-  width: 23%;
-  margin-bottom: 1em;
-  margin-right: 1em;
-  background-color: rgb(227, 229, 226);
-  border-radius: 15px;
+  width: 100%;
 }
 
 ul {
   list-style: none;
   padding-left: 0;
+  background-color: transparent;
+  border: #333 solid 1px;
+  border-radius: 15px;
+}
+
+.green {
+  border: 1px solid #5cff61;
+}
+
+.red {
+  border: 1px solid #db4242;
+}
+
+.delete {
+  color: crimson;
+}
+
+.delete:hover {
+  color: red;
+}
+
+.delete:focus {
+  outline: none;
+}
+
+.product-flex {
+  display: flex;
+  flex-direction: row;
+}
+
+.product-flex-item {
+  margin-left: 3em;
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  padding: 1em;
 }
 
 .flex-container {
@@ -20,9 +54,8 @@ ul {
   margin: auto;
 }
 
-.product {
-  position: relative;
-  height: 100%;
+.flex-child {
+  width: 50%;
 }
 
 .btn {
@@ -42,16 +75,40 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 250px;
+  height: 90px;
+}
+
+.sum {
+  text-align: center;
+  padding: 1em;
+  color: #333;
+}
+
+input {
+  background-color: transparent;
+  border: #333 solid 1px;
+  border-radius: 5px;
+  margin-bottom: 1em;
+  height: 30px;
+  width: 50%;
+}
+
+input:focus {
+  outline: none;
+}
+
+.error {
+  color: crimson;
+  text-align: center;
+  margin-bottom: 1em;
 }
 
 .total {
   padding: 1em;
   margin-top: 1em;
-  max-width: 200px;
-  width: 100%;
+  width: 90%;
   margin: auto;
-  background-color: rgb(227, 229, 226);
+  border: #333 solid 1px;
   border-radius: 15px;
 }
 
@@ -60,6 +117,7 @@ img {
   width: 90%;
   margin: auto;
   display: block;
+  margin-top: 0.5em;
 }
 
 .no-products {
