@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth.service';
-import { FirebaseService } from '../firebase.service';
+import { AuthService } from '../services/auth.service';
+import { FirebaseService } from '../services/firebase.service';
 import { Router } from '@angular/router';
-import { Product } from '../product';
-import { NotificationService } from '../notification.service';
+import { Product } from '../models/product';
+import { NotificationService } from '../services/notification.service';
 import { Observable } from 'rxjs';
 
 @Component({

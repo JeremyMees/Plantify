@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../services/auth.service';
 import { RegisterComponent } from './register.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { NotificationService } from '../notification.service';
+import { NotificationService } from '../services/notification.service';
 import { TranslateModule } from '@ngx-translate/core';
 
 describe('RegisterComponent', () => {

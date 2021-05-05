@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { PlantContainerComponent } from './plant-container/plant-container.component';
-import { CartContainerComponent } from './cart-container/cart-container.component';
+import { PlantContainerComponent } from './products/plant-container/plant-container.component';
+import { CartContainerComponent } from './cart/cart-container/cart-container.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoginComponent } from './login/login.component';
 import { AccountComponent } from './account/account.component';
 import { RegisterComponent } from './register/register.component';
-import { AdminContainerComponent } from './admin-container/admin-container.component';
-import { AdminGuard } from './admin.guard';
-import { LoginGuard } from './login.guard';
+import { AdminContainerComponent } from './admin/admin-container/admin-container.component';
+import { AdminGuard } from './guards/admin.guard';
+import { LoginGuard } from './guards/login.guard';
 import { HomeComponent } from './home/home.component';
 import { MissionComponent } from './mission/mission.component';
-import { SuccesStripeComponent } from './succes-stripe/succes-stripe.component';
-import { FailureStripeComponent } from './failure-stripe/failure-stripe.component';
+import { SuccesStripeComponent } from './cart/succes-stripe/succes-stripe.component';
+import { FailureStripeComponent } from './cart/failure-stripe/failure-stripe.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },

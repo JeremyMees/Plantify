@@ -31,7 +31,8 @@
     "register": "REGISTREREN",
     "login": "LOG IN",
     "logout": "LOG UIT",
-    "mission": "MISSIE"
+    "mission": "MISSIE",
+    "cart": "MANDJE"
   },
   "MISSION": {
     "GREEN": {
@@ -147,6 +148,7 @@
     "button": "Registeren"
   },
   "CART": {
+    "title": "Winkelmandje",
     "name": "Naam : ",
     "price": "Prijs :",
     "quantity": "Hoeveelheid : ",
@@ -162,7 +164,8 @@
       "frontname-error": "Voer een geldige voornaam in",
       "streetname": "Straatnaam",
       "streetname-error": "Voer een geldige straatnaam in",
-      "housenumber": "Huisnummerr",
+      "housenumber": "Huisnummer",
+      "housenumber-extra": "a (optioneel)",
       "housenumber-error": "Voer een geldige huisnummer in",
       "zipcode": "Postcode & Gemeenten",
       "zipcode-error": "Voer een geldige postcode in",

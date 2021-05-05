@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FirebaseService } from '../firebase.service';
-import { Product } from '../product';
+import { FirebaseService } from '../services/firebase.service';
+import { Product } from '../models/product';
 
 @Component({
   selector: 'home',
@@ -17,13 +17,11 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const newArray: Array<Product> = [];
-    this.firebaseService.getProductsNewFour().subscribe((querySnapshot) => {
-      querySnapshot.forEach((doc: any) => {
-        newArray.push(doc.data());
+    this.firebaseService
+      .getProductsNewFour()
+      .subscribe((plants: Array<Product>) => {
+        this.plants = plants;
       });
-      this.plants = newArray;
-    });
   }
 
   onSelect(plant: Product): void {

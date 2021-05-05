@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NotificationComponent } from './notification.component';
-import { NotificationService } from '../notification.service';
+import { NotificationService } from '../services/notification.service';
 import { of } from 'rxjs';
 
 describe('NotificationComponent', () => {

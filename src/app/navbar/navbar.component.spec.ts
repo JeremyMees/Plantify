@@ -1,11 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NavbarComponent } from './navbar.component';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { routes } from '../app-routing.module';
 import { RouterTestingModule } from '@angular/router/testing';
-import { NotificationService } from '../notification.service';
+import { NotificationService } from '../services/notification.service';
 import { TranslateModule } from '@ngx-translate/core';
 
 describe('NavbarComponent', () => {

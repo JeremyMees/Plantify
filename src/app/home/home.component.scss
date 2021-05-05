@@ -81,6 +81,7 @@ ul {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 li {
@@ -90,6 +91,7 @@ li {
 
 .list-item {
   width: 25%;
+  height: 349px;
 }
 
 .loves-image {
@@ -127,21 +129,15 @@ li {
   margin-top: 1em;
 }
 
-@media (max-width: 500px) {
-  .perfect-text {
-    margin-top: 1em;
-    position: relative;
-    left: 0;
+@media (max-width: 1000px) {
+  .list-item {
+    width: 33%;
   }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 1000px) {
   .list-item {
-    width: 100%;
-  }
-  .flex-container {
-    display: flex;
-    flex-direction: column;
+    width: 50%;
   }
 }
 
@@ -150,5 +146,34 @@ li {
     object-fit: contain;
     width: 100%;
     height: 250px;
+  }
+}
+
+@media (max-width: 650px) {
+  h2 {
+    font-size: 25px;
+  }
+
+  h1 {
+    font-size: 25px;
+  }
+
+  .list-item {
+    width: 100%;
+  }
+
+  .flex-container {
+    flex-direction: column;
+  }
+
+  .perfect {
+    flex-direction: column;
+  }
+
+  .perfect-text {
+    margin-top: 1em;
+    position: relative;
+    left: 0;
+    top: 0;
   }
 }

@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AuthService } from '../auth.service';
-import { FirebaseService } from '../firebase.service';
+import { AuthService } from '../services/auth.service';
+import { FirebaseService } from '../services/firebase.service';
 import { AccountComponent } from './account.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { routes } from '../app-routing.module';
-import { NotificationService } from '../notification.service';
+import { NotificationService } from '../services/notification.service';
 import { of } from 'rxjs';
 import { TranslateModule } from '@ngx-translate/core';
 

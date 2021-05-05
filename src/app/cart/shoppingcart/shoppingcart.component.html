@@ -1,0 +1,174 @@
+<div class="flex-container" *ngIf="totalPrice">
+  <div class="flex-child">
+    <div class="total">
+      <p>{{ "CART.FORM.name" | translate }}</p>
+      <input
+        type="text"
+        placeholder="{{ 'CART.FORM.frontname' | translate }}"
+        #frontname
+        (focusout)="checkFrontname($event)"
+        id="frontname"
+        [ngClass]="colorFrontname"
+      />
+      <input
+        type="text"
+        placeholder="{{ 'CART.FORM.name' | translate }}"
+        #name
+        (focusout)="checkName($event)"
+        id="name"
+        [ngClass]="colorName"
+      />
+      <div class="error" *ngIf="colorName == 'red'">
+        {{ "CART.FORM.name-error" | translate }}
+      </div>
+      <div class="error" *ngIf="colorFrontname == 'red'">
+        {{ "CART.FORM.frontname-error" | translate }}
+      </div>
+      <p>{{ "CART.FORM.streetname" | translate }}</p>
+      <input
+        type="text"
+        #streetname
+        (focusout)="checkStreetname($event)"
+        id="streetname"
+        [ngClass]="colorStreetname"
+        placeholder="Plantify street"
+      />
+      <div class="error" *ngIf="colorStreetname == 'red'">
+        {{ "CART.FORM.streetname-error" | translate }}
+      </div>
+      <p>{{ "CART.FORM.housenumber" | translate }}</p>
+      <input
+        type="text"
+        placeholder="123"
+        #housenumber
+        (focusout)="checkHousenumber($event)"
+        id="housenumber"
+        [ngClass]="colorHousenumber"
+      />
+      <input
+        type="text"
+        placeholder="{{ 'CART.FORM.housenumber-extra' | translate }}"
+        #housenumberAdd
+        id="housenumberAdd"
+      />
+      <div class="error" *ngIf="colorHousenumber == 'red'">
+        {{ "CART.FORM.housenumber-error" | translate }}
+      </div>
+      <p>{{ "CART.FORM.zipcode" | translate }}</p>
+      <input
+        type="text"
+        placeholder="3570"
+        #zipcode
+        (focusout)="checkZipcode($event)"
+        id="zipcode"
+        [ngClass]="colorZipcode"
+      /><input
+        type="text"
+        placeholder="Alken"
+        #city
+        (focusout)="checkCity($event)"
+        id="city"
+        [ngClass]="colorCity"
+      />
+      <div class="error" *ngIf="colorZipcode == 'red'">
+        {{ "CART.FORM.zipcode-error" | translate }}
+      </div>
+      <div class="error" *ngIf="colorCity == 'red'">
+        {{ "CART.FORM.city-error" | translate }}
+      </div>
+      <p>{{ "CART.FORM.email" | translate }}</p>
+      <input
+        type="text"
+        placeholder="example@plantify.com"
+        #email
+        (focusout)="checkEmail($event)"
+        id="email"
+        [ngClass]="colorEmail"
+      />
+      <div class="error" *ngIf="colorEmail == 'red'">
+        {{ "CART.FORM.email-error" | translate }}
+      </div>
+      <p>{{ "CART.FORM.number" | translate }}</p>
+      <input
+        type="text"
+        placeholder="0412345678"
+        #number
+        (focusout)="checkNumber($event)"
+        id="number"
+        [ngClass]="colorNumber"
+      />
+      <div class="error" *ngIf="colorNumber == 'red'">
+        {{ "CART.FORM.number-error" | translate }}
+      </div>
+
+      <button
+        class="btn pay"
+        (click)="
+          pay([
+            name.value,
+            frontname.value,
+            streetname.value,
+            housenumber.value,
+            zipcode.value,
+            city.value,
+            email.value,
+            number.value
+          ])
+        "
+      >
+        {{ "CART.pay" | translate }}
+      </button>
+    </div>
+  </div>
+
+  <div class="flex-child">
+    <div class="cart">
+      <ul>
+        <h2>{{ "CART.title" | translate }}</h2>
+        <div>
+          <li *ngFor="let product of products">
+            <div class="product-flex">
+              <div class="product-flex-item-left">
+                <div class="image-container">
+                  <img
+                    [src]="product.image"
+                    alt="image from {{ product.latinName }}"
+                  />
+                </div>
+              </div>
+              <div class="product-flex-item-right">
+                <div>
+                  {{ "CART.name" | translate }}<b>{{ product.name }}</b>
+                </div>
+                <div>
+                  {{ "CART.price" | translate
+                  }}{{ (product.price * product.quantity).toFixed(2) }}
+                </div>
+                <div>
+                  <button class="btn" (click)="dec(product)"><b>-</b></button>
+                  {{ product.quantity }}
+                  <button class="btn" (click)="inc(product)"><b>+</b></button>
+                  <button class="btn delete" (click)="deleteFromCart(product)">
+                    {{ "CART.delete" | translate }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </li>
+        </div>
+        <h4 class="sum">
+          {{ "CART.total" | translate }}<b>{{ totalPrice }}</b>
+        </h4>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!totalPrice" class="no-products">
+  <h4>{{ "CART.empty" | translate }}</h4>
+  <a routerLink="/product-list" routerLinkActive="active">
+    <button class="no-product-button">
+      {{ "CART.product-button" | translate }}
+    </button>
+  </a>
+</div>

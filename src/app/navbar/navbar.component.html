@@ -1,111 +1,164 @@
-<nav
-  class="navbar navbar-light navbar-expand-md sticky-top justify-content-end"
->
-  <h3>
-    <a
-      class="navbar-brand titel text-dark"
-      routerLink="/home"
-      routerLinkActive="active"
-      >Plantify</a
-    >
-  </h3>
-  <ul>
-    <button
-      class="navbar-toggler hidden-sm-up"
-      type="button"
-      (click)="isNavbarCollapsed = !isNavbarCollapsed"
-      data-target="#navbarsDefault"
-      aria-controls="navbarsDefault"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
+<nav class="full-nav sticky-top">
+  <a routerLink="/home" routerLinkActive="active" class="text-dark brand"
+    >Plantify</a
+  >
+  <div ngbDropdown class="nav-link">
+    <button class="dropdown" id="dropdownBasic1" ngbDropdownToggle>
+      {{ "NAVBAR.account" | translate }}
     </button>
-    <div
-      [ngbCollapse]="isNavbarCollapsed"
-      class="collapse navbar-collapse"
-      id="navbarsDefault"
-    >
-      <li class="navbar-item">
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropper">
+      <button ngbDropdownItem>
         <a
+          class="dropdown-item text-dark"
+          routerLink="/account"
+          routerLinkActive="active"
+        >
+          {{ "NAVBAR.account" | translate }}
+        </a>
+      </button>
+      <button ngbDropdownItem [hidden]="isLoggedIn">
+        <a
+          class="dropdown-item text-dark"
+          routerLink="/register"
+          routerLinkActive="active"
+          >{{ "NAVBAR.register" | translate }}</a
+        >
+      </button>
+      <button ngbDropdownItem [hidden]="isLoggedIn">
+        <a
+          class="dropdown-item text-dark"
+          routerLink="/login"
+          routerLinkActive="active"
+          >{{ "NAVBAR.login" | translate }}</a
+        >
+      </button>
+      <button ngbDropdownItem [hidden]="!isLoggedIn">
+        <a
+          class="dropdown-item text-dark"
+          (click)="logout()"
           routerLink="/product-list"
           routerLinkActive="active"
-          class="text-dark"
-          >{{ "NAVBAR.product" | translate }}</a
+          >{{ "NAVBAR.logout" | translate }}</a
         >
-      </li>
-      <li class="navbar-item">
-        <a
-          routerLink="/shopping-cart"
-          routerLinkActive="active"
-          class="text-dark"
-          ><mat-icon aria-hidden="false" aria-label="shopping-cart icon"
-            >shopping_basket</mat-icon
-          ></a
+      </button>
+      <button ngbDropdownItem>
+        <select
+          #langSelect
+          (change)="translate.use(langSelect.value)"
+          class="btn"
         >
-      </li>
-      <li class="navbar-item">
-        <a routerLink="/mission" routerLinkActive="active" class="text-dark">{{
-          "NAVBAR.mission" | translate
-        }}</a>
-      </li>
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item dropdown" ngbDropdown>
-          <a
-            class="nav-link dropdown-toggle text-dark"
-            id="dropdown"
-            ngbDropdownToggle
-            >{{ "NAVBAR.account" | translate }}</a
+          <option
+            *ngFor="let lang of translate.getLangs()"
+            [value]="lang"
+            [selected]="lang === translate.currentLang"
           >
-          <div
-            class="dropdown-menu bg-light"
-            aria-labelledby="dropdown"
-            ngbDropdownMenu
-          >
-            <a
-              class="dropdown-item text-dark"
-              routerLink="/account"
-              routerLinkActive="active"
-            >
-              {{ "NAVBAR.account" | translate }}
-            </a>
-            <a
-              class="dropdown-item text-dark"
-              routerLink="/register"
-              routerLinkActive="active"
-              >{{ "NAVBAR.register" | translate }}</a
-            >
-            <a
-              class="dropdown-item text-dark"
-              routerLink="/login"
-              routerLinkActive="active"
-              >{{ "NAVBAR.login" | translate }}</a
-            >
-            <a
-              class="dropdown-item text-dark"
-              (click)="logout()"
-              routerLink="/product-list"
-              routerLinkActive="active"
-              >{{ "NAVBAR.logout" | translate }}</a
-            >
-            <li>
-              <select
-                #langSelect
-                (change)="translate.use(langSelect.value)"
-                class="btn"
-              >
-                <option
-                  *ngFor="let lang of translate.getLangs()"
-                  [value]="lang"
-                  [selected]="lang === translate.currentLang"
-                >
-                  {{ lang }}
-                </option>
-              </select>
-            </li>
-          </div>
-        </li>
-      </ul>
+            {{ lang }}
+          </option>
+        </select>
+      </button>
     </div>
-  </ul>
+  </div>
+  <a routerLink="/home" routerLinkActive="active" class="text-dark nav-link"
+    >HOME</a
+  >
+
+  <a
+    routerLink="/shopping-cart"
+    routerLinkActive="active"
+    class="text-dark cart nav-link"
+    ><mat-icon aria-hidden="false" aria-label="shopping-cart icon"
+      >shopping_basket</mat-icon
+    >
+    <span class="cart-text"> {{ "NAVBAR.cart" | translate }}</span></a
+  >
+  <a
+    routerLink="/product-list"
+    routerLinkActive="active"
+    class="text-dark nav-link"
+    >{{ "NAVBAR.product" | translate }}</a
+  >
 </nav>
+
+<nav class="hamburger sticky-top">
+  <a routerLink="/home" routerLinkActive="active" class="text-dark brand-ham"
+    >Plantify</a
+  >
+  <button mat-button class="menu-button" (click)="sidenav.toggle()">
+    <mat-icon>{{ isMenuOpen ? "menu_open" : "menu" }}</mat-icon>
+  </button>
+</nav>
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #sidenav
+    autoFocus="false"
+    mode="over"
+    [(opened)]="isMenuOpen"
+    class="sidenav"
+    (click)="onSidenavClick()"
+  >
+    <a
+      mat-button
+      routerLink="/home"
+      routerLinkActive="active"
+      class="text-dark nav-link"
+      >HOME</a
+    >
+    <a
+      mat-button
+      routerLink="/product-list"
+      routerLinkActive="active"
+      class="text-dark nav-link"
+      >{{ "NAVBAR.product" | translate }}</a
+    >
+    <a
+      mat-button
+      routerLink="/shopping-cart"
+      routerLinkActive="active"
+      class="text-dark nav-link"
+      ><span> {{ "NAVBAR.cart" | translate }}</span
+      >&nbsp;
+      <mat-icon aria-hidden="false" aria-label="shopping-cart icon"
+        >shopping_basket</mat-icon
+      >
+    </a>
+    <a
+      mat-button
+      class="nav-link text-dark"
+      routerLink="/account"
+      routerLinkActive="active"
+    >
+      {{ "NAVBAR.account" | translate }}
+    </a>
+    <a
+      [hidden]="isLoggedIn"
+      mat-button
+      class="nav-link text-dark"
+      routerLink="/register"
+      routerLinkActive="active"
+      >{{ "NAVBAR.register" | translate }}</a
+    >
+    <a
+      [hidden]="isLoggedIn"
+      mat-button
+      class="nav-link text-dark"
+      routerLink="/login"
+      routerLinkActive="active"
+      >{{ "NAVBAR.login" | translate }}</a
+    >
+    <a
+      [hidden]="!isLoggedIn"
+      mat-button
+      class="nav-link text-dark"
+      (click)="logout()"
+      routerLink="/product-list"
+      routerLinkActive="active"
+      >{{ "NAVBAR.logout" | translate }}</a
+    >
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
