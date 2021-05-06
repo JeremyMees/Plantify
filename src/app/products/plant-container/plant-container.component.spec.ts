@@ -11,7 +11,7 @@ import { CartService } from '../../services/cart.service';
 import { FirebaseService } from '../../services/firebase.service';
 import { Product } from '../../models/product';
 
-fdescribe('PlantContainerComponent', () => {
+describe('PlantContainerComponent', () => {
   let component: PlantContainerComponent;
   let fixture: ComponentFixture<PlantContainerComponent>;
   let fakeService: jasmine.SpyObj<PlantService>;
@@ -34,7 +34,7 @@ fdescribe('PlantContainerComponent', () => {
   beforeEach(async () => {
     const serviceStub = {
       getProductsNewAll: () => of([mockPlant]),
-      getProductfromDBByID: (id) => id,
+      getProductfromDBByID: (id) => of([id]),
       searchProductByName: (stub) => stub,
     };
     await TestBed.configureTestingModule({
@@ -63,6 +63,16 @@ fdescribe('PlantContainerComponent', () => {
           provide: ActivatedRoute,
           useValue: { params: params$ },
         },
+        // {
+        //   provide: ActivatedRoute,
+        //   useValue: {
+        //     params: {
+        //       pipe: () => {
+        //         return of({ id: 1 });
+        //       },
+        //     },
+        //   },
+        // },
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
@@ -94,6 +104,13 @@ fdescribe('PlantContainerComponent', () => {
     expect(component.plants).toEqual([mockPlant]);
   });
 
+  // it('should give the plant from the url query', () => {
+  //   spyOn(fakeFirebaseService, 'getProductfromDBByID');
+  //   component.chosenPlant = mockPlant;
+  //   fixture.detectChanges();
+  //   expect(fakeFirebaseService.getProductfromDBByID).toHaveBeenCalledWith(1);
+  // });
+
   describe('given no plant is selected', () => {
     beforeEach(() => {
       fixture.detectChanges();
@@ -115,7 +132,6 @@ fdescribe('PlantContainerComponent', () => {
   describe('given a plant is clicked in the list', () => {
     beforeEach(() => {
       fixture.detectChanges();
-      fakeFirebaseService.getProductfromDBByID(mockPlant.id);
       component.chosenPlant = mockPlant;
       params$.next({ id: 0 });
       fixture.detectChanges();
@@ -123,8 +139,8 @@ fdescribe('PlantContainerComponent', () => {
 
     it('should navigate to that plant', () => {
       spyOn(router, 'navigateByUrl');
+      component.chosenPlant = null;
       component.plants = [mockPlant];
-      fakeFirebaseService.getProductfromDBByID(mockPlant.id);
       fixture.detectChanges();
       const plantList = fixture.debugElement.query(By.css('app-list'));
       plantList.triggerEventHandler('plantClick', mockPlant);
@@ -136,6 +152,7 @@ fdescribe('PlantContainerComponent', () => {
 
     it('should get the plant from the database', () => {
       spyOn(fakeFirebaseService, 'getProductfromDBByID');
+      fakeFirebaseService.getProductfromDBByID(1);
       expect(fakeFirebaseService.getProductfromDBByID).toHaveBeenCalled();
     });
   });

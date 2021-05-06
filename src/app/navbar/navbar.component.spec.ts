@@ -7,6 +7,7 @@ import { routes } from '../app-routing.module';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NotificationService } from '../services/notification.service';
 import { TranslateModule } from '@ngx-translate/core';
+import { of } from 'rxjs';
 
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
@@ -29,6 +30,7 @@ describe('NavbarComponent', () => {
             'login',
             'logout',
             'checkCookie',
+            'isUserLoggedIn',
           ]),
         },
         {
@@ -50,11 +52,19 @@ describe('NavbarComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NavbarComponent);
     component = fixture.componentInstance;
+    fakeService.isUserLoggedIn.and.returnValue(of(true));
     fixture.detectChanges();
   });
 
   it('should call authService.logout', () => {
     component.logout();
     expect(fakeService.logout).toHaveBeenCalled();
+  });
+
+  it('should set isMenuOpen to false', () => {
+    component.isMenuOpen = true;
+    expect(component.isMenuOpen).toBeTruthy();
+    component.onSidenavClick();
+    expect(component.isMenuOpen).toBeFalsy();
   });
 });
