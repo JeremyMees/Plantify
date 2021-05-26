@@ -12,7 +12,7 @@ import { first, map, switchMap, tap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class AuthService {
-  user: Observable<firebase.default.User>;
+  user: Observable<any>;
   adminsArray: Array<string>;
   constructor(
     private router: Router,
@@ -79,9 +79,8 @@ export class AuthService {
     user.updateProfile({ displayName: name });
   }
 
-  async getUserCredentials(): Promise<any> {
-    var user = await this.firebaseAuth.currentUser;
-    return user;
+  getUserCredentials(): any {
+    return this.user;
   }
 
   async sendVerification(): Promise<any> {

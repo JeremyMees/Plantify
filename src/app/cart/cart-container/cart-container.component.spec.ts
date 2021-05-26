@@ -4,6 +4,7 @@ import { CartContainerComponent } from './cart-container.component';
 import { CartService } from '../../services/cart.service';
 import { Product } from '../../models/product';
 import { AuthService } from '../../services/auth.service';
+import { of } from 'rxjs';
 
 describe('CartContainerComponent', () => {
   let component: CartContainerComponent;
@@ -53,7 +54,7 @@ describe('CartContainerComponent', () => {
     fixture = TestBed.createComponent(CartContainerComponent);
     component = fixture.componentInstance;
     fakeAuthService.getUserCredentials.and.returnValue(
-      Promise.resolve({ email: 'foo-email' })
+      of({ email: 'fake-email' })
     );
     fixture.detectChanges();
   });

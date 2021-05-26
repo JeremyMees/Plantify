@@ -24,8 +24,8 @@ export class CartContainerComponent implements OnInit {
   ngOnInit(): void {
     this.products = this.cartService.getCartInventory();
     this.totalPriceOfProducts();
-    this.authService.getUserCredentials().then((credentials) => {
-      this.email = credentials.email;
+    this.authService.getUserCredentials().subscribe((user: any) => {
+      this.email = user.email;
     });
   }
 

@@ -2,9 +2,11 @@ import { TestBed } from '@angular/core/testing';
 import { CartService } from './cart.service';
 import { FirebaseService } from './firebase.service';
 import { Product } from '../models/product';
+import { CookieService } from 'ngx-cookie-service';
 
 describe('CartService', () => {
   let service: CartService;
+  let fakeCookie: jasmine.SpyObj<CookieService>;
   let fakeFirebaseService: jasmine.SpyObj<FirebaseService>;
   const mockPlant: Product = {
     id: 1,
@@ -30,16 +32,52 @@ describe('CartService', () => {
             'deleteProductfromDB',
           ]),
         },
+        {
+          provide: CookieService,
+          useValue: jasmine.createSpyObj('CookieService', [
+            'get',
+            'delete',
+            'set',
+            'check',
+          ]),
+        },
       ],
     });
     service = TestBed.inject(CartService);
     fakeFirebaseService = TestBed.inject(
       FirebaseService
     ) as jasmine.SpyObj<FirebaseService>;
+    fakeCookie = TestBed.inject(CookieService) as jasmine.SpyObj<CookieService>;
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
+  });
+
+  describe('set, get, delete & check cookies', () => {
+    it('should get the cookie', () => {
+      document.cookie = 'email=stub';
+      service.getCookie('email');
+      expect(fakeCookie.get).toHaveBeenCalledWith('email');
+    });
+
+    it('should chek if the cookie exists', () => {
+      document.cookie = 'email=stub';
+      service.checkCookie('email');
+      expect(fakeCookie.check).toHaveBeenCalledWith('email');
+    });
+
+    it('should delete cookie', () => {
+      document.cookie = 'email=stub';
+      service.deleteCookie('email');
+      expect(fakeCookie.delete).toHaveBeenCalledWith('email');
+    });
+
+    it('should get cookie', () => {
+      document.cookie = 'email=stub';
+      service.setCookie('email', 'stub');
+      expect(fakeCookie.set).toHaveBeenCalledWith('email', 'stub');
+    });
   });
 
   it('should add item to cart', () => {
@@ -54,7 +92,7 @@ describe('CartService', () => {
   });
 
   it('should get cart inventory', () => {
-    service.cartInventory.push(mockPlant);
+    fakeCookie.get.and.returnValue(JSON.stringify([mockPlant]));
     expect(service.getCartInventory()).toEqual([mockPlant]);
   });
 
