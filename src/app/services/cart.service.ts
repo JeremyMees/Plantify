@@ -47,36 +47,24 @@ export class CartService {
       stripe: plant.stripe,
     };
     this.cartInventory.push(orderderdPlant);
-    if (this.checkCookie('cart')) {
-      this.deleteCookie('cart');
-    }
-    if (this.cartInventory.length >= 1) {
-      let products: string;
-      this.cartInventory.forEach((product: Product) => {
-        products += JSON.stringify(product);
-        console.log(products);
-      });
-      this.setCookie('cart', products);
-      const test = this.getCookie('cart');
-      console.log(test);
-      console.log(JSON.parse(test));
-    }
-
+    const jsonInventory = JSON.stringify(this.cartInventory);
+    this.setCookie('cart', jsonInventory);
     this.getTotalPrice();
   }
 
   deleteItemFromCart(product: Product): void {
     const index = this.cartInventory.indexOf(product);
-    /* istanbul ignore else  */
-    if (index > -1) {
-      this.cartInventory.splice(index, 1);
-    }
+    this.cartInventory.splice(index, 1);
+    const jsonInventory = JSON.stringify(this.cartInventory);
+    this.setCookie('cart', jsonInventory);
     this.getTotalPrice();
   }
 
   getCartInventory(): Array<Product> {
     this.getTotalPrice();
-    return this.cartInventory == [] ? [] : this.cartInventory;
+    const cookie: Array<Product> = JSON.parse(this.getCookie('cart'));
+    this.cartInventory = cookie;
+    return this.cartInventory;
   }
 
   getTotalPrice(): number {
