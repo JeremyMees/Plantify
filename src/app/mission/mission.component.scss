@@ -21,7 +21,7 @@ a:hover {
   padding-top: 10px;
 }
 
-img {
+ng-lottie {
   display: block;
   margin: 0 auto;
   width: 25%;
@@ -30,7 +30,7 @@ img {
 }
 
 @media (max-width: 500px) {
-  img {
+  ng-lottie {
     width: 100%;
   }
 }

@@ -45,9 +45,15 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
+import player from 'lottie-web';
+import { LottieModule } from 'ngx-lottie';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
+}
+
+export function playerFactory() {
+  return player;
 }
 
 @NgModule({
@@ -101,6 +107,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     MatSidenavModule,
     MatButtonModule,
     MatSelectModule,
+    LottieModule.forRoot({ player: playerFactory }),
   ],
   providers: [CookieService, AuthService],
   bootstrap: [AppComponent],
