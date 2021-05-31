@@ -11,7 +11,7 @@ import { Stripe } from '../../models/stripe';
   styleUrls: ['./cart-container.component.scss'],
 })
 export class CartContainerComponent implements OnInit {
-  products: Array<Product>;
+  products: Array<Product> = [];
   totalPrice: number;
   email: string;
 
@@ -22,8 +22,11 @@ export class CartContainerComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.products = this.cartService.getCartInventory();
-    this.totalPriceOfProducts();
+    this.cartService.getCartInventory().subscribe((data: Array<Product>) => {
+      this.products = data;
+      this.totalPriceOfProducts();
+    });
+
     this.authService.getUserCredentials().subscribe((user: any) => {
       this.email = user.email;
     });
@@ -54,7 +57,7 @@ export class CartContainerComponent implements OnInit {
 
   deleteFromCart(product: Product): void {
     this.cartService.deleteItemFromCart(product);
-    this.products = this.cartService.getCartInventory();
+    this.getProducts();
     this.totalPriceOfProducts();
   }
 
@@ -64,7 +67,12 @@ export class CartContainerComponent implements OnInit {
 
   payForProducts(stripeArray: Array<Stripe>): void {
     this.cartService.payProducts(stripeArray, this.products, this.email);
-    this.products = this.cartService.getCartInventory();
+    this.getProducts();
+
     this.totalPriceOfProducts();
+  }
+
+  getProducts(): void {
+    this.cartService.getCartInventory().subscribe((data: Array<Product>) => {});
   }
 }

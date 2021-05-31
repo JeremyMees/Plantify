@@ -3,6 +3,7 @@ import { CartService } from './cart.service';
 import { FirebaseService } from './firebase.service';
 import { Product } from '../models/product';
 import { CookieService } from 'ngx-cookie-service';
+import { of } from 'rxjs';
 
 describe('CartService', () => {
   let service: CartService;
@@ -30,6 +31,7 @@ describe('CartService', () => {
             'getBoughtProducts',
             'addNewProductToDB',
             'deleteProductfromDB',
+            'getProductfromDBByID',
           ]),
         },
         {
@@ -91,9 +93,12 @@ describe('CartService', () => {
     expect(service.cartInventory).toEqual([]);
   });
 
-  it('should get cart inventory', () => {
+  it('should get and return cart inventory', () => {
     fakeCookie.get.and.returnValue(JSON.stringify([mockPlant]));
-    expect(service.getCartInventory()).toEqual([mockPlant]);
+    fakeFirebaseService.getProductfromDBByID.and.returnValue(of([mockPlant]));
+    service.getCartInventory().subscribe((result) => {
+      expect(result).toEqual([mockPlant]);
+    });
   });
 
   it('should get total price', () => {

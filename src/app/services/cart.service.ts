@@ -5,12 +5,15 @@ import { Product } from '../models/product';
 import { loadStripe } from '@stripe/stripe-js';
 import { environment } from '../../environments/environment';
 import { CookieService } from 'ngx-cookie-service';
+import { combineLatest, Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
   cartInventory: Array<Product> = [];
+  cartInventoryIds: Array<number> = [];
   totalPriceArray: Array<number> = [];
   totalPrice: number;
   stripePromise = loadStripe(environment.stripe_key);
@@ -47,7 +50,11 @@ export class CartService {
       stripe: plant.stripe,
     };
     this.cartInventory.push(orderderdPlant);
-    const jsonInventory = JSON.stringify(this.cartInventory);
+    this.cartInventory.forEach((product) => {
+      this.cartInventoryIds.push(product.id);
+    });
+    let cartInventoryIdsSet = new Set(this.cartInventoryIds);
+    const jsonInventory = JSON.stringify([...cartInventoryIdsSet]);
     this.setCookie('cart', jsonInventory);
     this.getTotalPrice();
   }
@@ -55,16 +62,25 @@ export class CartService {
   deleteItemFromCart(product: Product): void {
     const index = this.cartInventory.indexOf(product);
     this.cartInventory.splice(index, 1);
-    const jsonInventory = JSON.stringify(this.cartInventory);
+    const indexId = this.cartInventoryIds.indexOf(product.id);
+    this.cartInventoryIds.splice(indexId, 1);
+    let cartInventoryIdsSet = new Set(this.cartInventoryIds);
+    const jsonInventory = JSON.stringify([...cartInventoryIdsSet]);
     this.setCookie('cart', jsonInventory);
     this.getTotalPrice();
   }
 
-  getCartInventory(): Array<Product> {
+  getCartInventory(): Observable<Array<Product>> {
     this.getTotalPrice();
-    const cookie: Array<Product> = JSON.parse(this.getCookie('cart'));
-    this.cartInventory = cookie;
-    return this.cartInventory;
+    const cookie = JSON.parse(this.getCookie('cart'));
+    let cookies: Array<Product> = cookie.map((id: number) => {
+      return this.firebaseService
+        .getProductfromDBByID(id)
+        .pipe(map((result) => result[0]));
+    });
+    return combineLatest(cookies).pipe(
+      tap((result) => (this.cartInventory = result))
+    );
   }
 
   getTotalPrice(): number {

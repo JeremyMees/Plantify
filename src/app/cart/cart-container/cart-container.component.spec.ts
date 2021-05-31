@@ -56,6 +56,7 @@ describe('CartContainerComponent', () => {
     fakeAuthService.getUserCredentials.and.returnValue(
       of({ email: 'fake-email' })
     );
+    fakeService.getCartInventory.and.returnValue(of([mockPlant]));
     fixture.detectChanges();
   });
 
