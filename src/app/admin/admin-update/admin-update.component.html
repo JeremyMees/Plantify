@@ -5,6 +5,15 @@
     placeholder="{{ 'ADMIN.UPDATE.latin' | translate }}"
     value="{{ chosenProduct.latinName }}"
     #latinName
+    (keyup.enter)="
+      updateProduct(
+        latinName.value,
+        name.value,
+        price.value,
+        image,
+        description.value
+      )
+    "
   />
   <br />
   <input
@@ -12,6 +21,15 @@
     placeholder="{{ 'ADMIN.UPDATE.name' | translate }}"
     #name
     value="{{ chosenProduct.name }}"
+    (keyup.enter)="
+      updateProduct(
+        latinName.value,
+        name.value,
+        price.value,
+        image,
+        description.value
+      )
+    "
   />
   <br />
   <input
@@ -19,6 +37,15 @@
     placeholder="{{ 'ADMIN.UPDATE.price' | translate }}"
     #price
     value="{{ chosenProduct.price }}"
+    (keyup.enter)="
+      updateProduct(
+        latinName.value,
+        name.value,
+        price.value,
+        image,
+        description.value
+      )
+    "
   />
   <br />
   <textarea
@@ -26,6 +53,15 @@
     placeholder="{{ 'ADMIN.UPDATE.description' | translate }}"
     #description
     value="{{ chosenProduct.description }}"
+    (keyup.enter)="
+      updateProduct(
+        latinName.value,
+        name.value,
+        price.value,
+        image,
+        description.value
+      )
+    "
   ></textarea>
   <br />
   <input
@@ -34,6 +70,15 @@
     #image
     class="file"
     accept=".png"
+    (keyup.enter)="
+      updateProduct(
+        latinName.value,
+        name.value,
+        price.value,
+        image,
+        description.value
+      )
+    "
   />
   <br />
   <button

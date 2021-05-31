@@ -8,13 +8,6 @@
       <button class="btn style" (click)="updateToInputs()">
         {{ "ACCOUNT.update" | translate }}
       </button>
-      <button
-        class="btn admin-button"
-        (click)="toAdminPage()"
-        [hidden]="!admin"
-      >
-        {{ "ACCOUNT.button" | translate }}
-      </button>
     </div>
   </div>
 
@@ -28,6 +21,14 @@
         #nameInput
         [ngClass]="colorLengthName"
         (focusout)="checkName($event, nameInput.value)"
+        (keyup.enter)="
+          updateInputsNewValue(
+            nameInput.value,
+            emailInput.value,
+            passwordInput.value,
+            passwordcInput.value
+          )
+        "
       />
       <label *ngIf="colorLengthName == 'red'">
         {{ "ACCOUNT.name-label" | translate }}</label
@@ -41,6 +42,14 @@
         #emailInput
         [ngClass]="colorEmail"
         (focusout)="checkEmail($event, emailInput.value)"
+        (keyup.enter)="
+          updateInputsNewValue(
+            nameInput.value,
+            emailInput.value,
+            passwordInput.value,
+            passwordcInput.value
+          )
+        "
       />
       <label *ngIf="colorEmail == 'red'">
         {{ "ACCOUNT.email-label" | translate }}</label
@@ -55,6 +64,14 @@
         #passwordInput
         (focusout)="lengthPassword($event)"
         [ngClass]="colorLengthPassword"
+        (keyup.enter)="
+          updateInputsNewValue(
+            nameInput.value,
+            emailInput.value,
+            passwordInput.value,
+            passwordcInput.value
+          )
+        "
       />
       <label *ngIf="colorLengthPassword == 'red'">
         {{ "ACCOUNT.password-label" | translate }}</label
@@ -68,6 +85,14 @@
         #passwordcInput
         [ngClass]="colorCheck"
         (focusout)="checkPassword($event, passwordInput.value)"
+        (keyup.enter)="
+          updateInputsNewValue(
+            nameInput.value,
+            emailInput.value,
+            passwordInput.value,
+            passwordcInput.value
+          )
+        "
       />
       <label *ngIf="colorCheck == 'red'">
         {{ "ACCOUNT.password-check-label" | translate }}</label

@@ -1,6 +1,11 @@
 <div>
   <h2>{{ "ADMIN.ADD-USER.title" | translate }}</h2>
-  <input type="text" placeholder="email" #email />
+  <input
+    type="text"
+    placeholder="email"
+    #email
+    (keyup.enter)="addAdmin(email.value)"
+  />
   <br />
   <button class="btn" (click)="addAdmin(email.value)">
     {{ "ADMIN.ADD-USER.button" | translate }}

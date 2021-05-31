@@ -5,6 +5,7 @@
       placeholder="{{ 'LOGIN.email' | translate }}"
       type="text"
       #email
+      (keyup.enter)="login(email.value, password.value)"
     />
     <br />
     <input
@@ -13,6 +14,7 @@
       placeholder="{{ 'LOGIN.password' | translate }}"
       type="password"
       #password
+      (keyup.enter)="login(email.value, password.value)"
     />
     <br />
     <button class="btn" (click)="login(email.value, password.value)">
@@ -28,6 +30,7 @@
       placeholder="{{ 'LOGIN.email' | translate }}"
       type="text"
       #emailReset
+      (keyup.enter)="resetPassword(emailReset.value)"
     />
     <br />
     <button

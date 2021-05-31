@@ -4,16 +4,60 @@
     type="text"
     placeholder="{{ 'ADMIN.ADD.latin' | translate }}"
     #latinName
+    (keyup.enter)="
+      addProduct(
+        latinName.value,
+        name.value,
+        price.value,
+        image,
+        description.value
+      )
+    "
   />
   <br />
-  <input type="text" placeholder="{{ 'ADMIN.ADD.name' | translate }}" #name />
+  <input
+    type="text"
+    placeholder="{{ 'ADMIN.ADD.name' | translate }}"
+    #name
+    (keyup.enter)="
+      addProduct(
+        latinName.value,
+        name.value,
+        price.value,
+        image,
+        description.value
+      )
+    "
+  />
   <br />
-  <input type="text" placeholder="{{ 'ADMIN.ADD.price' | translate }}" #price />
+  <input
+    type="text"
+    placeholder="{{ 'ADMIN.ADD.price' | translate }}"
+    #price
+    (keyup.enter)="
+      addProduct(
+        latinName.value,
+        name.value,
+        price.value,
+        image,
+        description.value
+      )
+    "
+  />
   <br />
   <textarea
     type="text"
     placeholder="{{ 'ADMIN.ADD.description' | translate }}"
     #description
+    (keyup.enter)="
+      addProduct(
+        latinName.value,
+        name.value,
+        price.value,
+        image,
+        description.value
+      )
+    "
   ></textarea>
   <br />
   <input
@@ -22,6 +66,15 @@
     #image
     class="file"
     accept=".png"
+    (keyup.enter)="
+      addProduct(
+        latinName.value,
+        name.value,
+        price.value,
+        image,
+        description.value
+      )
+    "
   />
   <br />
   <button

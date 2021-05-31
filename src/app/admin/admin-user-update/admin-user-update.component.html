@@ -5,6 +5,7 @@
     placeholder="email"
     value="{{ chosenAdmin.email }}"
     #email
+    (keyup.enter)="updateChosenAdmin(email.value)"
   />
   <button class="btn" (click)="updateChosenAdmin(email.value)">
     {{ "ADMIN.UPDATE-USER.button" | translate }}

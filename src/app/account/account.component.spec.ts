@@ -27,7 +27,7 @@ describe('AccountComponent', () => {
     description: 'foo description',
     stripe: 'UNDEFINED',
   };
-  const mockAdmin = { email: 'foo', id: 0 };
+  const mockUser = { displayName: 'foo', email: 'stub@mail' };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -102,6 +102,7 @@ describe('AccountComponent', () => {
         },
       ])
     );
+    fakeAuthService.getUserCredentials.and.returnValue(of(mockUser));
     fixture.detectChanges();
   });
 
@@ -221,11 +222,5 @@ describe('AccountComponent', () => {
     expect(router.navigateByUrl).toHaveBeenCalledWith(
       `/product-list/${mockPlant.id}`
     );
-  });
-
-  it('should redirect user to the admin page', () => {
-    spyOn(router, 'navigateByUrl');
-    component.toAdminPage();
-    expect(router.navigateByUrl).toHaveBeenCalledWith(`/admin`);
   });
 });

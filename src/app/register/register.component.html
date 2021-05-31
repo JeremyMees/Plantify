@@ -7,6 +7,9 @@
       #name
       [ngClass]="colorLengthName"
       (focusout)="checkName($event, name.value)"
+      (keyup.enter)="
+        register(name.value, email.value, password.value, passwordc.value)
+      "
     />
     <br />
     <label *ngIf="colorLengthName == 'red'">
@@ -20,6 +23,9 @@
       #email
       [ngClass]="colorEmail"
       (focusout)="checkEmail($event, email.value)"
+      (keyup.enter)="
+        register(name.value, email.value, password.value, passwordc.value)
+      "
     />
     <br />
     <label *ngIf="colorEmail == 'red'">
@@ -33,6 +39,9 @@
       placeholder="{{ 'REGISTER.password' | translate }}"
       #password
       [ngClass]="colorLengthPassword"
+      (keyup.enter)="
+        register(name.value, email.value, password.value, passwordc.value)
+      "
     />
     <br />
     <label *ngIf="colorLengthPassword == 'red'">
@@ -46,6 +55,9 @@
       id="passwordc"
       #passwordc
       [ngClass]="colorCheck"
+      (keyup.enter)="
+        register(name.value, email.value, password.value, passwordc.value)
+      "
     />
     <br />
     <label *ngIf="colorCheck == 'red'">
