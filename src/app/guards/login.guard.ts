@@ -19,14 +19,11 @@ export class LoginGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ):
-    | Observable<boolean | UrlTree>
-    | Promise<boolean | UrlTree>
-    | boolean
-    | UrlTree {
+  ): Observable<boolean> {
     return this.authService.isUserLoggedIn().pipe(
       tap((isUserLoggedIn: boolean) => {
         if (!isUserLoggedIn) {
+          console.log('kaka');
           this.router.navigateByUrl('/login');
         }
       })

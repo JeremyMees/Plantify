@@ -14,10 +14,8 @@ import { Product } from '../../models/product';
 describe('PlantContainerComponent', () => {
   let component: PlantContainerComponent;
   let fixture: ComponentFixture<PlantContainerComponent>;
-  let fakeService: jasmine.SpyObj<PlantService>;
   let fakeCartService: jasmine.SpyObj<CartService>;
   let fakeFirebaseService: jasmine.SpyObj<FirebaseService>;
-  let activatedRouteSpy: jasmine.SpyObj<ActivatedRoute>;
   let router: Router;
   const params$ = new Subject<{ id?: number }>();
   const mockPlant: Product = {
@@ -33,9 +31,21 @@ describe('PlantContainerComponent', () => {
 
   beforeEach(async () => {
     const serviceStub = {
-      getProductsNewAll: () => of([mockPlant]),
-      getProductfromDBByID: (id) => of([id]),
-      searchProductByName: (stub) => stub,
+      getProductfromDBByID: (id: number) => {
+        return of([id]);
+      },
+      searchProductByName: (stub: string) => {
+        return stub;
+      },
+      getProductsHighAll: () => {
+        return of([mockPlant]);
+      },
+      getProductsLowAll: () => {
+        return of([mockPlant]);
+      },
+      getProductsNewAll: () => {
+        return of([mockPlant]);
+      },
     };
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule.withRoutes(routes)],
@@ -63,29 +73,15 @@ describe('PlantContainerComponent', () => {
           provide: ActivatedRoute,
           useValue: { params: params$ },
         },
-        // {
-        //   provide: ActivatedRoute,
-        //   useValue: {
-        //     params: {
-        //       pipe: () => {
-        //         return of({ id: 1 });
-        //       },
-        //     },
-        //   },
-        // },
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
-    fakeService = TestBed.inject(PlantService) as jasmine.SpyObj<PlantService>;
     fakeCartService = TestBed.inject(
       CartService
     ) as jasmine.SpyObj<CartService>;
     fakeFirebaseService = TestBed.inject(
       FirebaseService
     ) as jasmine.SpyObj<FirebaseService>;
-    activatedRouteSpy = TestBed.inject(
-      ActivatedRoute
-    ) as jasmine.SpyObj<ActivatedRoute>;
     router = TestBed.inject(Router);
   });
 
@@ -103,13 +99,6 @@ describe('PlantContainerComponent', () => {
   it(`should bind PLANTS`, () => {
     expect(component.plants).toEqual([mockPlant]);
   });
-
-  // it('should give the plant from the url query', () => {
-  //   spyOn(fakeFirebaseService, 'getProductfromDBByID');
-  //   component.chosenPlant = mockPlant;
-  //   fixture.detectChanges();
-  //   expect(fakeFirebaseService.getProductfromDBByID).toHaveBeenCalledWith(1);
-  // });
 
   describe('given no plant is selected', () => {
     beforeEach(() => {
@@ -183,15 +172,6 @@ describe('PlantContainerComponent', () => {
     });
   });
 
-  // fdescribe('sorting the products', () => {
-  //   it('should sort the products from high to low', () => {
-  //     const array = []
-  //     spyOn(router, 'navigate');
-  //     component.onSortChange('high');
-  //     expect(router.navigate).toHaveBeenCalledWith(['/product-list']);
-  //   });
-  // });
-
   it('should redirect the user to the productlist', () => {
     spyOn(router, 'navigateByUrl');
     component.redirectToProductList();
@@ -211,6 +191,29 @@ describe('PlantContainerComponent', () => {
       spyOn(window, 'alert');
       component.searchProduct('');
       expect(window.alert).toHaveBeenCalledWith('Need name to search');
+    });
+  });
+
+  describe('on sort change', () => {
+    it('should sort plants with the highest price first', () => {
+      spyOn(router, 'navigate');
+      component.onSortChange('high');
+      expect(router.navigate).toHaveBeenCalledWith(['/product-list']);
+      expect(component.plants).toEqual([mockPlant]);
+    });
+
+    it('should sort plants with the lowest price first', () => {
+      spyOn(router, 'navigate');
+      component.onSortChange('low');
+      expect(router.navigate).toHaveBeenCalledWith(['/product-list']);
+      expect(component.plants).toEqual([mockPlant]);
+    });
+
+    it('should sort plants with the newest first', () => {
+      spyOn(router, 'navigate');
+      component.onSortChange('new');
+      expect(router.navigate).toHaveBeenCalledWith(['/product-list']);
+      expect(component.plants).toEqual([mockPlant]);
     });
   });
 });
