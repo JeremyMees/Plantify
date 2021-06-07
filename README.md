@@ -1,27 +1,39 @@
-# EindProef
+# Plantify
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.3.
+Plantify is a webshop for a plant store.
 
-## Development server
+Thesis for Front-End Developer Syntra Genk 2021.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Requirements
 
-## Code scaffolding
+- node
+- npm
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Usage
 
-## Build
+- Download master branch from repository
+- Open the map in your Ide or terminal
+- Run `npm install` in the terminal to install all the required packages
+- Run `ng serve -o` in the terminal to open a dev server with the project
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+### Implement own firebase backend
 
-## Running unit tests
+Make own firebase project [tutorial](https://codinglatte.com/posts/how-to/how-to-create-a-firebase-project/)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Integrate firebase project [tutorial](https://codinglatte.com/posts/how-to/how-to-setup-firebase-for-angular/)
 
-## Running end-to-end tests
+---
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## Developers
 
-## Further help
+### Install dependencies
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+`npm install`
+
+### Build project
+
+`ng build`
+
+### Run project
+
+`ng serve -o`

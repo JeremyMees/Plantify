@@ -29,7 +29,3 @@ export class AdminGuard implements CanActivate {
     );
   }
 }
-
-// angular firebase auth guard
-// functie in auth service die een boolean terug geeft of de gebruiker een admin is
-// proberen die map werkende te krijgen https://stackoverflow.com/questions/37948068/angular-2-routing-canactivate-work-with-observable

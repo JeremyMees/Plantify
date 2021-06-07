@@ -8,7 +8,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { routes } from '../app-routing.module';
 import { BehaviorSubject, of } from 'rxjs';
 
-fdescribe('FirebaseService', () => {
+describe('FirebaseService', () => {
   let service: FirebaseService;
   let fakeStorage: jasmine.SpyObj<AngularFireStorage>;
   let router: Router;

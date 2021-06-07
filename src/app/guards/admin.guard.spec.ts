@@ -6,13 +6,20 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { routes } from '../app-routing.module';
 import { of } from 'rxjs';
 
-describe('AdminGuard', () => {
+fdescribe('AdminGuard', () => {
   let guard: AdminGuard;
   let fakeAuthService: AuthService;
   let router: Router;
   let routeMock: any = { snapshot: {} };
   let routeStateMock: any = { snapshot: {}, url: '/product-list' };
-  let routerMock = { navigate: jasmine.createSpy('navigate') };
+  let routerMock = {
+    navigate: jasmine.createSpy('navigate'),
+    navigateByUrl: jasmine.createSpy('navigateByUrl'),
+  };
+  let isUserAdmin$ = true;
+  let serviceStub = {
+    authGuardAdmin: () => of(isUserAdmin$),
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -20,7 +27,7 @@ describe('AdminGuard', () => {
       providers: [
         {
           provide: AuthService,
-          useValue: jasmine.createSpyObj('AuthService', ['authGaurdAdmin']),
+          useValue: serviceStub,
         },
         { provide: Router, useValue: routerMock },
       ],
@@ -36,13 +43,17 @@ describe('AdminGuard', () => {
     expect(guard).toBeTruthy();
   });
 
-  // it('should return true', () => {
-  //   fakeAuthService.authGaurdAdmin.and.returnValue(of(true));
-  //   expect(guard.canActivate(routeMock, routeStateMock)).toEqual(of(true));
-  // });
+  it('should return true', () => {
+    guard.canActivate(routeMock, routeStateMock).subscribe((result) => {
+      expect(result).toBeTruthy();
+    });
+  });
 
-  // it('should return false ans redirect the user to /product-list', () => {
-  //   fakeAuthService.authGaurdAdmin.and.returnValue(of(false));
-  //   expect(guard.canActivate(routeMock, routeStateMock)).toEqual(of(false));
-  // });
+  it('should return false and redirect the user to /product-list', () => {
+    isUserAdmin$ = false;
+    guard.canActivate(routeMock, routeStateMock).subscribe((result) => {
+      expect(result).toBeFalsy();
+      expect(router.navigateByUrl).toHaveBeenCalledWith('/product-list');
+    });
+  });
 });
