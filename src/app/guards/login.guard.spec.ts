@@ -16,9 +16,9 @@ describe('LoginGuard', () => {
     navigate: jasmine.createSpy('navigate'),
     navigateByUrl: jasmine.createSpy('navigateByUrl'),
   };
-  let isUserLoggedInValue$ = true;
+  let isUserLoggedInValue = true;
   let serviceStub = {
-    isUserLoggedIn: () => of(isUserLoggedInValue$),
+    isUserLoggedIn: () => of(isUserLoggedInValue),
   };
 
   beforeEach(() => {
@@ -49,7 +49,7 @@ describe('LoginGuard', () => {
   });
 
   it('should return false and redirect the user to /login', () => {
-    isUserLoggedInValue$ = false;
+    isUserLoggedInValue = false;
     guard.canActivate(routeMock, routeStateMock).subscribe((data) => {
       expect(router.navigateByUrl).toHaveBeenCalledWith(`/login`);
       expect(data).toBeFalsy();
