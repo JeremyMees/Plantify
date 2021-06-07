@@ -6,7 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { routes } from '../app-routing.module';
 import { of } from 'rxjs';
 
-fdescribe('AdminGuard', () => {
+describe('AdminGuard', () => {
   let guard: AdminGuard;
   let fakeAuthService: AuthService;
   let router: Router;
