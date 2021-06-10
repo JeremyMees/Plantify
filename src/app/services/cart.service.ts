@@ -7,13 +7,14 @@ import { environment } from '../../environments/environment';
 import { CookieService } from 'ngx-cookie-service';
 import { combineLatest, Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
+import { ProductCookie } from '../models/productCookie';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
   cartInventory: Array<Product> = [];
-  cartInventoryIds: Array<number> = [];
+  cartInventoryIds: Array<ProductCookie> = [];
   totalPriceArray: Array<number> = [];
   totalPrice: number;
   stripePromise = loadStripe(environment.stripe_key);
@@ -49,12 +50,23 @@ export class CartService {
       description: plant.description,
       stripe: plant.stripe,
     };
-    this.cartInventory.push(orderderdPlant);
+    if (this.cartInventory.find((obj) => obj.name == plant.name)) {
+      const objIndex = this.cartInventory.findIndex(
+        (product: Product) => product.id === plant.id
+      );
+      this.cartInventory[objIndex].quantity =
+        this.cartInventory[objIndex].quantity + 1;
+    } else {
+      this.cartInventory.push(orderderdPlant);
+    }
+    this.cartInventoryIds = [];
     this.cartInventory.forEach((product) => {
-      this.cartInventoryIds.push(product.id);
+      this.cartInventoryIds.push({
+        id: product.id,
+        quantity: product.quantity,
+      });
     });
-    let cartInventoryIdsSet = new Set(this.cartInventoryIds);
-    const jsonInventory = JSON.stringify([...cartInventoryIdsSet]);
+    const jsonInventory = JSON.stringify(this.cartInventoryIds);
     this.setCookie('cart', jsonInventory);
     this.getTotalPrice();
   }
@@ -62,7 +74,7 @@ export class CartService {
   deleteItemFromCart(product: Product): void {
     const index = this.cartInventory.indexOf(product);
     this.cartInventory.splice(index, 1);
-    const indexId = this.cartInventoryIds.indexOf(product.id);
+    const indexId = this.cartInventoryIds.indexOf(product);
     this.cartInventoryIds.splice(indexId, 1);
     let cartInventoryIdsSet = new Set(this.cartInventoryIds);
     const jsonInventory = JSON.stringify([...cartInventoryIdsSet]);
@@ -72,11 +84,17 @@ export class CartService {
 
   getCartInventory(): Observable<Array<Product>> {
     this.getTotalPrice();
+    if (!this.checkCookie('cart')) {
+      this.setCookie('cart', '[]');
+    }
     const cookie = JSON.parse(this.getCookie('cart'));
-    let cookies: Array<Product> = cookie.map((id: number) => {
-      return this.firebaseService
-        .getProductfromDBByID(id)
-        .pipe(map((result) => result[0]));
+    let cookies: Array<Product> = cookie.map((cookie: ProductCookie) => {
+      return this.firebaseService.getProductfromDBByID(cookie.id).pipe(
+        map((result) => {
+          result[0].quantity = cookie.quantity;
+          return result[0];
+        })
+      );
     });
     return combineLatest(cookies).pipe(
       tap((result) => (this.cartInventory = result))

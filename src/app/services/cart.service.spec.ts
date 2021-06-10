@@ -82,7 +82,24 @@ describe('CartService', () => {
     });
   });
 
-  it('should add item to cart', () => {
+  it('should increment the quantity of the product when the same product is added to the inventory', () => {
+    service.cartInventory = [mockPlant];
+    service.addItemToCart(mockPlant);
+    expect(service.cartInventory).toEqual([
+      {
+        id: 1,
+        latinName: 'Monstera Deliciosa',
+        name: 'Alfredo',
+        price: 28.69,
+        quantity: 2,
+        image: 'images',
+        description: 'foo description',
+        stripe: 'UNDEFINED',
+      },
+    ]);
+  });
+
+  it('should add product to inventory', () => {
     service.addItemToCart(mockPlant);
     expect(service.cartInventory).toEqual([mockPlant]);
   });
@@ -101,8 +118,29 @@ describe('CartService', () => {
     });
   });
 
+  it('should get and return empty cart inventory and set a empty cookie', () => {
+    spyOn(service, 'setCookie');
+    fakeCookie.check.and.returnValue(false);
+    fakeCookie.get.and.returnValue('[]');
+    fakeFirebaseService.getProductfromDBByID.and.returnValue(of([mockPlant]));
+    service.getCartInventory().subscribe((result) => {
+      expect(result).toEqual([mockPlant]);
+    });
+  });
+
   it('should get total price', () => {
-    service.cartInventory.push(mockPlant);
+    service.cartInventory = [
+      {
+        id: 1,
+        latinName: 'Monstera Deliciosa',
+        name: 'Alfredo',
+        price: 28.69,
+        quantity: 1,
+        image: 'images',
+        description: 'foo description',
+        stripe: 'UNDEFINED',
+      },
+    ];
     expect(service.getTotalPrice()).toEqual(28.69);
   });
 

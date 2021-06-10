@@ -4,6 +4,7 @@ import { Product } from '../../models/product';
 import { NotificationService } from '../../services/notification.service';
 import { AuthService } from '../../services/auth.service';
 import { Stripe } from '../../models/stripe';
+import { ProductCookie } from 'src/app/models/productCookie';
 
 @Component({
   selector: 'app-cart-container',
@@ -38,6 +39,12 @@ export class CartContainerComponent implements OnInit {
     );
     if (change[0] === 1) {
       this.products[objIndex].quantity = this.products[objIndex].quantity + 1;
+      const cookie = JSON.parse(this.cartService.getCookie('cart'));
+      const cookieIndex = cookie.findIndex(
+        (value: ProductCookie) => value.id === this.products[objIndex].id
+      );
+      cookie[cookieIndex].quantity = cookie[cookieIndex].quantity + 1;
+      this.cartService.setCookie('cart', JSON.stringify(cookie));
       this.totalPriceOfProducts();
     } else {
       /* istanbul ignore if  */
@@ -50,6 +57,12 @@ export class CartContainerComponent implements OnInit {
         );
       } else {
         this.products[objIndex].quantity = this.products[objIndex].quantity - 1;
+        const cookie = JSON.parse(this.cartService.getCookie('cart'));
+        const cookieIndex = cookie.findIndex(
+          (value: ProductCookie) => value.id === this.products[objIndex].id
+        );
+        cookie[cookieIndex].quantity = cookie[cookieIndex].quantity - 1;
+        this.cartService.setCookie('cart', JSON.stringify(cookie));
         this.totalPriceOfProducts();
       }
     }

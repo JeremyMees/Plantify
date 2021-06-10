@@ -35,6 +35,10 @@ describe('CartContainerComponent', () => {
             'getCartInventory',
             'getTotalPrice',
             'payProducts',
+            'getCookie',
+            'setCookie',
+            'deleteCookie',
+            'checkCookie',
           ]),
         },
         {
@@ -84,10 +88,18 @@ describe('CartContainerComponent', () => {
   });
 
   describe('when onQuantityChange() is called', () => {
+    beforeEach(() => {
+      fakeService.getCookie.and.returnValue('[{"id" : 1, "quantity": 2}]');
+    });
+
     it('should increment quantity', () => {
       component.products = [mockPlant];
       component.onQuantityChange([1, mockPlant]);
       expect(component.products[0].quantity).toEqual(2);
+      expect(fakeService.setCookie).toHaveBeenCalledWith(
+        'cart',
+        '[{"id":1,"quantity":3}]'
+      );
     });
 
     it('should not decrement quantity because cant go lower than zero', () => {
@@ -101,6 +113,10 @@ describe('CartContainerComponent', () => {
       component.products = [mockPlant];
       component.onQuantityChange([0, mockPlant]);
       expect(component.products[0].quantity).toEqual(1);
+      expect(fakeService.setCookie).toHaveBeenCalledWith(
+        'cart',
+        '[{"id":1,"quantity":1}]'
+      );
     });
   });
 });
