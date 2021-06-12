@@ -1,7 +1,12 @@
 .btn {
   background-color: #9fc131;
   width: 100%;
+  margin-top: 0.5rem;
   margin-bottom: 0.5rem;
+}
+
+.btn-secondary {
+  background-color: rgb(128, 128, 128);
 }
 
 input {
@@ -10,6 +15,8 @@ input {
   border-radius: 5px;
   margin-bottom: 0.5em;
   width: 100%;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 input:focus {

@@ -125,7 +125,8 @@
     "email": "Email address",
     "password": "Password",
     "forgot": "Forgot your password ?",
-    "reset": "Send reset email"
+    "reset": "Send reset email",
+    "new": "New user ?"
   },
   "MODAL": {
     "continue": "Continue shopping or checkout",
