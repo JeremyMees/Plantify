@@ -1,7 +1,7 @@
 <div class="container">
   <app-shoppingcart
     [totalPrice]="totalPrice"
-    [products]="products"
+    [products]="products$"
     (quantityChanged)="onQuantityChange($event)"
     (deleteItemFromCart)="deleteFromCart($event)"
     (productsToPay)="payForProducts($event)"

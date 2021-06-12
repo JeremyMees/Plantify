@@ -5,6 +5,7 @@ import { NotificationService } from '../../services/notification.service';
 import { AuthService } from '../../services/auth.service';
 import { Stripe } from '../../models/stripe';
 import { ProductCookie } from 'src/app/models/productCookie';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-cart-container',
@@ -15,6 +16,7 @@ export class CartContainerComponent implements OnInit {
   products: Array<Product> = [];
   totalPrice: number;
   email: string;
+  products$ = new Subject<Array<Product>>();
 
   constructor(
     private cartService: CartService,
@@ -25,6 +27,7 @@ export class CartContainerComponent implements OnInit {
   ngOnInit(): void {
     this.cartService.getCartInventory().subscribe((data: Array<Product>) => {
       this.products = data;
+      this.products$.next(this.products);
       this.totalPriceOfProducts();
     });
 
@@ -70,7 +73,7 @@ export class CartContainerComponent implements OnInit {
 
   deleteFromCart(product: Product): void {
     this.cartService.deleteItemFromCart(product);
-    this.getProducts();
+
     this.totalPriceOfProducts();
   }
 
@@ -80,12 +83,7 @@ export class CartContainerComponent implements OnInit {
 
   payForProducts(stripeArray: Array<Stripe>): void {
     this.cartService.payProducts(stripeArray, this.products, this.email);
-    this.getProducts();
 
     this.totalPriceOfProducts();
-  }
-
-  getProducts(): void {
-    this.cartService.getCartInventory().subscribe((data: Array<Product>) => {});
   }
 }

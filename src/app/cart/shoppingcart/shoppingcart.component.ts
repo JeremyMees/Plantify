@@ -1,5 +1,6 @@
 import { Component, Input, Output, OnInit } from '@angular/core';
 import { EventEmitter } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Product } from '../../models/product';
 import { Stripe } from '../../models/stripe';
 import { NotificationService } from '../../services/notification.service';
@@ -10,7 +11,8 @@ import { NotificationService } from '../../services/notification.service';
   styleUrls: ['./shoppingcart.component.scss'],
 })
 export class ShoppingcartComponent implements OnInit {
-  @Input() products: Array<Product>;
+  @Input() products: any;
+  productsArray: Array<Product>;
   @Input() totalPrice: number;
   @Output() quantityChanged = new EventEmitter<Array<any>>();
   @Output() deleteItemFromCart = new EventEmitter<Product>();
@@ -28,12 +30,15 @@ export class ShoppingcartComponent implements OnInit {
   constructor(private notificationService: NotificationService) {}
 
   ngOnInit(): void {
-    this.makeArrayStripe();
+    this.products.subscribe((response: Array<Product>) => {
+      this.productsArray = response;
+      this.makeArrayStripe();
+    });
   }
 
   makeArrayStripe(): void {
     this.stripeArray = [];
-    this.products.forEach((product) => {
+    this.productsArray.forEach((product) => {
       this.stripeArray.push({
         price: product.stripe,
         quantity: product.quantity,

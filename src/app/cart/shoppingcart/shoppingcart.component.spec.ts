@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ShoppingcartComponent } from './shoppingcart.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { NotificationService } from '../../services/notification.service';
+import { of } from 'rxjs';
 
 describe('ShoppingcartComponent', () => {
   let component: ShoppingcartComponent;
@@ -42,7 +43,7 @@ describe('ShoppingcartComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ShoppingcartComponent);
     component = fixture.componentInstance;
-    component.products = [mockPlant];
+    component.products = of([mockPlant]);
     fixture.detectChanges();
   });
 
