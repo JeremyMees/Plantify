@@ -125,7 +125,8 @@
     "email": "Email adres",
     "password": "Wachtwoord",
     "forgot": "Wachtwoord vergeten ?",
-    "reset": "Verstuur reset email"
+    "reset": "Verstuur reset email",
+    "new": "Nieuwe gebruiker ?"
   },
   "MODAL": {
     "continue": "Doorgaan met winkelen of afrekenen",

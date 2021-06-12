@@ -21,7 +21,14 @@
       Log in
     </button>
     <br />
-    <button [hidden]="forgot" class="btn" (click)="forgotPassword()">
+    <button class="btn btn-secondary" (click)="navigateToRegister()">
+      {{ "LOGIN.new" | translate }}
+    </button>
+    <button
+      [hidden]="forgot"
+      class="btn btn-secondary"
+      (click)="forgotPassword()"
+    >
       {{ "LOGIN.forgot" | translate }}
     </button>
     <input
