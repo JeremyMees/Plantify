@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { NotificationService } from '../services/notification.service';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
   isMenuOpen: boolean = false;
   isLoggedIn: boolean = false;
+  authSubscription: Subscription;
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -20,9 +22,15 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.authService.isUserLoggedIn().subscribe((response: boolean) => {
-      this.isLoggedIn = response;
-    });
+    this.authSubscription = this.authService
+      .isUserLoggedIn()
+      .subscribe((response: boolean) => {
+        this.isLoggedIn = response;
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.authSubscription.unsubscribe();
   }
 
   logout(): void {

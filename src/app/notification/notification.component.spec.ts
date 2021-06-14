@@ -44,6 +44,14 @@ describe('NotificationComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  describe('ngOnDestroy()', () => {
+    it('should unsubscribe to observables', () => {
+      spyOn(component.notificationSubscription, 'unsubscribe');
+      component.ngOnDestroy();
+      expect(component.notificationSubscription.unsubscribe).toHaveBeenCalled();
+    });
+  });
+
   it('should subscribe to the notification values', () => {
     component.ngOnInit();
     expect(component.message).toEqual(mockNotification.message);

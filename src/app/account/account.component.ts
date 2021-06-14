@@ -1,17 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { FirebaseService } from '../services/firebase.service';
 import { Router } from '@angular/router';
 import { Product } from '../models/product';
 import { NotificationService } from '../services/notification.service';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.scss'],
 })
-export class AccountComponent implements OnInit {
+export class AccountComponent implements OnInit, OnDestroy {
   name: string;
   email: string;
   password: string;
@@ -23,6 +23,8 @@ export class AccountComponent implements OnInit {
   boughtProducts: Array<any>;
   credentials: any;
   input: boolean = false;
+  authSubscription: Subscription;
+  firebaseSubscription: Subscription;
 
   constructor(
     private authService: AuthService,
@@ -33,18 +35,25 @@ export class AccountComponent implements OnInit {
 
   ngOnInit(): void {
     let boughtArray: Array<any> = [];
-    this.authService.getUserCredentials().subscribe((credentials: any) => {
-      this.name = credentials.displayName;
-      this.email = credentials.email;
-      this.firebaseService
-        .getBoughtProducts(credentials.email)
-        .subscribe((querySnapshot) => {
-          querySnapshot.forEach((doc: any) => {
-            boughtArray.push(doc.data());
+    this.authSubscription = this.authService
+      .getUserCredentials()
+      .subscribe((credentials: any) => {
+        this.name = credentials.displayName;
+        this.email = credentials.email;
+        this.firebaseSubscription = this.firebaseService
+          .getBoughtProducts(credentials.email)
+          .subscribe((querySnapshot) => {
+            querySnapshot.forEach((doc: any) => {
+              boughtArray.push(doc.data());
+            });
+            this.boughtProducts = boughtArray;
           });
-          this.boughtProducts = boughtArray;
-        });
-    });
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.authSubscription.unsubscribe();
+    this.firebaseSubscription.unsubscribe();
   }
 
   updateToInputs() {

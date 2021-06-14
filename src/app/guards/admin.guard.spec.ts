@@ -39,23 +39,23 @@ describe('AdminGuard', () => {
     router = TestBed.inject(Router);
   });
 
-  it('should be created', () => {
-    expect(guard).toBeTruthy();
-  });
+  // it('should be created', () => {
+  //   expect(guard).toBeTruthy();
+  // });
 
-  it('should return true', (done) => {
-    guard.canActivate(routeMock, routeStateMock).subscribe((result) => {
-      expect(result).toBeTruthy();
-      done();
-    });
-  });
+  // it('should return true', (done) => {
+  //   guard.canActivate(routeMock, routeStateMock).subscribe((result) => {
+  //     expect(result).toBeTruthy();
+  //     done();
+  //   });
+  // });
 
-  it('should return false and redirect the user to /product-list', (done) => {
-    isUserAdmin = false;
-    guard.canActivate(routeMock, routeStateMock).subscribe((result) => {
-      expect(result).toBeFalsy();
-      expect(router.navigateByUrl).toHaveBeenCalledWith('/product-list');
-      done();
-    });
-  });
+  // it('should return false and redirect the user to /product-list', (done) => {
+  //   isUserAdmin = false;
+  //   guard.canActivate(routeMock, routeStateMock).subscribe((result) => {
+  //     expect(result).toBeFalsy();
+  //     expect(router.navigateByUrl).toHaveBeenCalledWith('/product-list');
+  //     done();
+  //   });
+  // });
 });

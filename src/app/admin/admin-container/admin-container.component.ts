@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { Admin } from '../../models/admin';
 import { FirebaseService } from '../../services/firebase.service';
 import { Product } from '../../models/product';
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   templateUrl: './admin-container.component.html',
   styleUrls: ['./admin-container.component.scss'],
 })
-export class AdminContainerComponent implements OnInit {
+export class AdminContainerComponent implements OnInit, OnDestroy {
   plants: Array<Product>;
   ids: Array<string>;
   chosenProduct: Product;
@@ -21,6 +21,8 @@ export class AdminContainerComponent implements OnInit {
   admins: Array<Admin>;
   adminsID: Array<string>;
   chosenAdminID: string;
+  authSubscription: Subscription;
+  firebaseSubscription: Subscription;
 
   constructor(
     private router: Router,
@@ -29,14 +31,23 @@ export class AdminContainerComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.firebaseService.getProductsFromDB().subscribe((value: Array<any>) => {
-      this.plants = value[0];
-      this.ids = value[1];
-    });
-    this.authService.getAdminsFromDB().subscribe((value: Array<any>) => {
-      this.admins = value[0];
-      this.adminsID = value[1];
-    });
+    this.firebaseSubscription = this.firebaseService
+      .getProductsFromDB()
+      .subscribe((value: Array<any>) => {
+        this.plants = value[0];
+        this.ids = value[1];
+      });
+    this.authSubscription = this.authService
+      .getAdminsFromDB()
+      .subscribe((value: Array<any>) => {
+        this.admins = value[0];
+        this.adminsID = value[1];
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.authSubscription.unsubscribe();
+    this.firebaseSubscription.unsubscribe();
   }
 
   addNewProduct(newProductArray: Array<Product>): void {

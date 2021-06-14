@@ -106,6 +106,16 @@ describe('AccountComponent', () => {
     fixture.detectChanges();
   });
 
+  describe('ngOnDestroy()', () => {
+    it('should unsubscribe to observables', () => {
+      spyOn(component.authSubscription, 'unsubscribe');
+      spyOn(component.firebaseSubscription, 'unsubscribe');
+      component.ngOnDestroy();
+      expect(component.authSubscription.unsubscribe).toHaveBeenCalled();
+      expect(component.firebaseSubscription.unsubscribe).toHaveBeenCalled();
+    });
+  });
+
   it('should replace text with inputs', () => {
     component.updateToInputs();
     expect(component.input).toEqual(true);
