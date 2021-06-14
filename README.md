@@ -6,13 +6,13 @@ Thesis for Front-End Developer Syntra Genk 2021.
 
 ## Requirements
 
-- node
-- npm
+- node v14.16.0
+- npm v7.15.0
 
 ## Usage
 
 - Download master branch from repository
-- Open the map in your Ide or terminal
+- Open the map in your IDE or terminal
 - Run `npm install` in the terminal to install all the required packages
 - Run `ng serve -o` in the terminal to open a dev server with the project
 
