@@ -56,6 +56,14 @@ describe('NavbarComponent', () => {
     fixture.detectChanges();
   });
 
+  describe('ngOnDestroy()', () => {
+    it('should unsubscribe to observables', () => {
+      spyOn(component.authSubscription, 'unsubscribe');
+      component.ngOnDestroy();
+      expect(component.authSubscription.unsubscribe).toHaveBeenCalled();
+    });
+  });
+
   it('should call authService.logout', () => {
     component.logout();
     expect(fakeService.logout).toHaveBeenCalled();

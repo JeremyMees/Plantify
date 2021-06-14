@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PlantService } from '../../services/plant.service';
 import { FirebaseService } from '../../services/firebase.service';
 import { CartService } from '../../services/cart.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
 import { Product } from '../../models/product';
 import { NotificationService } from '../../services/notification.service';
@@ -13,12 +13,13 @@ import { NotificationService } from '../../services/notification.service';
   templateUrl: './plant-container.component.html',
   styleUrls: ['./plant-container.component.scss'],
 })
-export class PlantContainerComponent implements OnInit {
+export class PlantContainerComponent implements OnInit, OnDestroy {
   plants: Array<Product>;
-  chosenPlant: any;
+  chosenPlant: Product;
   products: Array<Product>;
   id: number;
   destroy$ = new Subject();
+  firebaseSubscription: Subscription;
 
   constructor(
     public router: Router,
@@ -31,9 +32,10 @@ export class PlantContainerComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.destroy$.next(true);
+    this.firebaseSubscription.unsubscribe();
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.route.params.pipe(takeUntil(this.destroy$)).subscribe((params) => {
       if (+params.id >= 0) {
         this.firebaseService
@@ -43,7 +45,7 @@ export class PlantContainerComponent implements OnInit {
           });
       }
     });
-    this.firebaseService
+    this.firebaseSubscription = this.firebaseService
       .getProductsNewAll()
       .subscribe((plants: Array<Product>) => {
         this.plants = plants;

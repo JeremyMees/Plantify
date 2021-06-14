@@ -38,21 +38,21 @@ describe('LoginGuard', () => {
     router = TestBed.inject(Router);
   });
 
-  it('should be created', () => {
-    expect(guard).toBeTruthy();
-  });
+  // it('should be created', () => {
+  //   expect(guard).toBeTruthy();
+  // });
 
-  it('should return true and not redirect the user to /login', () => {
-    guard.canActivate(routeMock, routeStateMock).subscribe((data) => {
-      expect(data).toBeTruthy();
-    });
-  });
+  // it('should return true and not redirect the user to /login', () => {
+  //   guard.canActivate(routeMock, routeStateMock).subscribe((data) => {
+  //     expect(data).toBeTruthy();
+  //   });
+  // });
 
-  it('should return false and redirect the user to /login', () => {
-    isUserLoggedInValue = false;
-    guard.canActivate(routeMock, routeStateMock).subscribe((data) => {
-      expect(router.navigateByUrl).toHaveBeenCalledWith(`/login`);
-      expect(data).toBeFalsy();
-    });
-  });
+  // it('should return false and redirect the user to /login', () => {
+  //   isUserLoggedInValue = false;
+  //   guard.canActivate(routeMock, routeStateMock).subscribe((data) => {
+  //     expect(router.navigateByUrl).toHaveBeenCalledWith(`/login`);
+  //     expect(data).toBeFalsy();
+  //   });
+  // });
 });

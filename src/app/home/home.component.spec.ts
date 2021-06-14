@@ -70,6 +70,14 @@ describe('HomeComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  describe('ngOnDestroy()', () => {
+    it('should unsubscribe to observables', () => {
+      spyOn(component.firebaseSubscription, 'unsubscribe');
+      component.ngOnDestroy();
+      expect(component.firebaseSubscription.unsubscribe).toHaveBeenCalled();
+    });
+  });
+
   it('should bind the values', () => {
     expect(component.plants).toBeDefined();
   });

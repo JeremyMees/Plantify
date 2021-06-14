@@ -96,6 +96,16 @@ describe('PlantContainerComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  describe('ngOnDestroy()', () => {
+    it('should unsubscribe to observables', () => {
+      spyOn(component.firebaseSubscription, 'unsubscribe');
+      spyOn(component.destroy$, 'next');
+      component.ngOnDestroy();
+      expect(component.firebaseSubscription.unsubscribe).toHaveBeenCalled();
+      expect(component.destroy$.next).toHaveBeenCalledWith(true);
+    });
+  });
+
   it(`should bind PLANTS`, () => {
     expect(component.plants).toEqual([mockPlant]);
   });
