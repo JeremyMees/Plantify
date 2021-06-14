@@ -49,12 +49,16 @@ export class AuthService {
       });
   }
 
-  async logout(): Promise<void> {
-    let credentials: any = await this.getUserCredentials();
+  logout(): void {
     this.firebaseAuth
       .signOut()
       .then(() => {
-        alert(`logged ${credentials.email} out`);
+        this.notificationService.setNotification(
+          'User is logged out',
+          'bottom',
+          2,
+          'Timer'
+        );
         this.deleteCookie('logged-in');
       })
       .catch((err) => {
