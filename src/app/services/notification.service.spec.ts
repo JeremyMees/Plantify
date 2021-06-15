@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-import { Subject } from 'rxjs';
 import { NotificationService } from './notification.service';
 
 describe('NotificationService', () => {
@@ -8,6 +7,10 @@ describe('NotificationService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(NotificationService);
+    service.message = '';
+    service.placement = '';
+    service.seconds = null;
+    service.clickable = '';
   });
 
   it('should be created', () => {

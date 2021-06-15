@@ -73,9 +73,9 @@ describe('ShoppingcartComponent', () => {
 
   describe('pay', () => {
     it('should call pay() with valid values', () => {
-      spy = spyOn(component, 'pay').and.callThrough();
+      spyOn(component, 'pay').and.callThrough();
       component.pay(['foo']);
-      expect(spy).toHaveBeenCalled();
+      expect(component.pay).toHaveBeenCalledWith(['foo']);
     });
 
     it('should call pay() with unvalid values', () => {
