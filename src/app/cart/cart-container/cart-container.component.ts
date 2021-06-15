@@ -25,11 +25,7 @@ export class CartContainerComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.cartService.getCartInventory().subscribe((data: Array<Product>) => {
-      this.products = data;
-      this.products$.next(this.products);
-      this.totalPriceOfProducts();
-    });
+    this.getCartInventory();
 
     this.authService.getUserCredentials().subscribe((user: any) => {
       if (user) {
@@ -40,7 +36,15 @@ export class CartContainerComponent implements OnInit {
     });
   }
 
-  onQuantityChange(change: Array<any>) {
+  getCartInventory(): void {
+    this.cartService.getCartInventory().subscribe((data: Array<Product>) => {
+      this.products = data;
+      this.products$.next(this.products);
+      this.totalPriceOfProducts();
+    });
+  }
+
+  onQuantityChange(change: Array<any>): void {
     const objIndex = this.products.findIndex(
       (product: Product) => product.id === change[1].id
     );
@@ -77,7 +81,7 @@ export class CartContainerComponent implements OnInit {
 
   deleteFromCart(product: Product): void {
     this.cartService.deleteItemFromCart(product);
-
+    this.getCartInventory();
     this.totalPriceOfProducts();
   }
 
