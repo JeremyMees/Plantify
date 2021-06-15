@@ -15,7 +15,7 @@ import { Subject } from 'rxjs';
 export class CartContainerComponent implements OnInit {
   products: Array<Product> = [];
   totalPrice: number;
-  email: string;
+  email: string | undefined;
   products$ = new Subject<Array<Product>>();
 
   constructor(
@@ -32,7 +32,11 @@ export class CartContainerComponent implements OnInit {
     });
 
     this.authService.getUserCredentials().subscribe((user: any) => {
-      this.email = user.email;
+      if (user) {
+        this.email = user.email;
+      } else {
+        this.email = undefined;
+      }
     });
   }
 
@@ -82,7 +86,19 @@ export class CartContainerComponent implements OnInit {
   }
 
   payForProducts(stripeArray: Array<Stripe>): void {
-    this.cartService.payProducts(stripeArray, this.products, this.email);
+    if (this.email !== undefined) {
+      console.log('if');
+
+      this.cartService.payProducts(stripeArray, this.products, this.email);
+    } else {
+      console.log('else');
+      this.notificationService.setNotification(
+        'Please log in first',
+        'top',
+        2,
+        'Clickable'
+      );
+    }
 
     this.totalPriceOfProducts();
   }

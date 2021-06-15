@@ -4,14 +4,17 @@ import { CartContainerComponent } from './cart-container.component';
 import { CartService } from '../../services/cart.service';
 import { Product } from '../../models/product';
 import { AuthService } from '../../services/auth.service';
-import { of } from 'rxjs';
+import { BehaviorSubject, of } from 'rxjs';
+import { NotificationService } from 'src/app/services/notification.service';
 
 describe('CartContainerComponent', () => {
   let component: CartContainerComponent;
   let fixture: ComponentFixture<CartContainerComponent>;
   let fakeService: jasmine.SpyObj<CartService>;
   let fakeAuthService: jasmine.SpyObj<AuthService>;
+  let notificationService: jasmine.SpyObj<NotificationService>;
   let spy: any;
+  let user$ = new BehaviorSubject(undefined);
   const mockPlant: Product = {
     id: 1,
     latinName: 'Monstera Deliciosa',
@@ -45,6 +48,12 @@ describe('CartContainerComponent', () => {
           provide: AuthService,
           useValue: jasmine.createSpyObj('AuthService', ['getUserCredentials']),
         },
+        {
+          provide: NotificationService,
+          useValue: jasmine.createSpyObj('NotificationService', [
+            'setNotification',
+          ]),
+        },
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
@@ -52,14 +61,15 @@ describe('CartContainerComponent', () => {
     fakeAuthService = TestBed.inject(
       AuthService
     ) as jasmine.SpyObj<AuthService>;
+    notificationService = TestBed.inject(
+      NotificationService
+    ) as jasmine.SpyObj<NotificationService>;
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CartContainerComponent);
     component = fixture.componentInstance;
-    fakeAuthService.getUserCredentials.and.returnValue(
-      of({ email: 'fake-email' })
-    );
+    fakeAuthService.getUserCredentials.and.returnValue(user$);
     fakeService.getCartInventory.and.returnValue(of([mockPlant]));
     fixture.detectChanges();
   });
@@ -82,6 +92,8 @@ describe('CartContainerComponent', () => {
   });
 
   it('should call cartService.payForProducts() with the correct value', () => {
+    user$.next({ email: 'foo@mail.com' });
+    fixture.detectChanges();
     component.payForProducts([{ price: 'foo', quantity: 1 }]);
     expect(fakeService.payProducts).toHaveBeenCalled();
     expect(fakeService.getCartInventory).toHaveBeenCalled();
@@ -118,5 +130,18 @@ describe('CartContainerComponent', () => {
         '[{"id":1,"quantity":1}]'
       );
     });
+  });
+
+  it('should cancel the payment if user is not logged in', () => {
+    user$.next(undefined);
+    fixture.detectChanges();
+    // component.email = undefined;
+    component.payForProducts([{ price: 'foo', quantity: 1 }]);
+    expect(notificationService.setNotification).toHaveBeenCalledWith(
+      'Please log in first',
+      'top',
+      2,
+      'Clickable'
+    );
   });
 });
