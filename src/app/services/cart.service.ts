@@ -72,10 +72,17 @@ export class CartService {
   }
 
   deleteItemFromCart(product: Product): void {
-    const index = this.cartInventory.indexOf(product);
-    this.cartInventory.splice(index, 1);
-    const indexId = this.cartInventoryIds.indexOf(product);
-    this.cartInventoryIds.splice(indexId, 1);
+    this.cartInventory = this.cartInventory.filter(
+      (item) => item.id !== product.id
+    );
+    this.cartInventoryIds = [];
+    this.cartInventory.forEach((product) => {
+      this.cartInventoryIds.push({
+        id: product.id,
+        quantity: product.quantity,
+      });
+    });
+
     let cartInventoryIdsSet = new Set(this.cartInventoryIds);
     const jsonInventory = JSON.stringify([...cartInventoryIdsSet]);
     this.setCookie('cart', jsonInventory);

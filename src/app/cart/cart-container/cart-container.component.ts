@@ -87,11 +87,8 @@ export class CartContainerComponent implements OnInit {
 
   payForProducts(stripeArray: Array<Stripe>): void {
     if (this.email !== undefined) {
-      console.log('if');
-
       this.cartService.payProducts(stripeArray, this.products, this.email);
     } else {
-      console.log('else');
       this.notificationService.setNotification(
         'Please log in first',
         'top',

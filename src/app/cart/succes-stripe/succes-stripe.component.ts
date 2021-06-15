@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CartService } from '../../services/cart.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-succes-stripe',
@@ -7,8 +7,9 @@ import { CartService } from '../../services/cart.service';
   styleUrls: ['./succes-stripe.component.scss'],
 })
 export class SuccesStripeComponent implements OnInit {
-  constructor(private cartService: CartService) {}
+  constructor(private cookieService: CookieService) {}
+
   ngOnInit(): void {
-    this.cartService.deleteCookie('cart');
+    this.cookieService.delete('cart', '/');
   }
 }

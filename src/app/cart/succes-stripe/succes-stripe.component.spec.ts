@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { SuccesStripeComponent } from './succes-stripe.component';
-import { CartService } from '../../services/cart.service';
+import { CookieService } from 'ngx-cookie-service';
 
 describe('SuccesStripeComponent', () => {
   let component: SuccesStripeComponent;
   let fixture: ComponentFixture<SuccesStripeComponent>;
-  let fakeService: jasmine.SpyObj<CartService>;
+  let fakeService: jasmine.SpyObj<CookieService>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -14,12 +14,14 @@ describe('SuccesStripeComponent', () => {
       imports: [TranslateModule.forRoot()],
       providers: [
         {
-          provide: CartService,
-          useValue: jasmine.createSpyObj('CartService', ['deleteCookie']),
+          provide: CookieService,
+          useValue: jasmine.createSpyObj('CookieService', ['delete']),
         },
       ],
     }).compileComponents();
-    fakeService = TestBed.inject(CartService) as jasmine.SpyObj<CartService>;
+    fakeService = TestBed.inject(
+      CookieService
+    ) as jasmine.SpyObj<CookieService>;
   });
 
   beforeEach(() => {
@@ -30,5 +32,10 @@ describe('SuccesStripeComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should call cookieService to delete cookie', () => {
+    component.ngOnInit();
+    expect(fakeService.delete).toHaveBeenCalledWith('cart', '/');
   });
 });
