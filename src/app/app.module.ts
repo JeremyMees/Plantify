@@ -45,6 +45,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
+import { MatCardModule } from '@angular/material/card';
 import player from 'lottie-web';
 import { LottieModule } from 'ngx-lottie';
 
@@ -107,6 +108,7 @@ export function playerFactory() {
     MatSidenavModule,
     MatButtonModule,
     MatSelectModule,
+    MatCardModule,
     LottieModule.forRoot({ player: playerFactory }),
   ],
   providers: [CookieService, AuthService],

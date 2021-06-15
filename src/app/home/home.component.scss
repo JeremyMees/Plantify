@@ -16,6 +16,11 @@
   margin-bottom: 1em;
 }
 
+.loves-title {
+  text-align: center;
+  padding-top: 2rem;
+}
+
 .buttons {
   background-color: #9fc131;
   margin-bottom: 1em;
@@ -68,27 +73,18 @@
   margin-top: 1em;
 }
 
-ul {
-  padding-left: 0;
-  list-style: none;
-}
-
 .flex-container {
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   flex-wrap: wrap;
+  gap: 1rem;
 }
 
-li {
-  padding-left: 1em;
-  margin-bottom: 1em;
-}
-
-.list-item {
-  width: 25%;
-  height: 349px;
+mat-card {
+  max-width: 300px;
+  max-height: 400px;
 }
 
 .loves-image {
@@ -106,24 +102,8 @@ li {
   height: 250px;
 }
 
-.card {
-  max-height: 100%;
-  flex: 25%;
-  text-align: left;
-  background-color: rgb(227, 229, 226);
-}
-
-.card-body {
-  background-color: inherit;
-}
-
-.card :hover {
+mat-card :hover {
   cursor: pointer;
-}
-
-.loves-titel {
-  text-align: center;
-  margin-top: 1em;
 }
 
 @media (max-width: 1000px) {
@@ -157,10 +137,6 @@ li {
 
   .list-item {
     width: 100%;
-  }
-
-  .flex-container {
-    flex-direction: column;
   }
 
   .perfect {

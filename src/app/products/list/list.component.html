@@ -24,7 +24,7 @@
   />
 </div>
 <div class="list">
-  <ul>
+  <!-- <ul>
     <div class="flex-container">
       <li
         class="list-item"
@@ -46,7 +46,32 @@
         </div>
       </li>
     </div>
-  </ul>
+  </ul> -->
+  <div class="flex-container">
+    <mat-card
+      *ngFor="
+        let plant of plants
+          | slice: (page - 1) * pageSize:(page - 1) * pageSize + pageSize
+      "
+      (click)="onSelect(plant)"
+    >
+      <div class="image-container">
+        <img
+          mat-card-image
+          [src]="plant.image"
+          alt="image from {{ plant.latinName }}"
+          class="image"
+        />
+      </div>
+      <mat-card-content>
+        <div>
+          <b>{{ plant.name }}</b>
+        </div>
+        <div>{{ plant.price }}</div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
   <div class="pagination">
     <ngb-pagination
       [collectionSize]="plants.length"

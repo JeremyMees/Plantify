@@ -27,30 +27,25 @@
 </div>
 
 <div class="loves">
-  <h1 class="loves-titel">{{ "HOME.LOVES.title" | translate }}</h1>
+  <h1 class="loves-title">{{ "HOME.LOVES.title" | translate }}</h1>
   <div>
-    <ul>
-      <div class="flex-container">
-        <li class="list-item" *ngFor="let plant of plants">
-          <div class="card" (click)="onSelect(plant)">
-            <div class="loves-image-container">
-              <img
-                [src]="plant.image"
-                class="loves-image"
-                alt="image from {{ plant.latinName }}"
-              />
-            </div>
-            <div class="card-body">
-              <div class="card-text latinName">{{ plant.latinName }}</div>
-              <div class="card-text name">
-                {{ plant.name }}
-                <div class="card-text price">{{ plant.price }}</div>
-              </div>
-            </div>
-          </div>
-        </li>
-      </div>
-    </ul>
+    <div class="flex-container">
+      <mat-card *ngFor="let plant of plants" (click)="onSelect(plant)">
+        <div class="loves-image-container">
+          <img
+            mat-card-image
+            [src]="plant.image"
+            alt="image from {{ plant.latinName }}"
+            class="loves-image"
+          />
+        </div>
+        <mat-card-content>
+          <div>{{ plant.latinName }}</div>
+          <div>{{ plant.name }}</div>
+          <div>{{ plant.price }}</div>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
 
   <div class="grower-text">
